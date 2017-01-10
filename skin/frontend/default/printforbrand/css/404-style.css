@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+
+.error404 {
+	width: 100%;
+	float: left;
+	background: #efefef;
+	border: 1px solid #e0e0e0;
+	text-align: center;
+	margin: 35px 0px 50px 0px;
+	padding: 91px 0px 124px 0px;
+}
+.error404 h1 {
+	text-align: center;
+	color: #7f0e0e;
+	font-size: 178px;
+	font-family: 'HelveticaCE-CondBold';
+	display: block;
+	line-height: 180px;
+}
+.error404 span {
+	color: #1f1f1f;
+	font-size: 53px;
+	display: block;
+	
+	font-family: 'Helvetica-Condensed';
+	text-transform: uppercase;
+	
+}
+.error404 p {
+	color: #2b2b2b;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 24px;
+	line-height: 31px;
+	margin-top: 20px;
+
+}
+.error404 a {
+	background: #7f0e0e;
+	color: #fff;
+	font-size: 14px;
+	
+	padding: 15px 26px;
+	text-transform: uppercase;
+	font-weight: bold;
+	transition:all 0.3s ease-in 0s;
+	-moz-transition:all 0.3s ease-in 0s;
+	-ms-transition:all 0.3s ease-in 0s;
+	-webkit-transition:all 0.3s ease-in 0s;
+	-o-transition:all 0.3s ease-in 0s;
+}
+.error404 a:hover{background:#3e3e3e;}
+
+/*----------------404-style----------------------*/
+@media (max-width: 767px) {
+
+	.error404 {
+		padding: 37px 0 66px;
+		margin: 35px 0 38px;
+	}
+}
+
+/*----------------/404-style----------------------*/

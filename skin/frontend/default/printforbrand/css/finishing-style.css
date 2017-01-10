@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+.finishing-opt-con{margin-bottom:40px;}
+#finishing-tab .resp-tabs-list li, #finishing-tab  .resp-tabs-container h2.resp-accordion{
+    font-weight: 500;
+    font-size: 14px;
+  
+    margin: 0;
+    list-style: none;
+    cursor: pointer;
+    text-transform:uppercase;
+	color:#fff;
+	text-align:center;
+	background:#4c4c4c;
+	
+}
+#finishing-tab .resp-tabs-list li {padding: 13px 43.3px;}
+#finishing-tab  .resp-tabs-container h2.resp-accordion{padding: 13px 15px;  border: 1px solid #c1c1c1;
+    border-top: 0px solid #c1c1c1;
+    margin: 0px;}
+ 
+
+#finishing-tab  .resp-tab-active {
+    background-color: #7e1418 !important;
+    border-bottom: medium none;
+}
+
+#finishing-tab .resp-tab-content{padding:32px 0;}
+
+.rpt-finish-imgcon img{border:1px solid #e0e0e0;}
+.table {
+    margin-top: 38px;
+    width: 100%;
+}
+.table.table-desc{border:1px solid #e5e5e5;}
+.table.table-desc th, .table.table-desc td{border:0 !important;}
+.table-desc thead tr th{text-align:center; color:#fff; width:100%; font-size:18px; padding:13px 8px; font-weight:500;}
+ 
+.table-desc tr td:first-child{width:35%; color:#363434;	}
+.table-desc tr td:last-child{color:#686565; font-weight:500;}
+.table-desc tr td:last-child span{display:block; font-size:13px; color:#898989;}
+
+/*---------Price-Desc---------*/
+.pricedesc-table span{text-align:center; font-size:13px; color:#898989; margin-top:18px; display:block;}
+.price-desc-mob{display:none;}
+.price-desc + .price-desc, .price-desc-mob + .price-desc-mob{margin:0 !important;}
+.price-desc thead tr, .price-desc-mob thead tr{background:#4c4c4c;}
+.price-desc tbody tr:nth-child(odd), .price-desc-mob tbody tr:nth-child(odd){background:#dbdbdb; }
+.price-desc tbody tr:nth-child(odd) td, .price-desc-mob tbody tr  td:nth-child(even){ border-left: 1px solid #fff;}
+.price-desc tbody tr:nth-child(odd) td:first-child, .price-desc-mob tbody tr:nth-child(even) td:last-child{border-left: 1px solid #ddd;}
+.price-desc thead tr th, .price-desc-mob  thead tr th {text-align:center; color:#fff; width:100%; font-size:16px; padding:13px 8px; font-weight:500;}
+.price-desc tbody tr:nth-child(even) td, .price-desc-mob  tbody tr td:nth-child(even) {font-weight:600;}
+.price-desc-mob  tbody tr td:nth-child(odd) {font-weight:500; width:50%;}
+
+/*---------Price-Desc---------*/
+.finish-btmimgcon{margin-top:42px;}
+.finishbtm-imglt{float:left; margin-right:28px;}
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+
+/* Reset CSS
+
+---------------------------------------------------*/
+
+/*-----------breadcrum-css----------------------------*/
+
+
+
+.support-con { padding: 36px 0px 100px 0px; }
+
+.support-con h3 {  line-height: 40px; margin-bottom: 40px; font-weight: 400; text-align: center; }
+
+.support-con h3 span {font-weight:700; }
+
+.support-inner-lt p { color: #464646; font-size: 17px; font-weight: 700; line-height: 28px; }
+
+.support-info { padding-bottom: 25px; border-bottom: 1px dashed #464646; }
+
+.support-info span { border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -webkit-border-radius: 50%; -o-border-radius: 50%; background: #801318; display: inline-block; height: 40px; line-height: 36px; margin-right: 4%; margin-top: 2px; text-align: center; vertical-align: top; width: 39px; }
+
+.support-info span img{padding-top: 2px; }
+
+.support-info-txt h5 { color: #464646; font-weight: 400; line-height: 28px; margin-bottom: 10px; }
+
+.support-info-txt a { color: #801318; font-size: 17px; font-weight: 500; line-height: 28px; transition:all 0.3s ease-in 0s; -moz-transition:all 0.3s ease-in 0s; -webkit-transition:all 0.3s ease-in 0s; }
+
+.support-info-txt a:hover{color:#b9171f;}
+
+.support-info-txt { display: inline-block; }
+
+.support-info { margin-top: 26px; }
+
+.support-info-txt ul { margin-top: 10px; }
+
+.support-info-txt li { color: #464646; font-weight: 400; line-height: 28px; font-family: 'HelveticaCE-CondBold'; font-size: 14px; }
+.error {
+	padding: 0 41%;
+}
+select.chosen-select {
+	width: 100%;
+}
+
+
+
+
+@media (max-width: 767px){
+	.support-inner-lt p{text-align: center;}
+}

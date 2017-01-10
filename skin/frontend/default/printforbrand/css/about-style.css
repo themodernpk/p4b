@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Reset CSS
+---------------------------------------------------*/
+/*-----------breadcrum-css----------------------------*/
+.banner-con { margin-top: 4px; }
+.about-con { padding: 52px 0px; text-align: center; }
+.about-con h3 { color: #4d4d4d; line-height: 40px; margin-bottom: 35px; }
+.about-con h3 span { color: #7e1519; font-weight: 700; }
+.about-con h5 { color: #464646; line-height: 28px; margin-bottom: 35px; font-weight: 700; }
+.about-con p { color: #464646; line-height: 30px; font-size: 17px; padding: 0 2%; }
+.about-con p a { color: #3e3e3e;  font-family: 'HelveticaCE-CondBold';}
+.about-con p span { font-family: 'HelveticaCE-CondBold'; }
+.mrp-50 { margin-top: 45px; }
+.bdr-tp { border-top: 1px solid #cbcbcb; }
+.creative-serv-con { padding: 50px 0px; text-align: center; }
+.creative-serv-con h3 { color: #2e2e2e; line-height: 40px; margin-bottom: 50px; }
+.creative-serv-con h3 span { color: #2e2e2e; font-weight: 700; }
+.serv-circle { background: #7e1418; border: 8px solid #7f0e0e; border-radius: 50%; -o-border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; display: inline-block; line-height: 87px; height: 87px; width: 87px; text-align: center; margin-bottom: 30px; transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s; -o-transition: all 0.3s ease-in 0s; -moz-transition: all 0.3s ease-in 0s; -ms-transition: all 0.3s ease-in 0s; }
+.serv-circle span { border: 2px solid #fff; border-radius: 50%; -o-border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; display: inline-block; height: 83px; line-height: 83px; transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s; -o-transition: all 0.3s ease-in 0s; -moz-transition: all 0.3s ease-in 0s; -ms-transition: all 0.3s ease-in 0s; width: 83px; }
+/*.serv-circle:hover { background: #555; border: 8px solid #b84242; }*/
+.cretv-serv h6 { color: #2e2e2e; font-weight: 600; margin-bottom: 20px; line-height: 30px; }
+.cretv-serv p { color: #666; line-height: 25px; font-size: 14px; }
+
+
+@media (max-width: 480px){
+
+	.serv-circle{    margin-bottom: 20px;}
+	.creative-serv-con .cretv-serv {    margin-bottom: 40px;}
+
+}

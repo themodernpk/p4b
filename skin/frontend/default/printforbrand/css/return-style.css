@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+.rturn-ship-policy {float:left; margin-bottom:100px;}
+.rturn-ship-policy .accordion-group {
+    border: 1px solid #fff;
+    margin-bottom: 0px;
+}
+.rturn-ship-policy > h3.page-title{text-transform:capitalize}
+
+.rturn-ship-policy .accordion-inner {
+    border-top: 1px solid #e5e5e5;
+    padding: 27px 23px 34px 99px;
+	font-size:14px; 
+	line-height:28px;
+	font-weight:400;
+}
+
+.rturn-ship-policy .accordion-heading .accordion-toggle {
+    display: block;
+    padding: 12px 25px 12px 99px;
+	color:#2e2e2e;
+	background-color:#d7d7d7;
+	font-size:15px;
+	font-weight:700;
+	position:relative;
+	
+}
+.rturn-ship-policy .accordion-heading .accordion-toggle:after, .rturn-ship-policy .accordion-heading.opened  .accordion-toggle:after{ 
+  
+	display: inline-block;
+    float: left;
+    height: 100%;
+   	font-size:40px; text-align:center;
+    width: 70px;
+	position:absolute;
+	background-color:#2e2e2e;
+	border-right:1px solid #fff;
+	font-weight:500;
+	left:0; top:0;
+	line-height:100%;
+	color:#fff;
+	}
+	.rturn-ship-policy .accordion-heading .accordion-toggle:after{ content:'+'; line-height:45px;}
+	.rturn-ship-policy .accordion-heading.opened  .accordion-toggle:after{content:'-'; line-height:38px; }
+
+.rturn-ship-policy .accordion-heading.opened  .accordion-toggle{background-color:#7e0c0c; color:#fff;}
+
+	

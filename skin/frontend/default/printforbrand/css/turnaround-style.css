@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+.rturn-ship-policy + .turn-tablecon{margin-top:-60px;}
+.turn-tablecon{float:left; width:100%; margin-bottom:58px;}
+
+.turn-tablecon p{font-size:15px; color:#696868; line-height:22px;}
+.turn-tablecon p strong{font-weight:800; text-transform:uppercase;}
+
+.turn-table thead{background:#4c4c4c;}
+.turn-table thead th{color:#fff; border-left:1px solid #4c4c4c; font-weight:400; border-top-width:0; }
+.turn-table thead tr{border-right:1px solid #4c4c4c;}
+
+.turn-table tbody tr:nth-child(odd){background:#ececec;}
+.turn-table tbody tr:nth-child(even){background:#fff;}
+.table.turn-table th, .table.turn-table td{padding:12px 8px; }
+.table.turn-table tbody tr td{font-weight:600; color:#363434; vertical-align:middle;}
+.table.turn-table tbody tr td.na{color:#afafaf; font-size:15px;}
+.turn-tablecon  .table.turn-table thead tr:first-child th{color:#fff; text-transform:capitalize; text-align:center; background:#801318; padding:15px 2%; width:96%;}

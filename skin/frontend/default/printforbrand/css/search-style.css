@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.reaslt {
+	width: 100%;
+	float: left;
+	font-size: 18px;
+	padding: 10px 0px;
+	border-bottom: 1px solid #e8e8e8;
+}
+.searchcon {
+	width: 100%;
+	float: left;
+	padding: 30px 0px 23px 0px;
+	border-bottom: 1px solid #e8e8e8;
+}
+.searchcon h6 {
+	color: #7e1418;
+	font-weight: 700;
+	margin-bottom:22px;
+}
+.search_img  {
+	 float:left; margin-right:18px; text-align:center; 
+}
+.searchcon p {
+	font-size: 14px;
+	line-height:23px;
+	 padding:0;
+	 margin:0  0  15px 0; text-align:justify;
+}
+.searchcon a { color:#7e0c0c; font-size:13px; text-decoration:underline; font-weight: 600;}
+.searchcon a:hover{text-decoration:underline;}
+
+.srch-outercon .pagination {
+    border-bottom: 1px solid #eaeaea;
+    border-top: 1px solid #eaeaea;
+	margin-bottom:36px;
+}
+
+.searchcon h6 a {
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+}
+.toolbar-top .pagination {
+    display: none;
+}
+

@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+.file-prep-wrapper h3{ text-align:center;}
+.file-prepimgcon{padding:40px 0; float:left; width:100%;}
+.file-prep-wrapper  p.align-center {margin:0; }
+.file-prep-wrapper  p{font-weight:400; font-size:18px; line-height:28px; margin-bottom:30px;}
+
+
+@media (max-width:480px){
+	.file-prepimgcon {
+		padding: 40px 0 15px;
+	}
+}

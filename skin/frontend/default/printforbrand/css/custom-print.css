@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+.custom-frmcon { float: left;  margin: 23px 0 48px;  width: 100%;}
+#custom-print-tab  .custom-frmcon form > .input-field > p{margin-bottom:0;}
+#custom-print-tab form, #custom-graphic-tab form{width:84%; }
+
+.fileWrapper{position:relative;overflow:hidden;padding:0}
+.fileWrapper .nicefile{width:100% !important;}
+input[type="text"].fileInputText{ display:none;}
+input[type="button"].fileInputButton{float:left;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;margin:0;padding:0; background:url(../img/file-btn-bg.png)left top repeat-x; border:1px solid #a4a4a4; border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px; -o-border-radius:2px; }
+#custom-print-tab .input-field .input-txtsmall-inpt, #custom-graphic-tab .input-field .input-txtsmall-inpt{ 
+	display:inline-block; width:auto; padding:0 10px; 
+	color:#696767; font-size:14px; height:40px; box-sizing:border-box; vertical-align:middle;
+	border:1px solid #dedede; background:#fff; width: 100%; 
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;   
+	-webkit-border-radius: 0;   
+	-moz-border-radius: 0;    
+	border-radius: 0;
+
+}
+#custom-print-tab .input-txtsmall,#custom-graphic-tab .input-txtsmall{float:left; width:28.5%;}
+
+#custom-print-tab .input-field .control .input-txtsmall:nth-child(1), #custom-graphic-tab .input-field .control .input-txtsmall:nth-child(1){
+	margin-right:1.9%;}
+
+	/*-----------------Custom Graphic CSS---------*/
+	#custom-graphic-tab .custom-frmcon {margin:0;}
+	.custom-graphic-bnr{position:relative; }
+	.custom-grapic-txtcon{position:absolute; top:85px; left:55px; width:43%;}
+	.custom-grapic-txtcon h1{font-family: 'HelveticaCE-CondBold';  line-height:74px;   text-transform:uppercase; }
+	.custom-grapic-txtcon h1 >span{ font-family: 'Helvetica-Condensed'; font-size:60px; display:block;}
+	.custom-grapic-txtcon  p{font-family: 'Helvetica-Condensed'; font-size:26px; line-height:35px; margin-top:15px;}
+	textarea.big.inp-text {    height: 80px;    resize: none;}
+	.fileWrapper div.jfilestyle label span {    color: #000;}
+	.fileWrapper div.jfilestyle .count-jfilestyle {    background: #7e0c0c; color: #fff;}
+
+
+	#cGDesign .input-field .inp-text, .input-field .inp-txt-area {
+    position: relative; }

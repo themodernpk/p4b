@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+    <name>free_testimonials_extension</name>
+    <version>1.1.0</version>
+    <stability>stable</stability>
+    <license uri="http://creativecommons.org/licenses/by/3.0/">Creative Commons License </license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Free Magento Testimonials extension</summary>
+    <description>Fixes&#xD;
+* Added check for testimonials qty before animation&#xD;
+* Fixed date issue in different locales in admin&#xD;
+* Added missing translations&#xD;
+* Removed notices on form submit&#xD;
+* Widget are hidden now if no testimonials are found&#xD;
+*  rwd template fixes&#xD;
+&#xD;
+Improvements&#xD;
+* Added config to show testimonials link in top and footer links&#xD;
+* Widget specific configuration moved to widget creation window&#xD;
+* Tested with magento 1.9.1&#xD;
+</description>
+    <notes>Magento Easy Tabs Community Module</notes>
+    <authors><author><name>TemplatesMaster</name><user>TemplatesMaster</user><email>support@templates-master.com</email></author></authors>
+    <date>2015-01-23</date>
+    <time>11:11:46</time>
+    <contents><target name="magelocal"><dir name="TM"><dir name="Testimonials"><dir name="Block"><dir name="Adminhtml"><dir name="Page"><dir name="Edit"><file name="Form.php" hash="31812badeb61963ebd41d000c565b994"/><dir name="Tab"><file name="Main.php" hash="0923031c06b94ac3e6abf979df66a5fd"/></dir><file name="Tabs.php" hash="ee96415e07758fca2ae7a2e2010d69e8"/></dir><file name="Edit.php" hash="d322da030cd3fb0955149db4334f9097"/><file name="Grid.php" hash="6b902e78ea5c871d1ccbedcf4cbfced6"/><dir name="Helper"><file name="Image.php" hash="c1bec4553f23aee1e069d631d233ef17"/></dir></dir><file name="Page.php" hash="554b7e2338bc5e4b20021411df9fedc5"/></dir><dir name="Form"><file name="Container.php" hash="800b09dfab07cb6d98404c72b0cfc4d3"/><file name="Form.php" hash="c3c0b4a086aef7215e0f2178ba314af2"/></dir><dir name="List"><file name="Bottom.php" hash="0b4d5338aeed17b6da84d19b57452b97"/><file name="Content.php" hash="d379ac1567cc4e42f0b5b47f1372cca1"/><file name="Title.php" hash="22e4679f6c70a2cfc2e9ad9719afcb3c"/></dir><dir name="Widget"><file name="Form.php" hash="d1eabb9a51887d6fab49820e0374a87d"/><file name="List.php" hash="de4461d8e13af86e02e45713aeb9f76b"/><file name="ListFull.php" hash="c03078edce1d8f0d49cd5c4149bbc5cb"/><file name="Review.php" hash="eda3c3ce564015865f3e1cbd2bab06be"/></dir></dir><dir name="Helper"><file name="Data.php" hash="dabf52846e52154aff7e5cda5587098e"/><file name="Image.php" hash="64cb9db1afa06cb1e59c42cf695b4c7f"/></dir><dir name="Model"><file name="Data.php" hash="dac0f5409efa811f5eab67bedbe4925b"/><file name="Observer.php" hash="da0e5e6a406ae4369653b475a59d352c"/><dir name="Resource"><dir name="Data"><file name="Collection.php" hash="bb4002420093933c9bb7cb2f044f175b"/></dir><file name="Data.php" hash="02cbba52ad8e861b0fc6990eaed9cf5a"/><file name="Setup.php" hash="cca012d39e55c3fb12b749110211bceb"/></dir><dir name="System"><dir name="Config"><dir name="Backend"><file name="Image.php" hash="be450b5a17a44fae105b1ebe0d662b92"/></dir></dir></dir></dir><dir name="controllers"><dir name="Adminhtml"><dir name="Testimonials"><file name="IndexController.php" hash="52f08a97a85bfc43c6864c9ff012f97d"/></dir></dir><file name="IndexController.php" hash="7dbe08ff9bcc420889fc39cee2ed5fd2"/></dir><dir name="etc"><file name="adminhtml.xml" hash="ac4ac021fd129b7262932d509d27da4b"/><file name="config.xml" hash="8444671c445acfa02edea6e3db57d18b"/><file name="system.xml" hash="85ac5e0c8c1cee04223131cf306d5c24"/><file name="widget.xml" hash="753d8ead5869b53768807dd65fc76bf5"/></dir><dir name="sql"><dir name="tm_testimonials_setup"><file name="mysql4-install-1.0.0.php" hash="3bdb83a71fd3db4717bfaf12fc463a4d"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><dir name="tm"><file name="testimonials.xml" hash="094af48d59de30d0706e43e51052a719"/></dir></dir><dir name="template"><dir name="tm"><dir name="testimonials"><dir><dir name="form"><file name="container.phtml" hash="1ce57290286480d4a041f9929f843754"/><file name="form.phtml" hash="84f6f1176284092b55c78fa670af9b57"/></dir><dir name="list"><file name="bottom.phtml" hash="c5ed73a92062bf8e24928694739c2abd"/><file name="content.phtml" hash="d6f84e73fffb0bd6362c2dc114b5b3b4"/><file name="title.phtml" hash="f3e2d101f532abdb950ddd5004c690aa"/></dir><dir name="widget"><file name="list.phtml" hash="2196612ad162ae820c3596bf73534aa7"/><file name="review.phtml" hash="6f63ab0b8b802b531e9acfe9a1fab332"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><dir name="tm"><file name="testimonials.xml" hash="3db48f3732a87c393719a999a74fb7c6"/></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="tm"><file name="testimonials.css" hash="fbdb82889b535eb1d118a41a2b3eaf40"/></dir></dir><dir name="js"><dir name="tm"><file name="testimonials.js" hash="ea1aacc945c48a382a716556ed527376"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="TM_Testimonials.xml" hash="9c88a7c606829ce69a14da4d27d2c206"/></dir></target><target name="magelocale"><dir name="en_US"><dir name="template"><dir name="email"><file name="testimonials_admin_notification.html" hash="ec53090da82c969ef0b00f5462ae0909"/></dir></dir><file name="TM_Testimonials.csv" hash="a8bcd63dc424fb6080c3f3cc18bb77bc"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>5.9.0</max></php></required></dependencies>
+</package>

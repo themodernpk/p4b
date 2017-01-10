@@ -1,0 +1,35 @@
+.pk-action-button
+{
+    display: inline-block;
+    float: right;
+}
+
+.wd_100_percent{
+    width: 100%;
+}
+.odr-rev-table tfoot tr.incl-tax td{
+    background: none;
+    font-size: 14px;
+    color: #000;
+}
+
+.checkout-cart-index .btn-pt{
+    background: #7e1418 !important;
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 33px;
+    padding: 6px 25px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.checkout-cart-index .btn-pt:hover{
+    background: #a13a3b !important;
+}
+.checkout-cart-index .messages{
+    display: block;
+    float: left;
+    width:100%;
+}
+

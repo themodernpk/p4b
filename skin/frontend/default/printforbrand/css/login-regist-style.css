@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+.login-registrationcon{margin-bottom:78px; width:100%; float:left;}
+.login-con, .registration-con{border-top:5px solid #7e1418; width:36%; float:left;   padding:38px 7% 0;}
+.login-con{background:#e8e8e8;}
+.registration-con{background:#e3e3e3;}
+.login-regis-title{margin-bottom:28px; text-align:center;}
+.login-regis-title >label{display:block; font-weight:700; font-size:32px; line-height:44px;  }
+.login-regis-title >span{font-size:18px;  display:block;}
+
+.cred-field .submit-btn{width:100px !important; float:right; margin-right:6%;  transition:all 0.4s ease-in 0s; -moz-transition:all 0.4s ease-in 0s; -webkit-transition:all 0.4s ease-in 0s; -o- transition:all 0.4s ease-in 0s; border:1px solid #d8d8d8;}
+.cred-field .submit-btn:hover{background:#981010;}
+
+.cred-field > a{font-size:17px; color:#881f21; line-height:33px; text-decoration:underline; font-weight:400;}
+.connect-fb {float:left; text-align:center; width:100%;}
+.connect-fb >  span{width:58px; height:58px; border-radius:50%; font-weight:700; font-size:30px; line-height:54px; display:block; background:#fff;  margin:4px auto 30px; }
+.connect-fb a{height:47px; font-weight:700; font-size:17px; color:#fff; display:inline-block; padding-right:23px; line-height:47px; transition:all 0.4s ease-in 0s; -moz-transition:all 0.4s ease-in 0s; -webkit-transition:all 0.4s ease-in 0s; -o- transition:all 0.4s ease-in 0s; border-radius:2px; -webkit-border-radius:2px; -moz-border-radius:2px; -ms-border-radius:2px;}
+.fb{ background:#395794; margin-bottom:15px;}
+.connect-fb a >span{width:50px; height:47px;  float:left; margin-right:23px;}
+.fb >span{background:#2f4b84;}
+.fb:hover{background:#35528e;}
+.google{background:#c14e3e; width:262px;}
+.google >span{background:#c6462e; }
+.check-con{width:92% !important; }
+.check-con > label{font-size:15px; float:right; width:90%;}
+.connect-fb a {    min-width: 280px;    width: auto;}
+.google > i {
+	display: inline-table;
+	font-size: 27px;
+	font-style: normal;
+	line-height: inherit;
+	padding-left: 3px;
+	vertical-align: middle;
+}
+.connect-fb a.google >span {    background-color: #c6462e;}
+.connect-fb a.google:hover {    background: #B94535;}
+.checkout-onepage-index .connect-fb a.google {    display: none;}
+
+@media screen and (max-width: 979px) {
+	.connect-fb a {    min-width: 291px; box-sizing:border-box;}
+
+}
+
+@media screen and (max-width: 480px) {
+	.connect-fb a {    min-width: 247px;	}
+}
+
+
+

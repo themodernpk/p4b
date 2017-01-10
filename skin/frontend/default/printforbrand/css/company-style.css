@@ -1,0 +1,34 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Reset CSS
+---------------------------------------------------*/
+
+.company-con{ padding:24px 0px 40px;    }
+.company-con h3{line-height:40px; padding-bottom:35px; border-bottom:4px solid #7d1418; text-align:center; margin-bottom:43px; }
+.company-con h3 span{ font-weight:700; }
+.policy-plan{ margin-bottom:25px; border-bottom: 4px solid #7d1418; counter-reset: my-badass-counter;}
+.policy-plan h5{color:#7e1418; font-weight:600; line-height:28px; margin-bottom:17px; position:relative; }
+.policy-plan h5 span{  font-family: 'HelveticaCE-Bold'; padding-right:15px;}
+.policy-plan p{ padding-left: 32px; line-height: 28px; margin-bottom:29px;color: #3e3e3e; font-size: 14px;}
+/*.mr-top29{ margin-top:29px;}*/
+
+
+.policy-plan h5:before {
+	content: counter(my-badass-counter);
+	counter-increment: my-badass-counter;
+	padding-right:21px;
+	font-family: 'HelveticaCE-Bold';line-height: 0; top: 0;
+}
+.policy-plan h5:after{
+	content: '.';
+	position: absolute;
+	left: 14px;
+	font-size: 19px;
+	top: 15px;
+	line-height: 0; font-family: Arial,Helvetica,sans-serif
+}
+
+@media (max-width: 767px){
+	.policy-plan h5:after{top: 13px; left: 11px;}
+}

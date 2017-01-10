@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+.category-page{margin-bottom:70px; float:left; width: 100%}
+.category-bnrcon{margin:0px 0 37px; float:left; width:100%; position: relative;}
+/***** Updated on 03.12.2016 *****/
+/*.category-bnrcon .abt-cards{width:100%;}*/
+/***** End of Update *****/
+.category-imgcon, .card-type-con, .card-type{float:left;}
+.abt-cards{background: #191916; padding: 40.6px 80px; float: left; width: 46%;}
+.abt-cards h3{color:#fff; font-weight:300; margin-bottom:32px; line-height:36px;}
+.abt-cards h3 strong{font-weight:700; text-transform: capitalize;}
+.card-featurebox{width:69px; height:69px; border-radius:10px; display:inline-block; border-width:5px; border-style:solid; position:relative; margin-bottom:18px;}
+.card-featurebox > img{position:absolute; left:0; right:0; top:0; bottom:0; margin:auto;}
+.bdr-blue{border-color:#4ba2eb;}
+.bdr-megento{border-color:#cd3864;}
+.bdr-drkyellow{border-color:#bba755;}
+.bdr-green{border-color:#4aa562;}
+.abt-cards ul li{margin-right:12%; float:left; width:16%; text-align:center;}
+.abt-cards ul li:last-child{margin-right:0;}
+.abt-cards ul li span{font-weight:400; color:#7b7b7b; font-size:16px; line-height:24px; display:block;}
+.abt-cards ul li strong{font-weight:700; color:#fff;  font-size:16px; line-height:24px; display:block;}
+
+.card-type-accord span{background:#7d1516; text-align:center; color:#fff; font-weight:400; display:block; font-size:16px; line-height:27px; padding:18px 0;}
+.card-type-accord span strong{display:block;}
+.card-type-accord .accordion-group{border-bottom:1px solid #e2e2e2; margin:0;}
+.card-type-accord .accordion-group .accordion-heading{ position:relative;}
+.card-type-accord .accordion-group .accordion-heading .accordion-toggle {display: block;    padding:14px 18px;	 font-size:14px; color:#444; font-weight:500; }
+.card-type-accord  .accordion-group .accordion-inner{border:none; padding:9px 20px;}
+.card-type-accord .accordion-inner a{background:url(../img/minus-black.png)left center no-repeat; padding-left:9px; font-size:13px; font-weight:500; color:#444;}
+.card-type-accord .accordion-inner a:hover, .card-type-accord .accordion-inner.active a{background:url(../img/minus-blue.png)left center no-repeat; color:#32b1e2;}
+.accd-hov-active{ border-left:4px solid #ffbdbe; background:#f9f9f9;}
+.card-type-accord .accordion-group .accordion-heading .accordion-toggle:after{position:absolute;  width:15px; height:15px; border-radius:50%; background:#ffbdbe; right:18px; font-size:20px; color:#fff; text-align:center; display:inline-block; margin-top:4px; }
+.card-type-accord .accordion-group .accordion-heading .accordion-toggle:after{content:'+';  line-height: 16px;}
+.card-type-accord .accordion-group.accd-hov-active  .accordion-heading .accordion-toggle:after{content:'-'; line-height: 13px;}
+#accord-card .accordion-group:last-child{border-bottom:none;}
+.card-type > h3{font-weight:400; text-align:center; line-height:36px; text-transform: capitalize;}
+.card-type > h3 >strong{font-weight:700;}
+
+.card-holder > img{display:block; width:100%;}
+.card-holder > span{font-size:16px; font-weight:700; display:block; padding:26px 0; text-align:center; text-transform:capitalize;}
+.card-type > ul li{float:left; margin:35px 3.5% 0 0; width:31%;}
+.card-type > ul li:nth-child(3n){margin-right:0;}
+.card-type-con .pagination {    border-bottom: 1px solid #eaeaea;    border-top: 1px solid #eaeaea;}
+/*.category-imgcon > img {    width: 100%;}*/
+
+@media (max-width: 1199px){
+	/*.abt-cards{right: 82px;}*/
+	.abt-cards{width:100% !important;}
+	.category-bnrcon .abt-cards { padding: 29px 0;}
+
+}
+@media (max-width: 979px){
+	.category-bnrcon .abt-cards {
+		position: static;
+		background-color: #11110F;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	.category-bnrcon .abt-cards h3{font-size: 26px; margin-bottom: 0;}
+
+}
+
+@media (max-width:767px){
+	.category-bnrcon .abt-cards{    padding: 20px 0;}
+	.category-bnrcon .abt-cards h3 { font-size: 21px;}
+
+}
+
+
+@media (max-width:479px){
+	.category-bnrcon .abt-cards h3 { font-size: 18px;    line-height: 25px;}
+}

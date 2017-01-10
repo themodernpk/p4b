@@ -1,0 +1,38 @@
+.dropdown-menu {
+    background-clip: padding-box;
+    background-color: #7f0e0e;
+  /*  box-shadow: 4.243px 4.243px 8px 0 rgb(0, 0, 0);*/
+    display: none;
+    float: left;
+    left: 0;
+    list-style: none outside none;
+  
+  /*  min-width: 160px;*/
+    padding: 40px 5%;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 90%;
+    z-index: 1000; 
+}
+.dropdown-menu ul { /*width:33%;*/ display:block; float:left;  transition: all 0.3s ease-out 0s; -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s;}
+.caret { background:url(../img/caret.png) no-repeat center; width:10px; height:10px;display: inline-block;
+   
+}
+
+.dropdown-menu ul li  a {
+    
+    clear: both;
+    color: #fff;
+    float:left;
+     font-family: 'Helvetica';
+    font-size: 12px;
+    font-weight: normal; text-transform:uppercase;
+    line-height: 33px;
+    padding: 3px 0px;
+    white-space: nowrap;
+}
+.drop-menu:hover .dropdown-menu {
+    display:none; 
+}
+.dropdown-menu ul li a:hover{ color:#aa7d7d;}

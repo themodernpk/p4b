@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Reset CSS
+---------------------------------------------------*/
+/*-----------breadcrum-css----------------------------*/
+.terms-con{ padding:0px 0px 100px 0px; }
+
+.terms-conditions{ border-top:4px solid #7d1418;border-bottom:4px solid #7d1418; background:#f3f3f3; padding:40px 3%; width:94%;}
+.terms-condition-inn{ margin-bottom:25px; border-bottom:1px solid #dadada;}
+.terms-condition-inn h5{color:#7e1418; font-weight:600; line-height:28px; margin-bottom:17px; position:relative; padding-left: 32px}
+.terms-condition-inn p{ padding-left: 32px; line-height: 28px; margin-bottom:29px;color: #3e3e3e; font-size: 14px;}
+.terms-condition-inn  {
+	counter-reset: my-badass-counter;
+}
+.terms-condition-inn h5:before {
+	content: counter(my-badass-counter);
+	counter-increment: my-badass-counter;
+	position: absolute;
+	left: 0;
+	top: 14px;
+	line-height: 0;
+	font-family: 'HelveticaCE-Bold';
+
+}
+.terms-condition-inn h5:after{  content: '.';
+position: absolute;
+left: 14px;
+font-size: 19px;
+top: 15px;
+line-height: 0; font-family: Arial,Helvetica,sans-serif
+}
+
+
+@media (max-width: 767px){
+	.terms-condition-inn h5:after{top: 13px; left: 11px;}
+	.terms-condition-inn h5{ padding-left: 21px; font-size: 17px;}
+	.terms-condition-inn p{ padding-left: 21px;}
+}

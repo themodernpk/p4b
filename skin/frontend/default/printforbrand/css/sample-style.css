@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+.banner-con { margin-top: 4px;}
+
+.free-samplecon{float:left; width:100%; height:auto; margin-bottom:76px;}
+
+.free-samplecon  h3{text-align:center; line-height:36px; margin:34px 0;  text-transform: capitalize;}
+
+.free-samplecon p{font-size:14px; color:#464646; line-height:28px; margin-bottom:30px; text-align:center; font-weight:400; }
+
+.sampletemplate-form { background: none repeat scroll 0 0 #efefef;    border: 1px solid rgba(0, 0, 0, 0.12);    float: left;    width: 99.8%; margin-top:25px;}
+
+.sampletemplate-form h3{background:#4d4d4d; color:#fff; text-align:center; width:99.8%; margin:0; padding:10px 0;  border: 1px solid rgba(0, 0, 0, 0.12);}
+
+.sample-inrform{margin:56px 0; float:left;     width: 100%}
+
+.sampletemplate-form form{width:66%; margin:0 auto;}
+
+
+
+.sampletemplate-form .input-field p{float:right; width:56%; text-align:left; padding:0 2%; margin-top:10px;}
+
+.sample-inrform .form-submit{margin-right:3px;}
+
+.sample-inrform .input-field .inp-txt-area{line-height:22px;}
+
+
+.packt-captcha {float: right; padding: 30px 0% 0px; width: 59%; }
+.packt-captcha .g-recaptcha {transform: scale(0.99) !important; }
+
+.cms-custom-graphic-print .free-samplecon  h3{ margin:34px 0 25px;}
+
+.cms-custom-graphic-print .sampletemplate-form h3{margin: 0}
+
+.chosen-select {/*color: #8c8c8c;*/ color: #a9a9a9;     font-family: 'Raleway',sans-serif; background: #fff; padding: 8px 20px 9px 10px; border: 1px solid #dedede; font-size: 14px;}
+.chosen-select option {font-family: 'Raleway',sans-serif; font-size: 13px; line-height: 20px; color: #333; padding: 8px;}
