@@ -526,7 +526,11 @@ jq1_9(window).resize(callback);
           });
       </script>
       <script type="text/javascript">
-     jQuery(function() { jQuery('[name="login[username]"]').focus(); });
+          jQuery(window).load(function(){
+              jQuery(function(){
+                  jQuery('[name="login[username]"]').focus();
+              });
+          });
     </script>
 
 <!--<script>
