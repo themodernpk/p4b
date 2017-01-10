@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta charset="utf-8">
+
+<?php echo $this->getChildHtml('head'); ?>
+<!-- <link href="<?php //echo $this->getSkinUrl('css/style.css') ?>" rel="stylesheet" type="text/css"/> -->
+<!-- drawer css -->
+<!-- <link rel="stylesheet" href="<?php //echo $this->getSkinUrl('css/drawer.min.css') ?>"> -->
+<!-- <link href="<?php //echo $this->getSkinUrl('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/dropdown.css') ?>"> -->
+<!-- <link href="<?php //echo $this->getSkinUrl('css/bootstrap-responsive.css') ?>" rel="stylesheet" type="text/css"/> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/prod-det-accrd.css') ?>"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/chosen.css') ?>css/chosen.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('skins/all.css') ?>skins/all.css"> -->
+
+</head>
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+<!--ask a question-->
+<!-- <div class="askcon-fix">
+<div id="pd-fx" class="pos_fix">
+   <a class="in-quick" href="#" id="contact"><img src="<?php //echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a>
+</div>
+<div class="contact_open">
+
+  <div id="contact1" class="inquiry-form hide">
+  <div class="askimg_left"> <img src="<?php //echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></div>
+    <div id="contact2"><a href="#" class="str_close">x</a></div>
+    <div class="form-inner">
+      <form>
+        <div class="form-control">
+          <input type="text" placeholder=" Name" required class="txt-field ">
+          <span class="txt-fld person"></span></div>
+        <div class="form-control">
+          <input type="text" placeholder="Email" required class="txt-field ">
+          <span class="txt-fld  email"></span></div>
+        <div class="form-control">
+          <textarea placeholder="Message" required class="txt-area "></textarea>
+          <span class=" txt-fld txtarea-fld"></span></div>
+        <div class="captcha-fld"> <img src="<?php //echo $this->getSkinUrl('img/captcha-img.png') ?>"  alt="captcha"/></div>
+        <div class="frm-btn">
+          <input type="submit" value="Submit" class="submit-btn">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div> -->
+<!--/ask a question-->
+
+<?php echo $this->getChildHtml('header'); ?>
+
+<div class="main_con mrg-tp-var">
+  <div class="container">
+    <!--breadcrum-part-->
+    <div class="breadcrum-con bg-grey">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Login </li>
+      </ul>
+    </div>
+    <!--/breadcrum-part-->
+
+  </div>
+</div>
+<!--/breadcrum/banner-->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!--middle-content-->
+<div class="main_con">
+  <div class="container">
+    <div class="login-registrationcon">
+             <?php echo $this->getChildHtml('content'); ?>
+    </div>
+  </div>
+</div>
+
+<!--/middle-content-->
+
+<!--newsletter-->
+<div class="main_con bg-dk2e2e2e ">
+  <div class="container">
+    <div class="newsletter">
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+<!--/newsletter-->
+<script type="text/javascript">
+  jQuery(window).load(function(){
+
+      jQuery('#email').attr('autofocus','true');
+
+  });
+
+</script>
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+</body>
+
+
+</html>

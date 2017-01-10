@@ -1,0 +1,165 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="main_con mrg-tp-var">
+    <div class="container">
+        <?php echo $this->getMessagesBlock()->toHtml() ?>
+        <div class="dashboard-con">
+            <h5 class="title-box bg-grey4d-heading" id="order-heading">My Account</h5>
+            <div class="dash-tabsec">
+                <?php echo $this->getChildHtml('hello') ?>
+                <div id="myacct-tab">
+                    <ul class="resp-tabs-list">
+                        <li class="list1">My Account</li>
+                        <li class="list2">Recent Orders</li>
+                        <li class="list3">Order History</li>
+                    </ul>
+                    <div class="resp-tabs-container">
+                        <div class="title-box1">
+                            <div class="acct-info">
+                                <form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
+
+                                    <?php echo $this->getBlockHtml('formkey')?>
+                                    <!-- <h2 class="legend"><?php //echo $this->__('Account Information') ?></h2> -->
+
+
+                                    <div class="dash-fld">
+
+                                        <input style="background-image:none;" title="Email Address" type="text" disabled name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" Placeholder="<?php echo $this->__('Email Address') ?>" class="dsh-txt required-entry validate-email" />
+                                    </div>
+
+                                    <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+
+                                    <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+                                    <?php if ($_dob->isEnabled()): ?>
+                                        <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
+                                    <?php endif ?>
+                                    <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+                                    <?php if ($_taxvat->isEnabled()): ?>
+                                        <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+                                    <?php endif ?>
+                                    <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                                    <?php if ($_gender->isEnabled()): ?>
+                                        <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
+                                    <?php endif ?>
+                                    <div class="dash-fld  pk_check">
+                                        <input class="css-checkbox sme" type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" placeholder="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="dsh-txt " /><label class="css-label sme depressed" for="change_password"><?php echo $this->__('Change Password') ?></label>
+
+                                        <!--  <input type="checkbox" class="css-checkbox sme" id="checkbox66" checked="checked" />
+                                                <label for="checkbox66" name="checkbox66_lbl" class="css-label sme depressed"></label>   -->
+
+                                    </div>
+
+
+
+                                    <div class="fieldset" style="display:none;">
+                                        <!--  <h2 class="legend"><?php //echo $this->__('Change Password') ?></h2> -->
+                                        <ul class="form-list">
+                                            <li>
+
+                                                <div class="dash-fld">
+                                                    <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
+                                                    <!--  <input type="text" class="input-text no-display" name="dummy" id="dummy" /> -->
+                                                    <input type="password" Placeholder="<?php echo $this->__('Current Password') ?>" title="<?php echo $this->__('Current Password') ?>" class="dsh-txt" name="current_password" id="current_password" style="background-color: #ebebe7" />
+                                                </div>
+                                            </li>
+                                            <li class="fields">
+
+
+                                                <div class="dash-fld">
+                                                    <input type="password" Placeholder="<?php echo $this->__('Confirm New Password') ?>" title="<?php echo $this->__('Confirm New Password') ?>" class="dsh-txt validate-password" name="password" id="password" style="background-color: #ebebe7" />
+                                                </div>
+
+
+
+                                                <div class="dash-fld">
+                                                    <input type="password" Placeholder="<?php echo $this->__('Confirm New Password') ?>" title="<?php echo $this->__('Confirm New Password') ?>" class="dsh-txt validate-cpassword" name="confirmation" id="confirmation" style="background-color: #ebebe7" />
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- <div class="buttons-set">
+        <p class="required"><?php //echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"><a href="<?php //echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php //echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php //echo $this->__('Save') ?>" class="button"><span><span><?php //echo $this->__('Sav  e') ?></span></span></button>
+    </div>  -->
+                                    <div class="cred-field">
+
+                                        <input type="submit" class="submit-btn" title="<?php echo $this->__('Submit') ?>" value="Submit">
+                                    </div>
+                                </form>
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    var dataForm = new VarienForm('form-validate', true);
+                                    function setPasswordForm(arg){
+                                        if(arg){
+                                            $('current_password').up(3).show();
+                                            $('current_password').addClassName('required-entry');
+                                            $('password').addClassName('required-entry');
+                                            $('confirmation').addClassName('required-entry');
+
+                                        }else{
+                                            $('current_password').up(3).hide();
+                                            $('current_password').removeClassName('required-entry');
+                                            $('password').removeClassName('required-entry');
+                                            $('confirmation').removeClassName('required-entry');
+                                        }
+                                    }
+
+                                    <?php if($this->getCustomer()->getChangePassword()): ?>
+                                    setPasswordForm(true);
+                                    <?php endif; ?>
+                                    //]]>
+                                </script>
+                            </div>
+                            <div class="dash-newsltr bg-8c2428">
+
+                                <h3><?php echo $this->__('<strong>Newsletter</strong>') ?></h3>
+                <span>
+                    <?php if( $this->getIsSubscribed() ): ?>
+                        <?php echo $this->__("You are currently subscribed to 'General Subscription'.") ?>
+                    <?php else: ?>
+                        <?php echo $this->__("You are currently not subscribed to any newsletter.") ?>
+                    <?php endif; ?>
+
+                </span>
+                                <a href="<?php echo $this->getUrl('newsletter/manage') ?>" class="dash-subs" ><?php echo $this->__('Subscribe') ?></a>
+
+                            </div>
+                        </div>
+                        <div class="title-box2">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('sales/order/recent.phtml')->toHtml(); ?>
+                        </div>
+                        <div class="title-box3">
+                            <?php echo $this->getLayout()->createBlock('core/template')->setTemplate('sales/order/history.phtml')->toHtml(); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

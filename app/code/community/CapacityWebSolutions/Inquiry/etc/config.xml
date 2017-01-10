@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<CapacityWebSolutions_Inquiry>
+			<version>4.1.0</version>
+		</CapacityWebSolutions_Inquiry>
+    </modules>
+	<global>
+		<blocks>
+			<inquiry>
+				<class>CapacityWebSolutions_Inquiry_Block</class>
+			</inquiry>
+		</blocks>
+		<models>
+			<inquiry>
+				<class>CapacityWebSolutions_Inquiry_Model</class>
+				<resourceModel>inquiry_mysql4</resourceModel>
+			</inquiry>
+			<inquiry_mysql4>
+				<class>CapacityWebSolutions_Inquiry_Model_Mysql4</class>
+					<entities>
+						<inquiry>
+							<table>dealerinquiry</table>
+						</inquiry>
+						<inquiryfiles>
+							<table>dealerinquiry_files</table>
+						</inquiryfiles>
+					</entities>
+			</inquiry_mysql4>
+		</models>
+		<resources>
+            <inquiry_setup>
+                <setup>
+                    <module>CapacityWebSolutions_Inquiry</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </inquiry_setup>
+            <inquiry_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </inquiry_write>
+            <inquiry_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </inquiry_read>
+        </resources>
+		<template>
+			<email>
+				<inquiry_admin_email_email_template translate="label" module="inquiry">
+					<label>Dealer Inquiry-Admin Email</label>
+					<file>inquiry/admin_inquiry.html</file>
+					<type>html</type>
+				</inquiry_admin_email_email_template>
+				<inquiry_customer_email_email_template translate="label" module="inquiry">
+					<label>Dealer Inquiry-Customer Submit Form Email</label>
+					<file>inquiry/customer_inquiry.html</file>
+					<type>html</type>
+				</inquiry_customer_email_email_template>
+				<inquiry_create_account_email_template translate="label" module="inquiry">
+                    <label>Dealer Inquiry-Create Customer Email</label>
+                    <file>inquiry/create_customer.html</file>
+                    <type>html</type>
+                </inquiry_create_account_email_template>
+			</email>
+		</template>
+		<helpers> 
+			<inquiry>
+				<class>CapacityWebSolutions_Inquiry_Helper</class>
+			</inquiry>
+		</helpers>
+		<resources>
+			<inquiry_setup>
+				<setup>
+					<module>CapacityWebSolutions_Inquiry</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</inquiry_setup>
+		</resources> 
+		<events>
+			<core_block_abstract_prepare_layout_before>
+                <observers>
+                    <capacityWebSolutions_inquiry_prepare_layout_before>
+                        <class>inquiry/observer</class>
+                        <method>prepareLayoutBefore</method>
+                    </capacityWebSolutions_inquiry_prepare_layout_before>
+                </observers>
+			</core_block_abstract_prepare_layout_before>
+		</events>
+	</global>
+	<admin>
+		<routers>
+			<inquiry>
+				<use>admin</use>
+				<args>
+					<module>CapacityWebSolutions_Inquiry</module>
+					<frontName>inquiry</frontName>
+				</args>
+			</inquiry>
+        </routers>
+    </admin>
+	<frontend>
+		<routers>
+			<inquiry>
+				<use>standard</use>
+				<args>
+					<module>CapacityWebSolutions_Inquiry</module>
+					<frontName>inquiry</frontName>
+				</args>
+			</inquiry>
+		</routers>
+		<layout>
+			<updates>
+				<inquiry>
+					<file>inquiry.xml</file>
+				</inquiry>
+			</updates>
+		</layout>
+	</frontend>
+    <adminhtml>
+		<events>      
+			<customer_delete_commit_after>
+                <observers>
+                    <inquiry>
+                        <type>singleton</type>
+                        <class>inquiry/observer</class>
+                        <method>updateStatus</method>
+                    </inquiry>
+                </observers>
+            </customer_delete_commit_after>
+        </events>
+		<menu>
+			<cws module="inquiry">
+				<title>CWS Extensions</title>
+				<sort_order>70</sort_order> 
+				<children>
+					<inquiry module="inquiry">
+						<title>Dealer Inquiries</title>
+						<sort_order>71</sort_order>               
+						<children>
+							<items module="inquiry">
+								<title>Dealer Management</title>
+								<sort_order>0</sort_order>
+								<action>inquiry/adminhtml_inquiry/index</action> 
+							</items>
+							<dealer_settings module="inquiry">
+								<title>Settings</title>
+								<sort_order>10</sort_order>
+								<action>adminhtml/system_config/edit/section/inquiry</action> 
+							</dealer_settings>
+						</children>
+					</inquiry>
+				</children>
+			</cws>
+		</menu>
+    	<layout>
+            <updates>
+                <inquiry>
+					<file>inquiry.xml</file>
+                </inquiry>
+            </updates>
+        </layout>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<inquiry>
+											<title>Inquiry</title>
+										</inquiry>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+	<default>
+		<inquiry>
+			<general>
+				<enabled>1</enabled>
+				<enable_toplink>1</enable_toplink>
+				<heading>Dealer Inquiry</heading>
+				<toplink>Dealer Inquiry</toplink>
+				<enable_js>1</enable_js>
+				<description>Write description here and it will display after Title.</description>
+				<success_tital>Thank You.</success_tital>
+				<success_des>Thank you for contacting us.</success_des>
+				<btn_text>Submit</btn_text>
+				<indicates>Indicates Required.</indicates>
+				<customer>1</customer>
+			</general>
+			<admin_email>
+				<heading>New Dealer Inquiry from dealer</heading>
+				<email_template>inquiry_admin_email_email_template</email_template>
+			</admin_email>
+			<customer_email>
+				<heading>Thank you for contacting Us.</heading>
+				<email_template>inquiry_customer_email_email_template</email_template>
+			</customer_email>
+			<create_account>
+				<heading>Registration Details of Dealer Inquiry</heading>
+				<email_template>inquiry_create_account_email_template</email_template>
+			</create_account>
+			<change_label>
+				<f_name>First Name</f_name>
+				<l_name>Last Name</l_name>
+				<company_name>Company Name</company_name>
+				<vat_number>Tax/VAT Number</vat_number>
+				<address>Address</address>
+				<city>City</city>
+				<state>State / Province</state>
+				<country>Country</country>
+				<postal_code>ZIP / Postal Code</postal_code>
+				<contact_number>Contact Number</contact_number>
+				<email>Email</email>
+				<website>Website</website>
+				<datetime>Date Time</datetime>
+				<upload_file>Upload File</upload_file>
+				<description>Business Description</description>
+				<extra_field_one>Extra Field 1</extra_field_one>
+				<extra_field_two>Extra Field 2</extra_field_two>
+				<extra_field_three>Extra Field 3</extra_field_three>
+			</change_label>
+			<label_hide>
+				<l_name>1</l_name>
+				<vat_number>1</vat_number>
+				<address>1</address>
+				<city>1</city>
+				<state>1</state>
+				<country>1</country>
+				<postal_code>1</postal_code>
+				<website>1</website>
+				<captcha>1</captcha>
+				<upload_file>0</upload_file>
+				<file_type>jpg,jpeg,png,doc,docx,pdf,txt</file_type>
+				<datetime>0</datetime>
+				<field_one>0</field_one>
+				<field_two>0</field_two>
+				<field_three>0</field_three>
+			</label_hide>
+		</inquiry>
+	</default>
+</config>

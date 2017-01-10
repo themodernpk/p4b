@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta charset="utf-8">
+
+<?php echo $this->getChildHtml('head'); ?>
+
+</head>
+
+
+<body class="drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close">
+<!--ask a question-->
+<div class="askcon-fix">
+<div id="pd-fx" class="pos_fix">
+   <a class="in-quick" href="#" id="contact"><img src="<?php echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a> 
+</div>
+<div class="contact_open">
+
+  <div id="contact1" class="inquiry-form hide">
+  <div class="askimg_left"> <img src="<?php echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></div>
+    <div id="contact2"><a href="#" class="str_close">x</a></div>
+    <div class="form-inner">
+      <form>
+        <div class="form-control">
+          <input type="text" placeholder=" Name" required class="txt-field ">
+          <span class="txt-fld person"></span></div>
+        <div class="form-control">
+          <input type="text" placeholder="Email" required class="txt-field ">
+          <span class="txt-fld  email"></span></div>
+        <div class="form-control">
+          <textarea placeholder="Message" required class="txt-area "></textarea>
+          <span class=" txt-fld txtarea-fld"></span></div>
+        <div class="captcha-fld"> <img src="<?php echo $this->getSkinUrl('img/captcha-img.png') ?>"  alt="captcha"/></div>
+        <div class="frm-btn">
+          <input type="submit" value="Submit" class="submit-btn">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!--/ask a question--> 
+
+<?php echo $this->getChildHtml('header'); ?>
+
+<!--breadcrum/banner-->
+
+<div class="main_con mrg-tp-var">
+  <div class="container"> 
+    <!--breadcrum-part-->
+    
+    <div class="breadcrum-con bg-grey">
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+    </div>
+    <!--/breadcrum-part--> 
+    
+  </div>
+</div>
+
+<!--/breadcrum/banner--> 
+
+<!--middle-content-->
+<div class="main_con">
+  <div class="container">
+    <div class="category-page">
+      <div class="category-bnrcon">
+      <?php 
+     $curr=Mage::getModel('catalog/layer')->getCurrentCategory(); 
+
+     ?>
+        <?php if($curr->getImageUrl()) { ?><div class="category-imgcon"> <img src="<?php echo $curr->getImageUrl(); ?>"  alt="category-bnr"/> </div><?php } ?>
+        <div class="abt-cards">
+          <h3>Few Things About <strong><?php echo $curr->getName(); ?></strong></h3>
+          <?php if($curr->getDescription()) { echo $curr->getDescription(); } ?>
+        </div>
+      </div>
+      <div class="card-type-con">
+        <div class="row-fluid">
+         <?php
+    $currentCat = Mage::registry('current_category');
+
+    if ( $currentCat->getParentId() == Mage::app()->getStore()->getRootCategoryId() )
+    {
+        // current category is a toplevel category
+        $loadCategory = $currentCat;
+     ?>
+     <div class="span12">
+          
+                  <?php echo $this->getChildHtml('content'); ?>
+          
+          </div>
+     <?php   
+    }
+    else
+    {
+        // current category is a sub-(or subsub-, etc...)category of a toplevel category
+        // load the parent category of the current category
+        $loadCategory = Mage::getModel('catalog/category')->load($currentCat->getParentId());
+      $subCategories = explode(',', $loadCategory->getChildren());
+          $i=1;
+ ?>
+          <div class="span3">
+            <div class="card-type-accord">
+              <div class="accordion" id="accord-card"> <span>Shop By <strong><?php echo $curr->getName(); ?></strong></span>
+           
+                        
+       <?php   
+    foreach ( $subCategories as $subCategoryId )
+    {
+        $cat = Mage::getModel('catalog/category')->load($subCategoryId);
+
+        if($cat->getIsActive())
+        {
+    ?>      
+    <div class="accordion-group">
+              <div class="accordion-heading"> 
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accord-card" href="#collapseOne<?php echo $i; ?>"><?php echo $cat->getName(); ?></a>
+              </div>
+             <div id="collapseOne<?php echo $i; ?>" class="accordion-body collapse in">
+<?php
+             $cat_subCategories = explode(',', $cat->getChildren());
+             foreach($cat_subCategories as $cat_subCategoriesId)
+                 {
+                     $subsubcat = Mage::getModel('catalog/category')->load($cat_subCategoriesId);
+                     if($subsubcat->getIsActive())
+                      {
+  ?>               
+                    <div class="accordion-inner ">
+                        <a href="<?php echo $subsubcat->getURL(); ?>"><?php echo $subsubcat->getName(); ?></a>
+                     </div>   
+  <?php                      
+                      }
+                 }                
+  ?>
+                 </div>
+  <?php               
+                 
+        }
+   ?>     
+        </div>
+  <?php      
+     $i++; 
+   }
+   ?>
+       </div>
+            </div>
+          </div>
+        <div class="span9">
+   <?php
+       echo $this->getChildHtml('content'); 
+       ?>
+       </div>
+       <?php
+  } 
+
+?>
+            
+
+                <!-- <div class="accordion-group">
+                      <div class="accordion-heading"> 
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accord-card" href="#collapseOne">Paper Stock Clothing Labels 
+                          </a> 
+                      </div>
+
+                  <div id="collapseOne" class="accordion-body collapse in">
+                    <div class="accordion-inner active"><a href="#">Economy Stocks</a> </div>
+                    <div class="accordion-inner"><a href="#">Premium Stocks </a> </div>
+                  </div>
+                </div> -->
+                
+              
+              
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--/middle-content--> 
+
+<!--newsletter-->
+<div class="main_con bg-dk2e2e2e ">
+  <div class="container">
+    <div class="newsletter">
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+<!--/newsletter-->
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+</body>
+
+
+</html>

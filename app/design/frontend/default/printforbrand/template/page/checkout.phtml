@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta charset="utf-8">
+
+
+
+<?php echo $this->getChildHtml('head'); ?>
+<link href="<?php echo $this->getSkinUrl('css/dd.css') ?>" rel="stylesheet" type="text/css"/>
+
+
+<!-- <link href="<?php //echo $this->getSkinUrl('css/style.css') ?>" rel="stylesheet" type="text/css"/> -->
+
+<!-- drawer css -->
+
+<!-- <link rel="stylesheet" href="<?php //echo $this->getSkinUrl('css/drawer.min.css') ?>"> -->
+
+<!-- <link href="<?php //echo $this->getSkinUrl('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/dropdown.css') ?>"> -->
+
+<!-- <link href="<?php //echo $this->getSkinUrl('css/bootstrap-responsive.css') ?>" rel="stylesheet" type="text/css"/> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/prod-det-accrd.css') ?>"> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('css/chosen.css') ?>css/chosen.css"> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="<?php //echo $this->getSkinUrl('skins/all.css') ?>skins/all.css"> -->
+
+
+
+</head>
+
+
+
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+<!--ask a question-->
+
+<!-- <div class="askcon-fix">
+
+<div id="pd-fx" class="pos_fix">
+
+   <a class="in-quick" href="#" id="contact"><img src="<?php //echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a>
+
+</div>
+
+<div class="contact_open">
+
+
+
+  <div id="contact1" class="inquiry-form hide">
+
+  <div class="askimg_left"> <img src="<?php// echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></div>
+
+    <div id="contact2"><a href="#" class="str_close">x</a></div>
+
+    <div class="form-inner">
+
+      <form>
+
+        <div class="form-control">
+
+          <input type="text" placeholder=" Name" required class="txt-field ">
+
+          <span class="txt-fld person"></span></div>
+
+        <div class="form-control">
+
+          <input type="text" placeholder="Email" required class="txt-field ">
+
+          <span class="txt-fld  email"></span></div>
+
+        <div class="form-control">
+
+          <textarea placeholder="Message" required class="txt-area "></textarea>
+
+          <span class=" txt-fld txtarea-fld"></span></div>
+
+        <div class="captcha-fld"> <img src="<?php //echo $this->getSkinUrl('img/captcha-img.png') ?>"  alt="captcha"/></div>
+
+        <div class="frm-btn">
+
+          <input type="submit" value="Submit" class="submit-btn">
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div -->
+
+<!--/ask a question-->
+
+
+
+<?php echo $this->getChildHtml('header'); ?>
+
+
+
+<!--breadcrum/banner-->
+
+<?php $checkouturl = Mage::helper('checkout/url')->getCheckoutUrl();
+      $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+ ?>
+
+<div class="main_con mrg-tp-var">
+
+  <div class="container">
+
+    <!--breadcrum-part-->
+
+    <?php if($currentUrl==$checkouturl) { ?>
+
+    <div class="breadcrum-con bg-grey">
+              <ul>
+                  <li><a href="<?php echo Mage::getBaseUrl(); ?>">Home </a></li>
+                  <li class="active">Checkout</li>
+              </ul>
+    </div>
+    <?php } else { ?>
+        <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+    <?php } ?>
+    <!--/breadcrum-part-->
+
+
+
+  </div>
+
+</div>
+<!--/breadcrum/banner-->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!--middle-content-->
+
+<div class="main_con">
+
+  <div class="container">
+
+    <div class="prdct-det-accrd">
+           <h3 class="frm-title">Get Started With <strong> Economy Stocks</strong></h3>
+          <div class="prdct-form-accrd">
+             <?php echo $this->getChildHtml('content'); ?>
+
+              <div class="checkout-progress">
+                   <?php echo $this->getChildHtml('left') ?>
+              </div>
+          </div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--/newsletter-->
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+<script src="<?php echo $this->getSkinUrl('js/dd.min.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/icheck.min.js') ?>"></script>
+<!--<script src="<?php /*echo $this->getSkinUrl('js/chosen.jquery.min.js') */?>"></script>-->
+<script type="text/javascript">var jq1_9_1 = jQuery.noConflict();</script>
+ <!--<script type="text/javascript">
+      var config = {
+      '.chosen-select'           : {"disable_search": true},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      jq1_9_1(selector).chosen(config[selector]);
+    }
+  </script>-->
+
+
+    <script type="text/javascript">
+                 jq1_9_1(document).ready(function(){
+                     var windowWidth = jq1_9_1( window ).width();
+
+                        // jq1_9_1( window ).resize(function() {
+
+                          if ( windowWidth <= 990 ) {
+
+                            jq1_9_1('#checkout-review-load').before(jq1_9_1('#checkout-progress-wrapper'));
+
+                        }
+
+                      // });
+                    });
+
+            </script>
+
+        <script>
+
+            jq1_9_1(document).ready(function(){
+              jq1_9_1('.skin-minimal input').iCheck({
+                checkboxClass: 'icheckbox_minimal',
+
+                increaseArea: '20%'
+              });
+            });
+            </script>
+
+
+</body>
+
+
+
+
+
+</html>

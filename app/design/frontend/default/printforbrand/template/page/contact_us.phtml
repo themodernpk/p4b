@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->getChildHtml('head'); ?>
+    <link href="<?php echo $this->getSkinUrl('css/jquery-filestyle.css') ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $this->getSkinUrl('css/contact-style.css') ?>" rel="stylesheet" type="text/css"/>
+</head>
+
+<body <?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+<?php echo $this->getChildHtml('header'); ?>
+
+<!--breadcrum/banner-->
+<div class="main_con mrg-tp-var">
+    <div class="container">
+<!--breadcrum-part-->
+        <div class="breadcrum-con bg-grey">
+            <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+        </div>
+<!--/breadcrum-part-->
+    </div>
+</div>
+<!--/breadcrum/banner-->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!--middle-content-->
+<div class="main_con">
+    <div class="container">
+        <div class="contact-formcon">
+            <div id="messages_product_view">
+                <?php echo $this->getMessagesBlock()->toHtml() ?>
+            </div>
+            <div class="row-fluid">
+                <div class="span6">
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('contact-information')->toHtml(); ?>
+                </div>
+                <div class="span6">
+                    <div class="contact-usform">
+                        <h3><?php echo $this->__('Contact Us <strong>Form</strong>') ?></h3>
+                        <div class="cont-support-form">
+
+<form id="ConatctForm" method="post" enctype="multipart/form-data">
+    <div class="input-field">
+        <label>
+            <?php echo $this->__('First Name') ?><span>*</span>
+        </label>
+        <div class="inp-text">
+            <input name="fname" id="fname" maxlength="20" title="<?php echo $this->__('First Name') ?>" value="" class="inp-text-inpt required-entry validate-name" type="text"/>
+        </div>
+    </div>
+    <div class="input-field">
+        <label><?php echo $this->__('Last Name') ?></label>
+        <div class="inp-text">
+            <input name="lname" id="lname" maxlength="20" title="<?php echo $this->__('Last Name') ?>" value="" class="inp-text-inpt validate-name" type="text"/>
+        </div>
+    </div>
+    <div class="input-field">
+        <label>
+            <?php echo $this->__('Email') ?><span>*</span>
+        </label>
+        <div class="inp-text">
+            <input name="email" id="email" maxlength="50" title="<?php echo $this->__('Email') ?>" value="" class="inp-text-inpt required-entry validate-emailid" type="text" />
+        </div>
+    </div>
+    <div class="input-field">
+        <label>
+            <?php echo $this->__('Phone') ?>
+        </label>
+        <div class="inp-text">
+            <input  type="text" name="telephone" id="telephone" minlength="8"  maxlength="20" title="<?php echo $this->__('Telephone') ?>" value="" class="inp-text-inpt validate-phone" />
+        </div>
+    </div>
+    <div class="input-field">
+        <label>
+            <?php echo Mage::helper('contacts')->__('Company') ?>
+        </label>
+        <div class="inp-text">
+            <input name="company" id="company" maxlength="50" title="<?php echo $this->__('Company') ?>" value="" class="inp-text-inpt validate-company" type="text"/>
+        </div>
+    </div>
+    <div class="input-field">
+        <label><?php echo $this->__('Order No') ?></label>
+        <div class="inp-text">
+            <input name="order_no" id="order_no" maxlength="15" placeholder="Order Number (if applicable)" title="<?php echo $this->__('Order No') ?>" value="" class="inp-text-inpt validate-order" type="text"/>
+        </div>
+    </div>
+    <div class="input-field wd-fl" >
+
+        <label><?php echo $this->__('File Upload') ?></label>
+
+        <input type="file" id="brs-img1" name="imagePreview" style="display:block;margin-top:10px" >
+
+    </div>
+    <div class="input-field">
+        <label><?php echo $this->__('Comment') ?><span>*</span></label>
+        <div class="inp-text">
+            <textarea name="comment" id="comment" maxlength="100" title="<?php echo $this->__('Comment') ?>" class="inp-txt-area required-entry" cols="5" rows="3" ></textarea>
+        </div>
+    </div>
+    <!--input type="hidden" name="form_name" value="Contact Us Form"-->
+    <div class="input-field mndrty">
+        <input type="hidden" name="form_name" value="Contact Us Form">
+        <label>
+            <?php //echo $this->__('Fields Required') ?>
+            <span></span>
+        </label>
+        <div class="form-submit">
+            <input class="submit-btn" type="submit" value="Submit" name="conatctform"/>
+        </div>
+    </div>
+</form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/middle-content-->
+
+<!--newsletter-->
+<div class="main_con bg-dk2e2e2e ">
+    <div class="container">
+        <div class="newsletter">
+            <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+        </div>
+    </div>
+</div>
+<!--/newsletter-->
+
+<?php
+    if(isset($_POST['conatctform']))
+    {
+        if($_POST['fname']==" "  or $_POST['email']==" " or $_POST['comment']==" ")
+        {
+            $pageURL = Mage::getUrl().Mage::getSingleton('cms/page')
+                    ->getIdentifier();
+            Mage::app()
+                ->getFrontController()
+                ->getResponse()
+                ->setRedirect($pageURL);
+        }
+        else
+        {
+            $fileName = $_FILES['imagePreview']['name'];
+            $fileTmpLoc = $_FILES['imagePreview']['tmp_name'];
+            $media_path1 = Mage::getBaseDir('media').DS.'banner'.DS.$fileName;
+            move_uploaded_file($fileTmpLoc, $media_path1);
+            $imagePreview = 'banner'.'/'.$_FILES['imagePreview']['name'];
+
+            $to = "print4brands@gmail.com";
+            //$from = $_POST['email'];
+            $subject = "Contact Us Request For Admin";
+            $message = '<html><body>';
+            $message .= '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+            $message .= '<h2>You have received a query from customer.<h2>';
+            $message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+            $message .= "<tr style='background: #eee;'><td><strong>First Name:</strong> </td><td>" . strip_tags($_POST['fname']) . "</td></tr>";
+
+            if($_POST['lname']){
+                // $message .= "Phone No.: ".$_POST['phone']."<br>";
+                $message .= "<tr><td><strong>Last Name: </strong> </td><td>" . $_POST['lname'] . "</td></tr>";
+            }
+            $message .= "<tr><td><strong>Email:</strong> </td><td>" . strip_tags($_POST['email']) . "</td></tr>";
+            if($_POST['company']){
+                // $message .= "Phone No.: ".$_POST['phone']."<br>";
+                $message .= "<tr><td><strong>Company.: </strong> </td><td>" . $_POST['company'] . "</td></tr>";
+            }
+            if($_POST['telephone']){
+                // $message .= "Phone No.: ".$_POST['phone']."<br>";
+                $message .= "<tr><td><strong>Phone No.: </strong> </td><td>" . $_POST['telephone'] . "</td></tr>";
+            }
+            if($_POST['order_no']){
+                // $message .= "Phone No.: ".$_POST['phone']."<br>";
+                $message .= "<tr><td><strong>Order No.: </strong> </td><td>" . $_POST['order_no'] . "</td></tr>";
+            }
+            $message .= "<tr><td><strong>Message: </strong> </td><td>" . $_POST['comment'] . "</td></tr>";
+            $message .= "</table>";
+            $message .= "</body></html>";
+            $headers = "From: " . strip_tags($_POST['email']) . "\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            //$mail_success = mail($to,$subject,$message,$headers);
+            $file = file_get_contents($media_path1);
+
+        //$gen_contact = Mage::getStoreConfig('trans_email/ident_general/email');
+//        $to = $gen_contact;
+//        $subject = "Conatct Form";
+//        $from = $_POST['email'];
+//        $headers = "From: $from\r\n";
+//        $headers .= "MIME-Version: 1.0\r\n"
+//            ."Content-Type: multipart/mixed; boundary=\"1a2a3a\"";
+//        $message .= "If you can see this MIME than your client doesn't accept MIME types!\r\n"
+//            ."--1a2a3a\r\n";
+//        $message .= "Content-Type: text/html; charset=\"iso-8859-1\"\r\n"
+//            ."Content-Transfer-Encoding: 7bit\r\n\r\n";
+//        $message  .= "First Name: ".$_POST['fname']."<br>";
+//
+//        if($_POST['lname']){
+//
+//            $message .= "Last Name: ".$_POST['lname']."<br>";
+//
+//        }
+//        $message .= "Email: ".$_POST['email']."<br>";
+//
+//        if($_POST['company']){
+//            $message .= "Company: ".$_POST['company']."<br>";
+//        }
+//        if($_POST['telephone']){
+//            $message .= "Phone No.: ".$_POST['telephone']."<br>";
+//        }
+//        if($_POST['order_no']){
+//            $message .= "Order No: ".$_POST['order_no']."<br>";
+//        }
+//        $message .= "Message: ".$_POST['comment']."\n";
+//        $message .="--1a2a3a\r\n";
+//        $file = file_get_contents($media_path1);
+//
+//
+//
+//        $message .= "Content-Type: image/jpg; name=\".$fileName\"\r\n"
+//
+//            ."Content-Transfer-Encoding: base64\r\n"
+//
+//            ."Content-disposition: attachment; file=\"$fileName\"\r\n"
+//
+//            ."\r\n"
+//
+//            .chunk_split(base64_encode($file))
+//
+//            ."--1a2a3a--";
+
+        $success_mail = mail($to,$subject,$message,$headers);
+
+            if($success_mail)
+            {
+                $to = $_POST['email'];
+                $from = 'print4brands@gmail.com';
+                $headers = "From: " . $from . "\r\n";
+                $headers .= "Reply-To: ". $from . "\r\n";
+                //$headers .= "CC: susan@example.com\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $subject ="Confirmation mail from Printforbrands";
+                $msg = '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+                $msg .= '<h2>Thanks for contacting us, we will get back to you soon.</h2>';
+                $success_mail1 = mail($to,$subject,$msg,$headers);
+            }
+
+
+        if($success_mail)
+
+        {
+
+
+
+            $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+
+
+
+            $writeMethods = get_class_methods(get_class($write));
+
+
+
+            $result = $write->insert(
+
+
+
+                "dealerinquiry",
+
+
+
+                array("firstname" => $_POST['fname'],"phone" => $_POST['telephone'], "email" => $_POST['email'], "website" => $_POST['form_name'], "desc" => $_POST['comment'], "iscustcreated" => 1, "websiteid" => $_POST['order_no'], "imagePreview" => $imagePreview, "lstname" => $_POST['lname'])
+
+
+
+            );
+
+
+
+            $successUrl = Mage::getUrl('success_page');
+
+            Mage::app()->getFrontController()->getResponse()->setRedirect($successUrl);
+
+        }
+
+    }
+
+
+
+}
+?>
+
+<?php echo $this->getChildHtml('footer'); ?>
+<script src="<?php echo $this->getSkinUrl('js/jquery-filestyle.js') ?>"></script>
+<script type="text/javascript">
+    //< ![CDATA[
+    var myForm= new VarienForm('ConatctForm', false);
+    //]]>
+    Validation.add('validate-name', 'Please use only letters, numbers are optional.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
+    })
+    Validation.add('validate-company', 'Please use only letters, numbers are optional.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
+    })
+    Validation.add('validate-phone', 'Please enter valid phone.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^([0-9-+()]{8,12})$/i.test(v)
+    })
+    Validation.add('validate-emailid', 'Please enter a valid email address.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i.test(v)
+    });
+    Validation.add('validate-order', 'Please enter valid order number.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^([0-9-#]{5,12})$/i.test(v)
+    });
+</script>
+
+<!--/search-btn-toggle -->
+<script type="text/javascript">
+    jQuery('#brs-img1').jfilestyle({
+        buttonText: "Browse"
+    });
+</script>
+
+</body>
+
+</html>

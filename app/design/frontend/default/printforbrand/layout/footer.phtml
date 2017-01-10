@@ -1,0 +1,313 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<!-- <div class="footer-container">
+    <div class="footer">
+        <?php //echo $this->getChildHtml() ?>
+        <p class="bugs"><?php //echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php //echo $this->__('Report All Bugs') ?></strong></a> <?php //echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
+        <address><?php //echo $this->getCopyright() ?></address>
+    </div>
+</div> -->
+
+<!--footer-->
+<div class="main_con bg-dk3e3e3e ">
+  <div class="container">
+    <div class="footer">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="footer-menu">
+            <?php $blockid = $this->getBlockId();
+                  $block = Mage::getModel('cms/block')->load('need-help');
+            ?>
+            <h6><?php echo $block->getTitle(); ?></h6>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('need-help')->toHtml(); ?>
+          </div>
+        </div>
+        <div class="span3">
+          <div class="footer-menu">
+            <?php $blockid = $this->getBlockId();
+                  $block = Mage::getModel('cms/block')->load('company-policy-block');
+            ?>
+            <h6>Company Policy</h6>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('company-policy-block')->toHtml(); ?>
+          </div>
+        </div>
+        <div class="span3">
+          <div class="footer-menu">
+            <?php $blockid = $this->getBlockId();
+                  $block = Mage::getModel('cms/block')->load('legal');
+            ?>
+            <h6>Legal</h6>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('legal')->toHtml(); ?>
+       </div>
+        </div>
+        <div class="span3">
+          <div class="social-menu">
+            <ul>
+              <li ><a href="#" class="fb-bg"><i class="icon-facebook43"></i> </a></li>
+              <li><a href="#" class="tweet-bg"><i class="icon-twitter16"></i> </a></li>
+              <li><a href="#" class="pintrest-bg"><i class="icon-pinterest4"></i> </a></li>
+              <li><a href="#" class="youtube-bg"><i class="icon-youtube18"></i> </a></li>
+            </ul>
+            <p>Copyright© 2015 <a href="#">Print for Brands.</a></p>
+            <p>All rights reseved.</p>
+          <div class="frame-footer">
+          
+           <label id="signature"><a target="_blank" href="http://www.webreinvent.com" title="Professional Joomla, Wordpress &amp; Magento Website Design &amp; Development Company - Delhi, India"></a></label>
+            
+            
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/footer--> 
+
+<!--jquery--> 
+
+
+ <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/bootstrap.js') ?>"></script>  
+<script src="<?php echo $this->getSkinUrl('js/jquery-ui.js') ?>"></script> 
+<script src="<?php echo $this->getSkinUrl('js/easyResponsiveTabs.js') ?>"></script> 
+<script src="<?php echo $this->getSkinUrl('js/jquery.magnific-popup.min.js') ?>"></script> 
+
+<!-- drawer js -->
+<!-- drawer js -->
+
+<script src="<?php echo $this->getSkinUrl('js/iscroll-min.js') ?>"></script>
+<script src="http://cdn.rawgit.com/ungki/bootstrap.dropdown/3.3.1/dropdown.min.js"></script>
+<script src="<?php echo $this->getSkinUrl('js/jquery.drawer.js') ?>"></script>
+<script src="http://www.webreinvent.com/logo/signature.js"></script>
+<script type="text/javascript">var jq1_9 = jQuery.noConflict();</script>
+<!--jquery--> 
+<script>
+    jq1_9(document).ready(function(){
+
+       jq1_9('#newletterButton').click(function(){
+           
+           var email = jq1_9('#email').val();
+           
+            if(email== ''){
+               alert("Not Empty");
+               return false;
+            }
+            if(IsEmail(email)==false){
+                alert("Enter Valid Email");
+                return false;
+            }
+            });
+
+       function IsEmail(email) {
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(email)) {
+           return false;
+        }else{
+           return true;
+        }
+      }
+
+    });
+</script>
+
+<script>
+
+  jq1_9(document).ready(function(){
+
+    jq1_9('.drawer').drawer();
+
+    jq1_9('.drawer-api-toggle').on(function(){
+      jq1_9('.drawer').drawer("open");
+    });
+  
+    jq1_9('.drawer-dropdown-hover').hover(function(){
+      jq1_9('[data-toggle="dropdown"]', this).trigger('click');
+    });
+
+  });
+
+</script>
+<script type="text/javascript">
+  jq1_9('.dropdown ').click( function(){ jq1_9(this).addClass('vv_test') }) 
+</script>
+
+
+<!--search-btn-toggle --> 
+<script>
+jq1_9(document).ready(function() {   
+  
+    jq1_9(".srch_btn").click(function(){
+  jq1_9(".searchautocomplete").slideToggle();
+}); 
+
+});
+</script> 
+<!--/search-btn-toggle --> 
+
+
+<script>
+
+jq1_9(function() {
+    var num_cols = 3,
+    container = jq1_9('.level0'),
+    listItem = 'li',
+    listClass = 'sub-list';
+    container.each(function() {
+        var items_per_col = new Array(),
+        items = jq1_9(this).find(listItem),
+        min_items_per_col = Math.floor(items.length / num_cols),
+        difference = items.length - (min_items_per_col * num_cols);
+        for (var i = 0; i < num_cols; i++) {
+            if (i < difference) {
+                items_per_col[i] = min_items_per_col + 1;
+            } else {
+                items_per_col[i] = min_items_per_col;
+            }
+        }
+        for (var i = 0; i < num_cols; i++) {
+            jq1_9(this).append(jq1_9('<ul ></ul>').addClass(listClass));
+            for (var j = 0; j < items_per_col[i]; j++) {
+                var pointer = 0;
+                for (var k = 0; k < i; k++) {
+                    pointer += items_per_col[k];
+                }
+                jq1_9(this).find('.' + listClass).last().append(items[j + pointer]);
+            }
+        }
+    });
+});
+</script>
+<script type="text/javascript">
+    jq1_9(document).ready(function () {
+        jq1_9('#finishing-tab').easyResponsiveTabs({
+            type: 'horizontal',
+            width: 'auto',
+            fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+           
+               var jq1_9tab = jq1_9(this);
+               
+                var jq1_9name = jq1_9('span', jQueryinfo);
+
+                jq1_9name.text(jq1_9tab.text());
+
+                jq1_9info.show();
+
+                
+            }
+        });
+        jq1_9('#custom-graphic-tab,#custom-print-tab').easyResponsiveTabs({
+            type: 'vertical',
+            width: 'auto',
+            fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+           
+               var jq1_9tab = jq1_9(this);
+               
+                var jq1_9name = jq1_9('span', jq1_9info);
+
+                jq1_9name.text(jq1_9tab.text());
+
+                jq1_9info.show();
+
+                
+            }
+        });
+    });
+</script> 
+
+<script>
+         
+var callback = function () {
+   if ( jq1_9(window).width() >= 768 )
+   {
+     var ht = jq1_9('.registration-con').height();
+     jq1_9('.login-con').css('height',ht);
+   }
+
+};
+
+jq1_9(document).ready(callback);
+jq1_9(window).resize(callback);
+</script>
+
+<script>
+
+jq1_9(document).ready(function() {
+ 
+  jq1_9('.popup-with-zoom-anim').magnificPopup({
+    type: 'inline',
+    fixedContentPos: false,
+    fixedBgPos: true,
+    overflowY: 'auto',
+    closeBtnInside: true,
+    preloader: false,
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'my-mfp-zoom-in'
+  });
+
+});
+
+</script> 
+
+<script type="text/javascript">
+  // jq1_9(document).ready(function(){
+  //     var oDropdown = jq1_9(".vv-option-sets .slct-dropdown").msDropdown().data("dd");
+  //     oDropdown.on("change", function() {
+  //       alert(oDropdown.get("selectedText"));
+  //   })
+  // })
+</script>
+ <script>
+//Account Dashboard
+var callback = function () {
+   if ( jq1_9(window).width() >= 768 )
+   {
+     var ht = jq1_9('.acct-info ').outerHeight();
+     jq1_9('.dash-newsltr ').css('height',ht);
+   }
+
+};
+jq1_9(document).ready(callback);
+jq1_9(window).resize(callback);
+
+
+//Account Information
+// if (jq1_9('input.depressed').is(':checked')) {
+
+//     alert('okay');
+// }
+// jq1_9(document).ready(function(){
+//     jq1_9('#change_password').click(function(){
+//       jq1_9('.hide_height').css('display', 'block');
+//     })
+// });
+
+</script>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <?php echo $this->getChildHtml('head'); ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+<?php echo $this->getChildHtml('header'); ?>
+<script  src="<?php //echo $this->getSkinUrl('js/jquery-latest.js') ?>"></script>
+
+<!--breadcrum/banner-->
+<div class="main_con mrg-tp-var">
+    <div class="container">
+<!--breadcrum-part-->
+        <div class="breadcrum-con bg-grey">
+            <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+        </div>
+<!--/breadcrum-part-->
+    </div>
+</div>
+<!--/breadcrum/banner-->
+
+<!--middle-content-->
+<div class="main_con">
+    <div class="container">
+
+        <?php echo $this->getChildHtml('global_messages') ?>
+
+        <div class="download-tmplt-con">
+
+            <?php
+
+            //$_testimonials = $this->getCollection();
+            //$products = $_testimonials->getItems();
+            $products = Mage::getModel("catalog/product")
+                ->getCollection()
+                ->addAttributeToSelect('*')
+                ->addAttributeToFilter('type_id','downloadable');
+
+            ?>
+<div class="row-fluid">
+    <?php foreach ($products as $product){ ?>
+    <div class="span3">
+        <div class="rpt-download-tmplt">
+            <span><?php echo $product->getName() ?></span>
+            <ul>
+                <?php
+                    $prod_id = $product->getId();
+
+                    $links = Mage::getModel("downloadable/link")
+                        ->getCollection()
+                        ->addTitleToResult()
+                        ->addFieldToFilter('product_id',array('eq'=>$prod_id));
+
+                    foreach ($links as $link){
+                        $fileSize = filesize("media/downloadable/files/links".$link->getLink_file());
+
+                        $arrBytes=array(
+                            0=>array(
+                                "UNIT" => "TB",
+                                "VALUE" => pow(1024,4)
+                            ),
+                            1=>array(
+                                "UNIT" => "GB",
+                                "VALUE" => pow(1024,3)
+                            ),
+                            2=>array(
+                                "UNIT" => "MB",
+                                "VALUE" => pow(1024,2)
+                            ),
+                            3=>array(
+                                "UNIT" => "KB",
+                                "VALUE" => 1024
+                            ),
+                            4=>array(
+                                "UNIT" => "B",
+                                "VALUE" => 1
+                            )
+                        );
+
+                        foreach ($arrBytes as $arrByte)
+                        {
+                            if($fileSize >= $arrByte["VALUE"] )
+                            {
+                                $result = round($fileSize / $arrByte["VALUE"]);
+                                $result = str_replace(".", "." , strval(round($result, 2)))." ".$arrByte["UNIT"];
+                                $fileSize = $result;
+                                break;
+                            }
+                        }
+
+                        $url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'downloadable/files/links';
+                        ?>
+
+                        <li>
+                            <strong>Size</strong>
+                            <span><?php echo $fileSize; ?></span>
+                            <a href="<?php echo $url.$link->getLink_file(); ?>" download>Download</a>
+                        </li>
+
+                        <?php
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('sfo-dwnd-page')->toHtml(); ?>
+
+
+</div>
+
+<?php //echo $this->getChildHtml('content'); ?>
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+     <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+   </div>
+
+ </div>
+
+</div>
+
+<!--/newsletter-->
+
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+<!-- PAGINATION  -->
+<script  src="<?php //echo $this->getSkinUrl('js/jquery-latest.js') ?>"></script>
+<script  src="<?php echo $this->getSkinUrl('js/easypaginate.js') ?>"></script>
+<script type="text/javascript">var jq1_9_1 = jQuery.noConflict();</script>
+<!-- PAGINATION  -->
+
+<script>
+
+  jq1_9_1(function($){
+
+  // jq1_9_1('ul#items,div#items1').easyPaginate({
+  // step:6
+  // });
+
+  // jq1_9_1('div#items1').easyPaginate({
+  // step:4
+  // });
+
+  jq1_9_1('ul#items2').easyPaginate({
+    step:12
+  });
+
+});
+</script>
+
+
+
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<?php
+if(isset($_POST['cpj_businesscards']) || isset($_POST['cpj_hangtags']) || isset($_POST['cpj_postcards']) || isset($_POST['cpj_logodesign']) || isset($_POST['cpj_dcpackage']) || isset($_POST['cpj_cldesign']) || isset($_POST['cpj_other']))
+{
+    extract($_POST);
+    // Checking all required fields are filled or not.
+    if($runSize == "" || $flatDimen1=="" || $flatDimen2=="" || $finishDimen1=="" || $finishDimen2=="" || $printslide_new=="" || $stocktype_new=="" || $country=="" || $fname=="" || $email==""){
+        $errorMsg = "Please fill all required fields";
+    }
+    else{
+        $cpj['formName']=$formName;
+        $cpj['type']=$type;
+        $cpj['name']=$fname;
+        $cpj['email']=$email;
+        $cpj['phone']=$phone;
+        $cpj['runSize']=$runSize;
+        $cpj['addRunSize']=$addRunSize;
+        $cpj['flatDimen']=$flatDimen1."x".$flatDimen2;
+        $cpj['finishDimen']=$finishDimen1."x".$finishDimen2;
+        $cpj['printSlide']=$printslide_new;
+        if($stocktype_new == "other"){
+            $cpj['stock']="Other : ".$other-stockType;
+        }
+        else{
+            $cpj['stock']= $stocktype_new;
+        }
+        $cpj['country']=$country;
+        $cpj['bindery']=$bindery;
+        $cpj['finishing']=$finishing;
+        $cpj['desc']=$addInfo;
+    }
+}
+
+if($cpj != "")
+{
+    $fileName  = $_FILES['imagePreview']['name'];
+    $media_path1  = Mage::getBaseDir('media') . DS . 'banner' . DS.$fileName;
+    $fileTmpLoc = $_FILES['imagePreview']['tmp_name'];
+    $ext = strtolower(substr(strrchr($fileName, "."), 1));
+    move_uploaded_file($fileTmpLoc, $media_path1);
+    $imagePreview = 'banner'.'/'.$_FILES['imagePreview']['name'];
+
+    extract($cpj);
+
+    /***** MAIL TO ADMIN *****/
+    $to = "print4brands@gmail.com";
+    /*$to = "saksham.wri77@webreinvent.com";*/
+    $from = $email;
+    $subject = "Custom Print Job Request";
+    $message = "<html><body>";
+    $message .= '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+    $message .= '<h2>You have received a new Custom Print Job request.<h2>';
+    $message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+    $message .= "<tr style='background: #eee;'><td><strong>Type :</strong></td><td>".strip_tags($type)."</td></tr>";
+    $message .= '<tr><td><strong>Name :</strong></td><td>'.strip_tags($name).'</td></tr>';
+    $message .= '<tr><td><strong>Email :</strong></td><td>'.strip_tags($email).'</td></tr>';
+    $message .= '<tr><td><strong>Phone :</strong></td><td>'.strip_tags($phone).'</td></tr>';
+    $message .= '<tr><td><strong>Run Size :</strong></td><td>'.strip_tags($runSize).'</td></tr>';
+    $message .= '<tr><td><strong>Additional Run Size :</strong></td><td>'.strip_tags($addRunSize).'</td></tr>';
+    $message .= '<tr><td><strong>Flat Dimenstion :</strong></td><td>'.strip_tags($flatDimen).'</td></tr>';
+    $message .= '<tr><td><strong>Finishing Dimension :</strong></td><td>'.strip_tags($finishDimen).'</td></tr>';
+    $message .= '<tr><td><strong>Printed Slide :</strong></td><td>'.strip_tags($printSlide).'</td></tr>';
+    $message .= '<tr><td><strong>Stock Type :</strong></td><td>'.strip_tags($stock).'</td></tr>';
+    $message .= '<tr><td><strong>Country :</strong></td><td>'.strip_tags($country).'</td></tr>';
+    $message .= '<tr><td><strong>Bindery :</strong></td><td>'.strip_tags($bindery).'</td></tr>';
+    $message .= '<tr><td><strong>Finishing :</strong></td><td>'.strip_tags($finishing).'</td></tr>';
+    $message .= '<tr><td><strong>Additional Info. :</strong></td><td>'.strip_tags($desc).'</td></tr>';
+    $message .= "</table></body></html>";
+
+    $headers = "From: " . strip_tags($_POST['email']) . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    $mail_success1 = mail($to,$subject,$message,$headers);
+
+    /***** END OF MAIL TO ADMIN *****/
+
+    /***** MAIL TO CLIENT *****/
+    if($mail_success1)
+    {
+        $to = $email;
+        $from = 'print4brands@gmail.com';
+        $headers = "From: " . $from . "\r\n";
+        $headers .= "Reply-To: ". $from . "\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+        $subject ="Confirmation mail for Custom Print Job";
+        $msg = '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+        $msg .= '<h2>Thanks for contacting us, we will get back to you soon.</h2>';
+        $mail_success2 = mail($to,$subject,$msg,$headers);
+    }
+    /***** END OF MAIL TO CLIENT *****/
+
+    /***** INSERT RECORD INTO DATABASE *****/
+    if($mail_success1 && $mail_success2)
+    {
+        $write=Mage::getSingleton('core/resource')->getConnection('core_write');
+        $writeMethods=get_class_methods(get_class($write));
+        $result=$write->insert("dealerinquiry",array(
+            "form"=>$formName,
+            "type"=>$type,
+            "firstname"=>$name,
+            "email"=>$email,
+            "phone"=>$phone,
+            "runsize"=>$runSize,
+            "additionalrunsize"=>$addRunSize,
+            "flatdimension"=>$flatDimen,
+            "finisheddimension"=>$finishDimen,
+            "printslide"=>$printSlide,
+            "stocktype"=>$stock,
+            "country"=>$country,
+            "bindery"=>$bindery,
+            "finishing"=>$finishing,
+            "desc"=>$desc,
+            "imagepreview"=>$imagePreview
+        ));
+    }
+    /***** END OF INSERT RECORD INTO DATABASE *****/
+
+    /***** SUCCESS PAGE *****/
+    if($mail_success1 && $mail_success2 && $result)
+    {
+        $successUrl = Mage::getUrl('success_page');
+        Mage::app()->getFrontController()->getResponse()->setRedirect($successUrl);
+    }
+}
+?>
+
+<?php
+if(isset($_POST['custom_graphic_design_business_card']) || isset($_POST['custom_graphic_design_hang_tags']) || isset($_POST['custom_graphic_design_post_cards']) || isset($_POST['custom_graphic_design_logo_design']) || isset($_POST['custom_graphic_design_dc_package']) || isset($_POST['custom_graphic_design_cl_design']) || isset($_POST['custom_graphic_design_other'])){
+
+    extract($_POST);
+    if(empty($fname) || empty($email_add) || empty($printed_slides_new) || empty($width) || empty($height)){
+        $errorMsg = "Please fill all required fields";
+    }
+    else{
+        $cgd['form'] = $formName;
+        $cgd['type'] = $type;
+        $cgd['name'] = $fname;
+        $cgd['email'] = $email_add;
+        $cgd['printSlide'] = $printed_slides_new;
+        $cgd['size'] = $width.'x'.$height;
+        $cgd['finishing'] = $specilFinishing;
+        $cgd['desc'] = $addtnalInfo;
+    }
+
+    if(!empty($cgd))
+    {
+        extract($cgd);
+
+        /***** MAIL TO ADMIN *****/
+        $to = "print4brands@gmail.com"; 
+        /*$to = "saksham.wri77@webreinvent.com";*/
+        $from = $email;
+        $subject = "Custom Print Job Request";
+        $message = "<html><body>";
+        $message .= '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+        $message .= '<h2>You have received a new Custom Print Job request.<h2>';
+        $message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+        $message .= "<tr style='background: #eee;'><td><strong>Type :</strong></td><td>".strip_tags($type)."</td></tr>";
+        $message .= '<tr><td><strong>Name :</strong></td><td>'.strip_tags($name).'</td></tr>';
+        $message .= '<tr><td><strong>Email :</strong></td><td>'.strip_tags($email).'</td></tr>';
+        $message .= '<tr><td><strong>Printed Slide :</strong></td><td>'.strip_tags($printSlide).'</td></tr>';
+        $message .= '<tr><td><strong>Size :</strong></td><td>'.strip_tags($size).'</td></tr>';
+        $message .= '<tr><td><strong>Finishing :</strong></td><td>'.strip_tags($finishing).'</td></tr>';
+        $message .= '<tr><td><strong>Additional Info. :</strong></td><td>'.strip_tags($desc).'</td></tr>';
+        $message .= "</table></body></html>";
+
+        $headers = "From: " . strip_tags($_POST['email']) . "\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $mail_success1 = mail($to,$subject,$message,$headers);
+
+        /***** END OF MAIL TO ADMIN *****/
+
+        /***** MAIL TO CLIENT *****/
+        if($mail_success1)
+        {
+            $to = $email;
+            $from = 'print4brands@gmail.com';
+            $headers = "From: " . $from . "\r\n";
+            $headers .= "Reply-To: ". $from . "\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+            $subject ="Confirmation mail for Custom Graphic Design";
+            $msg = '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+            $msg .= '<h2>Thanks for contacting us, we will get back to you soon.</h2>';
+            $mail_success2 = mail($to,$subject,$msg,$headers);
+        }
+        /***** END OF MAIL TO CLIENT *****/
+
+        if($mail_success1 && $mail_success2){
+            $write=Mage::getSingleton('core/resource')->getConnection('core_write');
+            $writeMethods=get_class_methods(get_class($write));
+            $result=$write->insert("dealerinquiry",array(
+                "form"=>$form,
+                "type"=>$type,
+                "firstname"=>$name,
+                "email"=>$email,
+                "printslide"=>$printSlide,
+                "size"=>$size,
+                "finishing"=>$finishing,
+                "desc"=>$desc
+            ));
+        }
+
+        if($mail_success1 && $mail_success2 && $result)
+        {
+            $successUrl = Mage::getUrl('success_page');
+            Mage::app()->getFrontController()->getResponse()->setRedirect($successUrl);
+        }
+    }
+}
+?>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<?php echo $this->getChildHtml('head'); ?>
+<link href="<?php echo $this->getSkinUrl('css/jquery-filestyle.css') ?>" rel="stylesheet" type="text/css"/>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <link href="<?php echo $this->getSkinUrl('css/dd.css') ?>" rel="stylesheet" type="text/css"/>
+    <script src="<?php echo $this->getSkinUrl('js/countries.js') ?>"></script>
+</head>
+<body <?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+<?php echo $this->getChildHtml('header'); ?>
+<!--breadcrum/banner-->
+<div class="main_con mrg-tp-var">
+  <div class="container">
+    <!--breadcrum-part-->
+    <?php $cmsPageUrlKey = Mage::getSingleton('cms/page')->getIdentifier();
+
+    if($cmsPageUrlKey != "success_page") {   ?>
+
+    <div class="breadcrum-con bg-grey">
+
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+
+    </div>
+        <?php
+        if($errorMsg != ""){
+            ?>
+            <ul class="messages">
+                <li class="error-msg">
+                    <ul>
+                        <li><?php echo $errorMsg; ?></li>
+                    </ul>
+                </li>
+            </ul>
+            <?php
+        }
+        ?>
+
+    <?php } ?>
+    <!--/breadcrum-part-->
+
+    <?php $cms_id = Mage::getSingleton('cms/page')->getIdentifier();
+
+          $model = Mage::getModel('cms/page')->load($cms_id,'identifier');
+
+          $media_path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+     ?>
+     <?php  $route_url = Mage::app()->getRequest()->getRouteName();
+            if( $route_url=="cms"){
+            $pageHeading = $this->getLayout()->getBlock('page_content_heading')->toHtml();
+            $pageHeading =  explode('#', $pageHeading);}
+     ?>
+
+    <?php if($model->getBanner()) { ?>
+
+    <div class="banner-con custom-graphic-bnr"> <img src="<?php echo $media_path.$model->getBanner(); ?>"  alt="about-banner"/>
+          <?php if($pageHeading) { ?>
+              <div class="custom-grapic-txtcon">
+                  <h1><?php echo $pageHeading[0]; ?>
+                  <span><?php echo $pageHeading[1]; ?></span></h1>
+                  <p><?php echo $pageHeading[2]; ?></p>
+              </div>
+           <?php } ?>
+     </div>
+
+    <?php } ?>
+
+  </div>
+
+</div>
+<!--/breadcrum/banner-->
+
+<!--middle-content-->
+<div class="main_con">
+  <div class="container">
+  <?php echo $this->getChildHtml('global_messages') ?>
+  <?php  /* get cms page name */
+
+        //$page = Mage::getModel('cms/page')->setStoreId(Mage::app()->getStore()->getId())->load('about-us');
+
+        //$pageTitle = $page->getTitle();
+
+
+
+        $cmsPageUrlKey = Mage::getSingleton('cms/page')->getIdentifier();
+
+  ?>
+
+      <?php if($route_url=="cms") { ?>
+
+              <?php echo $this->getChildHtml('content'); ?>
+
+      <?php }
+
+          else { ?>
+
+        <div class="srch-outercon">
+
+                      <?php echo $this->getChildHtml('content'); ?>
+
+        </div>
+
+    <?php } ?>
+
+
+
+  </div>
+
+</div>
+
+
+
+<?php  if($cmsPageUrlKey=="about-us") {
+
+      echo $this->getLayout()->createBlock('cms/block')->setBlockId('creative-services')->toHtml(); } ?>
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--/newsletter-->
+<script type="text/javascript">
+//   Validation.add('validate-email', 'Please enter a valid email address.', function(v) {
+//     return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/i.test(v)
+// });
+   Validation.add('validate-number', 'Please enter a valid number.', function(v) {
+    return Validation.get('IsEmpty').test(v) || /^(?:[1-9]\d*|0)?(?:\.\d+)?$/i.test(v)
+});
+
+Validation.add('validate-emailid', 'Please enter a valid email address.', function(v) {
+    return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i.test(v)
+});
+</script>
+
+<?php echo $this->getChildHtml('footer'); ?>
+<!--<script src="<?php /*echo $this->getSkinUrl('js/dd.min.js') */?>"></script>-->
+<script src="<?php echo $this->getSkinUrl('js/jquery.validate.min.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/additional-methods.min.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/jquery-filestyle.js') ?>"></script>
+
+<script type="text/javascript">
+    //< ![CDATA[
+    var myForm= new VarienForm('cpj_bcards', false);
+    var myForm= new VarienForm('cpj_htags', false);
+    var myForm= new VarienForm('cpj_pcards', false);
+    var myForm= new VarienForm('cpj_ldesign', false);
+    var myForm= new VarienForm('cpj_dcpack', false);
+    var myForm= new VarienForm('cpj_cldesign', false);
+    var myForm= new VarienForm('cpj_other', false);
+
+    var myForm = new VarienForm('cgd_bcards',false);
+    var myForm = new VarienForm('cgd_htags',false);
+    var myForm = new VarienForm('cgd_pcards',false);
+    var myForm = new VarienForm('cgd_ldesign',false);
+    var myForm = new VarienForm('cgd_dcpack',false);
+    var myForm = new VarienForm('cgd_cldesign',false);
+    var myForm = new VarienForm('cgd_other',false);
+    //]]>
+    jQuery(document).ready(function () {
+
+var myForm = new VarienForm('cgd_other',false);        Validation.add('validate-runsize-number', 'Please enter whole number only..', function(v) {
+            return Validation.get('IsEmpty').test(v) || /^[0-9]*$/i.test(v)
+        });
+        Validation.add('validate-name', 'Please enter letters and numbers only.', function(v) {
+            return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]*$/i.test(v)
+        });
+        /*Validation.add('validate-info', 'Please enter a comment of max 500 letters.', function(v) {
+         return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]{0,500}$/i.test(v)
+         });*/
+        Validation.add('validate-name', 'Please enter letters and numbers only.', function(v) {
+            return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]*$/i.test(v)
+        });
+
+        /*jQuery(function () {
+            jQuery('input').blur();
+        });*/
+
+    });
+</script>
+
+ <script type="text/javascript">
+    //< ![CDATA[
+       var myForm= new VarienForm('oSPacket', false);
+    //]]>
+</script>
+<script type="text/javascript">
+   jQuery(document).ready(function(){
+
+    var msg = jQuery('.srch-outercon .note-msg');
+          if(msg.length)
+          {
+            jQuery('body').addClass('no_result');
+          }
+          else{
+            jQuery('body').removeClass('no_result');
+          }
+   });
+   </script>
+<script type="text/javascript">
+
+      jQuery( function() {
+
+        jQuery(".slct-dropdown").msDropdown();
+
+      });
+
+
+
+    </script>
+<script type="text/javascript">
+    /* jQuery('#brs-img2').jfilestyle({
+        input: false
+      });*/
+    </script>
+<script type="text/javascript">
+     jQuery(document).ready(function(){
+
+       jQuery( ".other-hidden" ).hide();
+        var oDropdown = jQuery(".stockType .slct-dropdown").msDropdown().data("dd");
+
+          oDropdown.on("change", function() {
+            var slectedvalue =  oDropdown.get("selectedText");
+            if(slectedvalue == "other")
+              {
+                  jQuery('#other-stockType').addClass('required-entry');
+                 jQuery( ".other-hidden" ).show();
+
+              }
+              else
+              {
+                  jQuery( ".other-hidden" ).hide();
+                  jQuery("#other-stockType").val('');
+                  jQuery('#other-stockType').removeClass('required-entry');
+              }
+          });
+
+       jQuery('#brs-img2').on('change',function(){
+       // output raw value of file input
+       jQuery('#filename').html(jQuery(this).val());
+
+        // or, manipulate it further with regex etc.
+        var filepath = jQuery(this).val();
+        // .. do your magic
+        var filename = filepath.split('/');
+        filename = filename.last();
+
+        var ext = filename.split('.');
+        ext  = ext.last();
+        //alert(filepath);
+
+        //var image_exts = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif"];
+        if(jQuery.inArray($ext, ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "tif"])){
+        	alert('invalid image format');
+        	//jQuery('.count-jfilestyle').remove();
+
+        }
+        else{
+        	//alert('image ext ok');
+        }
+
+    });
+
+      });
+    </script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery(".custom_print_job").click(function(){
+
+
+    });
+    });
+</script>
+
+</body>
+
+</html>

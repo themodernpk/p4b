@@ -1,0 +1,595 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<!-- <div class="footer-container">
+    <div class="footer">
+        <?php //echo $this->getChildHtml() ?>
+        <p class="bugs"><?php //echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php //echo $this->__('Report All Bugs') ?></strong></a> <?php //echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
+        <address><?php //echo $this->getCopyright() ?></address>
+    </div>
+  </div> -->
+
+  <!--footer-->
+  <div class="main_con bg-dk3e3e3e ">
+    <div class="container">
+      <div class="footer">
+        <div class="row-fluid">
+          <div class="span3">
+            <div class="footer-menu">
+              <?php $blockid = $this->getBlockId();
+              $block = Mage::getModel('cms/block')->load('need-help');
+              ?>
+              <h6><?php echo $block->getTitle(); ?></h6>
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('need-help')->toHtml(); ?>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="footer-menu">
+              <?php $blockid = $this->getBlockId();
+              $block = Mage::getModel('cms/block')->load('company-policy-block');
+              ?>
+              <h6>Company Policy</h6>
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('company-policy-block')->toHtml(); ?>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="footer-menu">
+              <?php $blockid = $this->getBlockId();
+              $block = Mage::getModel('cms/block')->load('legal');
+              ?>
+              <h6>Legal</h6>
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('legal')->toHtml(); ?>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="social-menu">
+              <ul>
+                <li ><a href="https://www.facebook.com/login/" target="_blank" class="fb-bg"><i class="icon-facebook43"></i> </a></li>
+                <li><a href="https://twitter.com/login" target="_blank" class="tweet-bg"><i class="icon-twitter16"></i> </a></li>
+                <li><a href="https://in.pinterest.com/login" target="_blank" class="pintrest-bg"><i class="icon-pinterest4"></i> </a></li>
+                <li><a href="https://www.youtube.com/" target="_blank" class="youtube-bg"><i class="icon-youtube18"></i> </a></li>
+              </ul>
+              <p>Copyright© 2016 <a href="<?php echo Mage::getBaseUrl(); ?>about-us">Print for Brands.</a></p>
+              <p>All rights reserved.</p>
+                <div class="frame-footer">
+                    <label id="signature">
+                        <span class="signMaster">
+                            Invented By:
+                            <a style="display:inline-block; padding:0px 5px;" target="_blank" href="https://www.webreinvent.com?utm_source=http://printforbrands.webreinvent.com/&amp;utm_medium=signature&amp;utm_campaign=clientProjects" title="Professional Joomla, Wordpress &amp; Magento Website Design &amp; Development Company - Delhi, India">
+                                <iframe width="39" height="40" src="https://www.webreinvent.com/logo/index.php?utm_source=file:///E:/xampp_new/htdocs/manish/backup/themes/printforbrands/index.html&amp;utm_medium=signature&amp;utm_campaign=clientProjects"> </iframe>
+                            </a>
+                        </span>
+                    </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/footer-->
+
+    <!--jquery-->
+
+
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/jquery.js') ?>"></script>
+
+      <script src='https://www.google.com/recaptcha/api.js'></script>
+      <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+      <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/bootstrap.js') ?>"></script>
+    <script src="<?php echo $this->getSkinUrl('js/jquery-ui.js') ?>"></script>
+    <script src="<?php echo $this->getSkinUrl('js/easyResponsiveTabs.js') ?>"></script>
+    <script src="<?php echo $this->getSkinUrl('js/jquery.magnific-popup.min.js') ?>"></script>
+
+    <!-- drawer js -->
+    <!-- drawer js -->
+
+    <script src="<?php echo $this->getSkinUrl('js/iscroll-min.js') ?>"></script>
+    <script src="http://cdn.rawgit.com/ungki/bootstrap.dropdown/3.3.1/dropdown.min.js"></script>
+    <script src="<?php echo $this->getSkinUrl('js/jquery.drawer.js') ?>"></script>
+    <script type="text/javascript">var jq1_9 = jQuery.noConflict();</script>
+
+    <script type="text/javascript">
+
+      jq1_9('#needHelp li.help a').each(function(){
+       var myHref= jq1_9(this).attr('href');
+       if(window.location.href == myHref) {
+        //alert(myHref);
+      }
+    });
+    </script>
+    <!--jquery-->
+
+
+<script>
+
+  jq1_9(document).ready(function(){
+
+    jq1_9('.drawer').drawer();
+
+    jq1_9('.drawer-api-toggle').on(function(){
+      jq1_9('.drawer').drawer("open");
+    });
+
+    jq1_9('.drawer-dropdown-hover').hover(function(){
+      jq1_9('[data-toggle="dropdown"]', this).trigger('click');
+    });
+
+  });
+
+  jq1_9(document).ready(function(){
+   var pgurl = window.location.href;
+
+   jq1_9('ul li a').each(function(){
+    if(jq1_9.trim(jq1_9(this).attr('href')) == pgurl)
+      jq1_9(this).parent().addClass('active');
+  });
+
+  if(jq1_9('select').hasClass('required-entryslct-dropdown')){
+       jq1_9('select').addClass('validate-select');
+   }
+   jq1_9('#myacct-tab .resp-tabs-list li:first-child').addClass('current');
+   jq1_9('#myacct-tab .resp-tabs-list li').click(function(){
+      jq1_9('#myacct-tab .resp-tabs-list li').removeClass('current');
+      jq1_9(this).addClass('current');
+      //alert('test');
+    });
+ });
+
+</script>
+<script type="text/javascript">
+  jq1_9('.dropdown ').click( function(){ jq1_9(this).addClass('vv_test') })
+</script>
+
+
+<!--search-btn-toggle -->
+<script>
+  jq1_9(document).ready(function() {
+
+    jq1_9(".srch_btn").click(function(){
+      jq1_9(".searchautocomplete").slideToggle();
+    });
+
+  });
+</script>
+<!--/search-btn-toggle -->
+
+
+<script>
+
+  jq1_9(function() {
+    var num_cols = 3,
+    container = jq1_9('.level0'),
+    listItem = 'li',
+    listClass = 'sub-list';
+    container.each(function() {
+      var items_per_col = new Array(),
+      items = jq1_9(this).find(listItem),
+      min_items_per_col = Math.floor(items.length / num_cols),
+      difference = items.length - (min_items_per_col * num_cols);
+      for (var i = 0; i < num_cols; i++) {
+        if (i < difference) {
+          items_per_col[i] = min_items_per_col + 1;
+        } else {
+          items_per_col[i] = min_items_per_col;
+        }
+      }
+      for (var i = 0; i < num_cols; i++) {
+        jq1_9(this).append(jq1_9('<ul ></ul>').addClass(listClass));
+        for (var j = 0; j < items_per_col[i]; j++) {
+          var pointer = 0;
+          for (var k = 0; k < i; k++) {
+            pointer += items_per_col[k];
+          }
+          jq1_9(this).find('.' + listClass).last().append(items[j + pointer]);
+        }
+      }
+    });
+  });
+</script>
+<script type="text/javascript">
+  jq1_9(window).load(function () {
+    jq1_9('#finishing-tab').easyResponsiveTabs({
+      type: 'horizontal',
+      width: 'auto',
+      fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+
+             var jq1_9tab = jq1_9(this);
+
+             var jq1_9name = jq1_9('span', jQueryinfo);
+
+             jq1_9name.text(jq1_9tab.text());
+
+             jq1_9info.show();
+
+
+           }
+
+         });
+
+    jq1_9('#custom-graphic-tab,#custom-print-tab').easyResponsiveTabs({
+      type: 'vertical',
+      width: 'auto',
+      fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+
+             var jq1_9tab = jq1_9(this);
+
+             var jq1_9name = jq1_9('span', jq1_9info);
+
+             jq1_9name.text(jq1_9tab.text());
+
+             jq1_9info.show();
+
+
+           }
+         });
+  });
+</script>
+
+<script>
+
+  var callback = function () {
+   if ( jq1_9(window).width() >= 768 )
+   {
+     var ht = jq1_9('.registration-con').height();
+     jq1_9('.login-con').css('height',ht);
+   }
+
+ };
+
+ jq1_9(document).ready(callback);
+ jq1_9(window).resize(callback);
+</script>
+
+<script>
+
+  jq1_9(document).ready(function() {
+
+    jq1_9('.popup-with-zoom-anim').magnificPopup({
+      type: 'inline',
+      fixedContentPos: false,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      mainClass: 'my-mfp-zoom-in'
+    });
+
+  });
+
+</script>
+
+<script>
+//Account Dashboard
+var callback = function () {
+ if ( jq1_9(window).width() >= 768 )
+ {
+     var ht1 = jq1_9('.acct-info ').outerHeight();
+     var ht2 = jq1_9('.dash-newsltr ').outerHeight();
+     if(ht1 > ht2)
+     {
+         jq1_9('.dash-newsltr ').css('height',ht1);
+     }
+     if(ht2 > ht1)
+     {
+         jq1_9('.acct-info ').css('height',ht2);
+     }
+ }
+
+};
+jq1_9(document).ready(callback);
+jq1_9(window).resize(callback);
+</script>
+
+<script>
+  jq1_9(document).ready(function () {
+    /*jq1_9('#myacct-tab').easyResponsiveTabs(
+    {
+      type: 'horizontal',
+      width: 'auto',
+      fit: true,
+        closed: 'accordion', // Start closed if in accordion view
+        activate: function(event) { // Callback function if tab is switched
+          var jq1_9tab = jq1_9(this);
+          var jq1_9name = jq1_9('span', jq1_9info);
+          jq1_9name.text(jq1_9tab.text());
+          jq1_9info.show();
+        }
+      });
+
+    jq1_9(".messages").ready(function(){
+    jq1_9("html, body").delay(500).animate({
+        scrollTop: jq1_9('.messages').offset().top -200
+    }, 1000);
+});*/
+    jq1_9('body').on('click', '.submit-btn',function(){
+    jq1_9("html, body")/*.delay(500)*/.animate({
+        scrollTop: jq1_9('.input-text').offset().top -400
+    }/*, 600*/);
+});
+
+
+  });
+</script>
+
+<script type="text/javascript">// <![CDATA[
+    jq1_9(document).ready(function(){
+
+      jq1_9('#state').addClass('required-entry');
+        jq1_9('#country_new').change(function(){
+            var country = jq1_9(this).val();
+
+            console.log(country);
+
+            if(country == "US")
+            {
+                jq1_9('#region_id').show();
+                jq1_9('#state').removeClass('required-entry');
+                jq1_9('#state').attr('type','hidden');
+                jq1_9('#region_id').addClass('required-entry');
+               jq1_9('#advice-required-entry-state').hide();
+
+            }
+
+            else{
+              jq1_9('#region_id').removeClass('required-entry');
+               jq1_9('#region_id').hide();
+                jq1_9('#state').attr('type','text');
+                jq1_9('#state').addClass('required-entry');
+
+            }
+
+
+        });
+
+        // jQuery('#email_address').attr('autofocus','false');
+        // jQuery('#email').attr('autofocus','true');
+
+    });
+// ]]></script>
+
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.other-hidden').hide();
+
+        });
+    </script>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#bcard_stockType').on('change' ,function(){
+            var a =jQuery('#bcard_stockType').val();
+            if(a == "other"){
+                jQuery('#bcard_hidden').show();
+            }else{
+                jQuery('#bcard_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#htag_stockType').on('change' ,function(){
+            var a =jQuery('#htag_stockType').val();
+            if(a == "other"){
+                jQuery('#htag_hidden').show();
+            }else{
+                jQuery('#htag_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#pcard_stockType').on('change' ,function(){
+            var a =jQuery('#pcard_stockType').val();
+            if(a == "other"){
+                jQuery('#pcard_hidden').show();
+            }else{
+                jQuery('#pcard_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#ldesign_stockType').on('change' ,function(){
+            var a =jQuery('#ldesign_stockType').val();
+            if(a == "other"){
+                jQuery('#ldesign_hidden').show();
+            }else{
+                jQuery('#ldesign_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#dcpack_stockType').on('change' ,function(){
+            var a =jQuery('#dcpack_stockType').val();
+            if(a == "other"){
+                jQuery('#dcpack_hidden').show();
+            }else{
+                jQuery('#dcpack_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#cldesign_stockType').on('change' ,function(){
+            var a =jQuery('#cldesign_stockType').val();
+            if(a == "other"){
+                jQuery('#cldesign_hidden').show();
+            }else{
+                jQuery('#cldesign_hidden').hide();
+            }
+
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#other_stockType').on('change' ,function(){
+            var a =jQuery('#other_stockType').val();
+            if(a == "other"){
+                jQuery('#other_hidden').show();
+            }else{
+                jQuery('#other_hidden').hide();
+            }
+
+        });
+    });
+
+</script>
+      <script>
+          (function(jQuery) {
+              jQuery.fn.checkFileType = function(options) {
+                  var defaults = {
+                      allowedExtensions: [],
+                      success: function() {},
+                      error: function() {}
+                  };
+                  options = jQuery.extend(defaults, options);
+
+                  return this.each(function() {
+
+                      jQuery(this).on('change', function() {
+                          var value = jQuery(this).val(),
+                              file = value.toLowerCase(),
+                              extension = file.substring(file.lastIndexOf('.') + 1);
+
+                          if (jQuery.inArray(extension, options.allowedExtensions) == -1) {
+                              options.error();
+                              jQuery(this).focus();
+                          } else {
+                              options.success();
+
+                          }
+
+                      });
+
+                  });
+              };
+
+          })(jQuery);
+
+         jQuery(function() {
+             jQuery('#brs-img2').checkFileType({
+                  allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'tif'],
+                  success: function() {
+//                      alert('Successfully uploaded');
+
+                    var a =  jQuery(".fileWrapper").append('<a class="delll" href="">Close</a>');
+                      jQuery("a.delll").on("click", function(){
+                          jQuery("a.delll").siblings().val("");
+                          event.preventDefault();
+                          jQuery('.delll').hide();
+                      });
+
+                  },
+
+                  error: function() {
+					 alert("please choose a vaild image file");
+                      jQuery("input#brs-img2").val("");
+                  }
+              });
+
+          });
+      </script>
+      <script type="text/javascript">
+     jQuery(function() { jQuery('[name="login[username]"]').focus(); });
+    </script>
+
+<!--<script>
+    jQuery(document).ready(function(){
+        jQuery(".custom_print_job").click(function(){
+            alert("error occured! Login first");
+            return false;
+        });
+    });
+    </script>-->
+      <script>
+          jQuery(document).ready(function(){
+              jQuery('.resp-tabs-list li:nth-child(1)').addClass('resp-tabs-item1');
+
+          jQuery('.resp-tabs-list li:nth-child(2)').addClass('resp-tabs-item2');
+
+          jQuery('.resp-tabs-list li:nth-child(3)').addClass('resp-tabs-item3');
+          });
+
+        </script>
+
+      <script>
+          jQuery(document).ready(function(){
+             jQuery(".title-box1").show();
+              jQuery(".title-box2").hide();
+              jQuery(".title-box3").hide();
+
+        jQuery(".list1").click(function(){
+           jQuery(".title-box1").show();
+            jQuery(".title-box2").hide();
+            jQuery(".title-box3").hide();
+        });
+              jQuery(" .list2").click(function(){
+                  jQuery(".title-box1").hide();
+                  jQuery(".title-box2").show();
+                  jQuery(".title-box3").hide();
+              });
+              jQuery(".list3").click(function(){
+                  jQuery(".title-box1").hide();
+                  jQuery(".title-box2").hide();
+                  jQuery(".title-box3").show();
+              });
+             /* jQuery(".resp-tabs-item1").click(function(){
+                  jQuery(".title-box1").show();
+                  jQuery(".title-box2").hide();
+              });*/
+
+          });
+
+      </script>
+
+<!--      <script>
+          $(document).ready(function(e) {
+              if( $('#collapseOne').hasClass('in')){
+                  $('#collapseOne').parent().children().addClass('opened').addClass('hdr-bgcolor');
+              }
+              $('.rturn-ship-policy .accordion-body').on('show ',function(){
+                  $(this).parent().children().addClass('opened').addClass('hdr-bgcolor');
+              });
+              $('.rturn-ship-policy  .accordion-body').on('hide',function(){
+                  $(this).parent().children().removeClass('opened').removeClass('hdr-bgcolor');
+              });
+
+          });
+      </script>-->
+

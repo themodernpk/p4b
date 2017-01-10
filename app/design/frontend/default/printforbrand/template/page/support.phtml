@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+<meta charset="utf-8">
+
+
+
+<meta charset="utf-8">
+
+
+
+
+
+
+
+<?php echo $this->getChildHtml('head'); ?>
+
+
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<link href="<?php echo $this->getSkinUrl('css/dd.css') ?>" rel="stylesheet" type="text/css"/>
+
+
+
+</head>
+
+
+
+<?php
+
+       if(isset($_POST['customerSupport']))
+
+
+
+       {
+
+
+
+          if(isset($_POST['g-recaptcha-response'])){
+
+            $captcha=$_POST['g-recaptcha-response'];
+
+          }
+
+          if(!$captcha){
+
+            $captchaerr = 'Check box if you are not a robot.';
+
+          }
+
+          else{
+
+                        if($_POST['user_name']==" " or $_POST['email']==" " or $_POST['phone']==" ")
+
+                        {
+
+                               $pageURL = Mage::getUrl() . Mage::getSingleton('cms/page')->getIdentifier();
+
+                                Mage::app()->getFrontController()->getResponse()->setRedirect($pageURL);
+
+                        }
+
+                        else{
+
+                                  //$gen_contact = Mage::getStoreConfig('trans_email/ident_general/email');
+                                 // $to = $gen_contact;
+                            $to = "print4brands@gmail.com";
+                            //$from = $_POST['email'];
+                            $subject = "Customer Support Request For Admin";
+                            $message = '<html><body>';
+                            $message .= '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+                            $message .= '<h2>You have received a query from customer.<h2>';
+                            $message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+                            $message .= "<tr style='background: #eee;'><td><strong>Name: </strong> </td><td>" . strip_tags($_POST['user_name']) . "</td></tr>";
+                            $message .= "<tr><td><strong>Email: </strong> </td><td>" . strip_tags($_POST['email']) . "</td></tr>";
+                            $message .= "<tr><td><strong>Reason: </strong> </td><td>" . strip_tags($_POST['reason_new']) . "</td></tr>";
+                            $message .= "<tr><td><strong>Phone No.: </strong> </td><td>" . strip_tags($_POST['phone']) . "</td></tr>";
+                            $message .= "<tr><td><strong>Order No.: </strong> </td><td>" . strip_tags($_POST['order_no']) . "</td></tr>";
+                            $message .= "<tr><td><strong>Message: </strong> </td><td>" . strip_tags($_POST['cmmnts']) . "</td></tr>";
+                            $message .= "</table>";
+                            $message .= "</body></html>";
+                            $headers = "From: " . strip_tags($_POST['email']) . "\r\n";
+                            $headers .= "MIME-Version: 1.0\r\n";
+                            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+//                            $to = "anupam.wri47@webreinvent.com";
+//                                    $subject = "Customer Support.";
+//
+//                                    $txt  = "Name: ".$_POST['user_name']."\n";
+//
+//                                    $txt .= "Email: ".$_POST['email']."\n";
+//
+//                                    $txt .= "Reason: ".$_POST['reason_new']."\n";
+//
+//                                    $txt .= "Phone No.: ".$_POST['phone']."\n";
+//
+//                                    $txt .= "Order No: ".$_POST['order_no']."\n";
+//
+//                                    $txt .= "Message: ".$_POST['cmmnts']."\n";
+//
+//                                    $headers = "From:". $_POST['email'];
+
+                                   $successMail = mail($to,$subject,$message,$headers);
+
+                            if($successMail)
+                            {
+                                $to = $_POST['email'];
+                                $from = 'print4brands@gmail.com';
+                                $headers = "From: " . $from . "\r\n";
+                                $headers .= "Reply-To: ". $from . "\r\n";
+                                //$headers .= "CC: susan@example.com\r\n";
+                                $headers .= "MIME-Version: 1.0\r\n";
+                                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                                $subject ="Confirmation mail from Printforbrands";
+                                $msg = '<img src="http://printforbrands.webreinvent.com/skin/frontend/default/printforbrand/img/logo.png" alt="PrintForBrands"> ';
+                                $msg .= '<h2>Thanks for contacting us, we will get back to you soon.</h2>';
+                                $success_mail1 = mail($to,$subject,$msg,$headers);
+                            }
+
+                                 if($successMail)
+
+                                   {
+
+                                       $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+
+
+
+                                       $writeMethods = get_class_methods(get_class($write));
+
+
+
+                                      //foreach($writeMethods as $r){echo $r."\n";}
+
+
+
+                                       $result = $write->insert(
+
+
+
+                                        "dealerinquiry",
+
+
+
+                                       array("firstname" => $_POST['user_name'], "lastname" => $_POST['reason_new'], "phone" => $_POST['phone'], "email" => $_POST['email'], "website" => $_POST['form_name'], "desc" => $_POST['cmmnts'], "iscustcreated" => 1, "websiteid" => $_POST['order_no'])
+
+
+
+                                       );
+
+
+
+                                      $successUrl = Mage::getUrl('success_page');
+
+                                     Mage::app()->getFrontController()->getResponse()->setRedirect($successUrl);
+
+                                }
+
+
+
+                        }
+
+                 }
+
+       }
+
+
+
+?>
+
+
+
+
+
+
+
+<body <?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+
+
+
+
+
+
+<?php echo $this->getChildHtml('header'); ?>
+
+
+
+
+
+
+
+<!--breadcrum/banner-->
+
+
+
+
+
+
+
+<div class="main_con mrg-tp-var">
+
+
+
+  <div class="container">
+
+
+
+    <!--breadcrum-part-->
+
+
+
+
+
+
+
+    <div class="breadcrum-con bg-grey">
+
+
+
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+
+
+
+    </div>
+
+
+
+    <!--/breadcrum-part-->
+
+
+
+    <?php $cms_id = Mage::getSingleton('cms/page')->getIdentifier();
+
+
+
+          $model = Mage::getModel('cms/page')->load($cms_id,'identifier');
+
+
+
+          $media_path = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+
+
+     ?>
+
+
+
+
+
+
+
+    <?php if($model->getBanner()) { ?>
+
+
+
+    <div class="banner-con"> <img src="<?php echo $media_path.$model->getBanner(); ?>" /> </div>
+
+
+
+    <?php } ?>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--/breadcrum/banner-->
+
+
+
+<!--middle-content-->
+
+
+
+<div class="main_con">
+
+
+
+  <div class="container">
+
+<?php echo $this->getChildHtml('global_messages') ?>
+
+
+
+
+
+      <div class="support-con">
+
+
+
+      <h3>Customer <span>Support</span></h3>
+
+
+
+       <div class="support-inner">
+
+
+
+      <div class="row-fluid">
+
+
+
+          <div class="span6">
+
+
+
+                <?php echo $this->getChildHtml('content'); ?>
+
+
+
+          </div>
+
+
+
+          <div class="span6">
+
+
+
+          <div class="cont-support-form">
+
+
+
+           <form method="post" id="cSupport" onSubmit="validateForm();">
+
+          <div class="input-field">
+
+
+
+            <label>Select Reason<span>*</span></label>
+
+
+
+
+
+
+
+
+
+<div class="inp-text">
+
+                   <select  class="chosen-select  required-entry" id="resaon" tabindex="1" name="reason_new" style="width:100% !important;" >
+            <!--  <option value="">Choose a Reason...</option>  -->
+
+   <option value=""> Choose a Reason... </option>
+
+            <option "<?php if($_POST['reason_new'] == "Reason 1"){ ?>" selected "<?php }?>" value="Reason 1">Reason 1</option>
+            <option "<?php if($_POST['reason_new'] == "Reason 2"){ ?>" selected "<?php }?>"value="Reason 2">Reason 2</option>
+            <option "<?php if($_POST['reason_new'] == "Reason 3"){ ?>" selected "<?php }?>"value="Reason 3">Reason 3</option>
+            <option "<?php if($_POST['reason_new'] == "Reason 4"){ ?>" selected "<?php }?>"value="Reason 4">Reason 4</option>
+            <option "<?php if($_POST['reason_new'] == "Reason 5"){ ?>" selected "<?php }?>"value="Reason 5">Reason 5</option>
+            <option "<?php if($_POST['reason_new'] == "Reason 6"){ ?>" selected "<?php }?>"value="Reason 6">Reason 6</option>
+          </select>
+
+          <label for="reason_new" class="error" ></label>
+
+              </div>
+
+
+
+          </div>
+
+
+
+         <div class="input-field">
+
+
+
+         <label>Name<span>*</span></label>
+
+
+<div class="inp-text">
+
+         <input class="inp-text-inpt required-entry validate-name" maxlength="50" type="text" name="user_name" value="<?php echo $_POST['user_name']; ?>" id="user_name"  >
+</div>
+
+         </div>
+
+
+
+          <div class="input-field">
+
+
+
+         <label>Email<span>*</span></label>
+
+<div class="inp-text">
+
+         <input class="inp-text-inpt required-entry validate-emailid" maxlength="50" type="text" value="<?php echo $_POST['email']; ?>" name="email" id="email" >
+
+</div>
+
+         </div>
+
+
+
+           <div class="input-field">
+
+
+
+         <label>Phone</label>
+
+<div class="inp-text">
+
+         <input class="inp-text-inpt validate-phoneLax" type="tel" id="phone" maxlength="15" value="<?php echo $_POST['phone']; ?>" name="phone" >
+
+</div>
+
+         </div>
+
+
+
+          <div class="input-field">
+
+
+
+         <label>Order No</label>
+
+<div class="inp-text">
+
+         <input class="validate-number inp-text-inpt" type="text" maxlength="10" placeholder="Order Number (if applicable)" id="order_no" value="<?php echo $_POST['order_no']; ?>" name="order_no">
+
+</div>
+
+         </div>
+
+
+
+           <div class="input-field">
+
+
+
+         <label>Comment<span>*</span></label>
+
+
+
+<div class="inp-text">
+
+
+         <?php if($_POST['customerSupport'] == true){ ?>
+
+   <textarea class="inp-txt-area required-entry" maxlength="100" name="cmmnts" ><?php echo $_POST['cmmnts']; ?></textarea>
+   <?php }else{ ?>
+   <textarea class="inp-txt-area required-entry" maxlength="100" name="cmmnts" ></textarea>
+    <?php } ?>
+
+</div>
+
+         </div>
+
+
+
+            <div class="input-field">
+
+
+
+            <div class="cust-captcha">
+
+
+
+            <div class="g-recaptcha" data-sitekey="6LfmyB4TAAAAAKnRG-pri2okMiatW2TmLx8XmFIU"></div>
+                <span id="demo" style="color:red; font-size: 11px;" ><?php if(!empty($captchaerr)){
+                        echo $captchaerr;
+                    } ?></span>
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+
+            <input type="hidden" name="form_name" value="Customer Support">
+
+
+
+         <div class="form-submit">
+
+
+
+         <input class="submit-btn" type="submit" value="Submit" name="customerSupport"></div>
+
+
+
+         </form>
+
+
+
+           </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--/middle-content-->
+
+
+
+
+
+
+
+<!--newsletter-->
+
+
+
+<div class="main_con bg-dk2e2e2e ">
+
+
+
+  <div class="container">
+
+
+
+    <div class="newsletter">
+
+
+
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+<!--/newsletter-->
+
+
+
+
+
+
+
+
+
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+
+
+
+
+
+
+</body>
+
+<script src="<?php echo $this->getSkinUrl('js/jquery.validate.min.js') ?>"></script>
+
+<script src="<?php echo $this->getSkinUrl('js/additional-methods.min.js') ?>"></script>
+
+<script src="<?php echo $this->getSkinUrl('js/dd.min.js') ?>"></script>
+
+
+
+ <script type="text/javascript">
+
+    //< ![CDATA[
+
+       var myForm= new VarienForm('cSupport', false);
+
+    //]]>
+
+
+
+    jQuery(document).ready(function () {
+
+
+
+            jQuery("#cSupport").validate({
+
+                rules: {
+
+                    resaon: {
+
+                        required: true
+
+                    }
+
+                }
+
+            });
+
+
+
+    });
+
+     Validation.add('validate-name', 'Please use only letters, numbers are optional.', function(v) {
+    return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
+})
+  Validation.add('validate-emailid', 'Please enter a valid email address.', function(v) {
+    return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i.test(v)
+});
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+      jQuery( function() {
+
+
+
+        jQuery(".slct-dropdown").msDropdown();
+
+
+
+      });
+
+
+
+    //  jQuery("body #resaon").msDropDown();
+
+    // jQuery("#cSupport").validate({
+
+    //   alert("hey");
+
+    //     rules: {
+
+    //         resaon: {
+
+    //             required: true
+
+    //         }
+
+    //     }
+
+    // });
+    </script>
+
+<script type="text/javascript" language="javascript">
+    function validateForm() {
+        var captcha_response = grecaptcha.getResponse();
+        if(captcha_response.length == 0)
+        {
+            // Captcha is not Passed
+            document.getElementById("demo").innerHTML = "Please fill captcha!";
+            return false;
+        }
+        else if(captcha_response.length != 0)
+        {
+            // Captcha is Passed
+            document.getElementById("demo").innerHTML = "";
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+
+</script>
+
+
+
+
+
+</html>

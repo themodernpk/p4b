@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <meta charset="utf-8">
+
+  <meta charset="utf-8">
+  <?php $cmsPageUrlKey = Mage::getSingleton('cms/page')->getIdentifier();
+  if($cmsPageUrlKey == "turn-around-times"){ ?>
+  <title>Turn Around Times | Print for brands</title>
+  <?php } elseif($cmsPageUrlKey == "shipping-information") { ?>
+  <title>Shipping Information | Print for brands</title>
+  <?php }
+  elseif($cmsPageUrlKey == "return-policy") { ?>
+  <title>Return Policy | Print for brands</title>
+  <?php }
+  ?>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php echo $this->getChildHtml('head'); ?>
+
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,500,600,300,200,100' rel='stylesheet' type='text/css'>
+
+  <link href="<?php echo $this->getSkinUrl('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+
+  <!-- drawer css -->
+
+  <link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/drawer.min.css') ?>">
+
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/return-style.css') ?>">
+
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/turnaround-style.css') ?>">
+
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/privacy-style.css') ?>">
+
+  <link href="<?php echo $this->getSkinUrl('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+
+  <link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/dropdown.css') ?>">
+
+  <link href="<?php echo $this->getSkinUrl('css/bootstrap-responsive.css') ?>" rel="stylesheet" type="text/css"/>
+
+</head>
+
+
+
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+
+
+<?php echo $this->getChildHtml('header'); ?>
+
+
+
+<!--breadcrum/banner-->
+
+
+
+<div class="main_con mrg-tp-var">
+
+  <div class="container">
+
+    <!--breadcrum-part-->
+
+
+
+    <div class="breadcrum-con bg-grey">
+
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+
+   </div>
+
+   <!--/breadcrum-part-->
+
+
+
+ </div>
+
+</div>
+
+
+
+<!--/breadcrum/banner-->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!--middle-content-->
+
+<div class="main_con">
+
+  <div class="container">
+
+    <?php echo $this->getChildHtml('content'); ?>
+
+  </div>
+
+</div>
+
+
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+     <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+   </div>
+
+ </div>
+
+</div>
+
+<!--/newsletter-->
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+<script type="text/javascript">var jq1_9_1 = jQuery.noConflict();</script>
+<script>
+    jq1_9_1(document).ready(function(){
+        /*alert('manish');*/
+        /*jq1_9_1('#accordion').on('shown.bs.collapse', function () {
+            /!*alert('working');*!/
+
+            var panel = jq1_9_1(this).find('.in');
+
+            jq1_9_1('html, body').animate({
+                scrollTop: panel.offset().top -50
+            }, 500);
+
+        });*/
+
+
+        jq1_9_1(document).ready(function(e) {
+            if( jq1_9_1('#collapse1').hasClass('in')){
+                jq1_9_1('#collapse1').parent().children().addClass('opened').addClass('hdr-bgcolor');
+            }
+
+            jq1_9_1('.accordion-group .accordion-body').on('show ',function(){
+                jq1_9_1(this).parent().children().addClass('opened').addClass('hdr-bgcolor');
+            });
+            jq1_9_1('.accordion-group .accordion-body').on('hide',function(){
+                jq1_9_1(this).parent().children().removeClass('opened').removeClass('hdr-bgcolor');
+            });
+
+
+            if (jq1_9_1(window).width() <= 767 ){
+                jq1_9_1('.accordion').on('show', function () {
+                    var panel = jq1_9_1(this).find('.in');
+                    //console.log(panel);
+                    jq1_9_1('html, body').animate({
+                        scrollTop: panel.offset().top - 0
+                    }, 500);
+                });
+
+                jq1_9_1('.accordion').on('click', '.accordion-toggle', function (e) {
+                    //console.log('click');
+                    var offset =jq1_9_1('.accordion-group > .accordion-body.in').offset();
+                    if(offset) {
+                        jq1_9_1('html,body').animate({
+                            scrollTop: jq1_9_1('.accordion-heading a').offset().top
+                        }, 300);
+                    }
+                });
+
+
+            }
+
+        });
+    });
+</script>
+<script>
+    jq1_9_1(document).ready(function(){
+        /*var windowWidth = jq1_9_1(window).width();
+        alert(windowWidth);*/
+        if(jq1_9_1(window).width() > 769){
+            jq1_9_1(".accordion-body").on("shown", function () {
+                jq1_9_1('html,body').animate({scrollTop: jq1_9_1(this).offset().top-200}, 800);
+            });
+        }
+    });
+</script>
+<script>
+ if(jq1_9_1(window).width() < 769){
+ jq1_9_1(".accordion-body").on("shown", function () {
+	 var sb = jq1_9_1('.accordion-heading.opened').height();
+	// console.log(sb);
+    jq1_9_1('html,body').animate({scrollTop: jq1_9_1(this).offset().top-sb}, 800);
+});
+}
+</script>
+
+
+
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<?php echo $this->getChildHtml('head'); ?>
+
+<!--<script type="text/javascript">var jq1_9 = jQuery.noConflict();</script>-->
+
+
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,500,600,300,200,100' rel='stylesheet' type='text/css'>
+
+<link href="<?php echo $this->getSkinUrl('css/style.css') ?>" rel="stylesheet" type="text/css"/>
+
+<!-- drawer css -->
+
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/drawer.min.css') ?>">
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/category-style.css') ?>">
+
+<link href="<?php echo $this->getSkinUrl('css/bootstrap.css') ?>" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/dropdown.css') ?>">
+
+<link href="<?php echo $this->getSkinUrl('css/bootstrap-responsive.css') ?>" rel="stylesheet" type="text/css"/>
+
+</head>
+
+
+
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+<!--ask a question-->
+
+<!-- <div class="askcon-fix">
+
+<div id="pd-fx" class="pos_fix">
+
+   <a class="in-quick" href="#" id="contact"><img src="<?php //echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a>
+
+</div>
+
+<div class="contact_open">
+
+
+
+  <div id="contact1" class="inquiry-form hide">
+
+  <div class="askimg_left"> <img src="<?php //echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></div>
+
+    <div id="contact2"><a href="#" class="str_close">x</a></div>
+
+    <div class="form-inner">
+
+      <form>
+
+        <div class="form-control">
+
+          <input type="text" placeholder=" Name" required class="txt-field ">
+
+          <span class="txt-fld person"></span></div>
+
+        <div class="form-control">
+
+          <input type="text" placeholder="Email" required class="txt-field ">
+
+          <span class="txt-fld  email"></span></div>
+
+        <div class="form-control">
+
+          <textarea placeholder="Message" required class="txt-area "></textarea>
+
+          <span class=" txt-fld txtarea-fld"></span></div>
+
+        <div class="captcha-fld"> <img src="<?php //echo $this->getSkinUrl('img/captcha-img.png') ?>"  alt="captcha"/></div>
+
+        <div class="frm-btn">
+
+          <input type="submit" value="Submit" class="submit-btn">
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div> -->
+
+<!--/ask a question-->
+
+
+
+<?php echo $this->getChildHtml('header'); ?>
+
+
+
+<!--breadcrum/banner-->
+
+
+
+<div class="main_con mrg-tp-var">
+
+  <div class="container">
+
+    <!--breadcrum-part-->
+
+
+
+    <div class="breadcrum-con bg-grey">
+
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+
+    </div>
+
+    <!--/breadcrum-part-->
+
+
+
+  </div>
+
+</div>
+<?php echo $this->getChildHtml('global_messages') ?>
+
+
+
+<!--/breadcrum/banner-->
+
+
+
+<!--middle-content-->
+
+<div class="main_con">
+
+  <div class="container">
+
+    <div class="category-page">
+<?php $curr=Mage::getModel('catalog/layer')->getCurrentCategory(); ?>
+<?php if($curr->getImageUrl()) { ?>
+      <div class="category-bnrcon">
+          <?php if($curr->getImageUrl()) { ?>
+              <div class="category-imgcon">
+                  <img src="<?php echo $curr->getImageUrl(); ?>"  alt="category-bnr"/>
+              </div>
+          <?php } ?>
+      <div class="abt-cards">
+          <h3>Few Things About <strong><?php echo $curr->getName(); ?></strong></h3>
+          <?php
+          if($curr->getDescription()) {
+              echo $curr->getDescription();
+          }
+          ?>
+      </div>
+      </div>
+<?php } ?>
+
+
+      <div class="card-type-con">
+
+        <div class="row-fluid">
+
+            <?php
+
+                $currentCat = Mage::registry('current_category');
+
+
+
+                if ( $currentCat->getParentId() == Mage::app()->getStore()->getRootCategoryId() )
+
+                {
+
+                    // current category is a toplevel category
+
+                    $loadCategory = $currentCat;
+
+            ?>
+
+                    <div class="span12">
+
+
+
+                          <?php echo $this->getChildHtml('content'); ?>
+
+
+
+                   </div>
+
+            <?php }
+
+                  else { ?>
+
+                    <div class="span3">
+
+                          <?php echo $this->getChildHtml('left') ?>
+
+                    </div>
+
+                    <div class="span9">
+
+
+
+                                <?php echo $this->getChildHtml('content'); ?>
+
+
+
+                    </div>
+
+            <?php } ?>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--/newsletter-->
+
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+<script type="text/javascript">var jq1_9_1 = jQuery.noConflict();</script>
+<script>
+jq1_9_1(document).ready(function() {
+
+if(jq1_9_1('.card-type-accord #collapseOne1').hasClass('in')){
+
+ jq1_9_1('#collapseOne1').parent().addClass('accd-hov-active');
+  }
+   else{  jq1_9_1('#collapseOne1').parent().removeClass('accd-hov-active'); }
+
+jq1_9_1('.card-type-accord .accordion-body').on('show ',function(){
+
+     jq1_9_1(this).parent().addClass('accd-hov-active')
+    });
+jq1_9_1('.card-type-accord  .accordion-body').on('hide',function(){
+
+    jq1_9_1(this).parent().removeClass('accd-hov-active')
+ });
+
+
+
+
+ });
+</script>
+
+
+</body>
+
+
+
+
+
+</html>

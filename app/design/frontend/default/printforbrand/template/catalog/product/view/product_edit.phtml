@@ -1,0 +1,14 @@
+<div class="prdct-control" id="product_edit">
+              <label class="required"><?php echo $quntitylabel; ?><em>*</em></label>
+              <div class="control-box">
+                 <div class="slct-dwopdd">
+                   <select name="qty" id="qty"  title="<?php echo $this->__('Qty') ?>" tabindex="2" class="input-text qty chosen-select validate-select">
+                    <option value="" selected="disabled" disabled="disabled">Choose</option>
+<?php foreach ($quantities as $quantity) { ?>
+<?php $cart_quantity = $this->getProductDefaultQty() * 1 ?>
+<option value="<?php echo $quantity; ?>" <?php if($quantity == $cart_quantity): ?> selected <?php endif; ?> ><?php echo $quantity; ?></option>
+<?php } ?>
+</select>
+</div>
+</div>
+</div>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+
+  <?php echo $this->getChildHtml('head'); ?>
+
+  <!-- PAGINATION  -->
+  <?php
+  if(!Mage::registry('current_product')): ?>
+  <script  src="<?php //echo $this->getSkinUrl('js/jquery-latest.js') ?>"></script>
+<?php endif;
+?>
+
+
+<!-- PAGINATION  -->
+
+<link href="<?php echo $this->getSkinUrl('css/dd.css') ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $this->getSkinUrl('css/jquery-filestyle.css') ?>" rel="stylesheet" type="text/css"/>
+
+</head>
+
+
+
+
+
+<body <?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+
+
+  <?php echo $this->getChildHtml('header'); ?>
+
+
+
+  <!--breadcrum/banner-->
+
+
+
+  <div class="main_con mrg-tp-var">
+
+    <div class="container">
+
+      <!--breadcrum-part-->
+
+      <?php
+      $catUrl = Mage::helper('checkout/cart')->getCartUrl();
+      $currentUrl = Mage::helper('core/url')->getCurrentUrl();
+      ?>
+
+      <div class="breadcrum-con bg-grey">
+       <?php if($catUrl==$currentUrl) { ?>
+       <ul>
+        <li><a href="<?php echo Mage::getBaseUrl(); ?>">Home /</a></li>
+        <li class="active">Cart</li>
+      </ul>
+      <?php } else { ?>
+      <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+      <?php } ?>
+    </div>
+
+    <!--/breadcrum-part-->
+
+        <?php echo $this->getChildHtml('global_messages') ?>
+
+  </div>
+
+</div>
+
+  <?php echo $this->getChildHtml('global') ?>
+
+
+
+<!--/breadcrum/banner-->
+
+
+
+<!--middle-content-->
+
+<div class="main_con">
+
+  <div class="container">
+
+
+
+    <?php echo $this->getChildHtml('content'); ?>
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+<!--/middle-content-->
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+     <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+</div>
+
+</div>
+
+</div>
+
+<!--/newsletter-->
+
+
+
+<?php echo $this->getChildHtml('footer'); ?>
+<!-- PAGINATION  -->
+<script src="<?php echo $this->getSkinUrl('js/jquery.minicolors.min.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/easyResponsiveTabs.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/tips.js') ?>"></script>
+<script src="<?php echo $this->getSkinUrl('js/jquery-filestyle.js') ?>"></script>
+<script  src="<?php echo $this->getSkinUrl('js/dd.min.js') ?>"></script>
+<script  src="<?php echo $this->getSkinUrl('js/easypaginate.js') ?>"></script>
+<script type="text/javascript">var jq1_9_1 = jQuery.noConflict();</script>
+<!-- PAGINATION  -->
+
+<!--/search-btn-toggle -->
+<script type="text/javascript">
+  jq1_9(document).ready(function () {
+    jq1_9('#prdct-det-tab,#finishing-tab').easyResponsiveTabs({
+      type: 'horizontal',
+      width: 'auto',
+      fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+
+             var jq1_9tab = jq1_9(this);
+
+             var jq1_9name = jq1_9('span', jQueryinfo);
+
+             jq1_9name.text(jq1_9tab.text());
+
+             jq1_9info.show();
+
+
+           }
+         });
+    jq1_9('#custom-graphic-tab,#custom-print-tab').easyResponsiveTabs({
+      type: 'vertical',
+      width: 'auto',
+      fit: true,
+       closed: 'accordion', // Start closed if in accordion view
+            activate: function(event) { // Callback function if tab is switched
+
+             var jq1_9tab = jq1_9(this);
+
+             var jq1_9name = jq1_9('span', jq1_9info);
+
+             jq1_9name.text(jq1_9tab.text());
+
+             jq1_9info.show();
+
+
+           }
+         });
+  });
+</script>
+
+
+
+<!--<script type="text/javascript">
+  var config = {
+    '.chosen-select'           : {"disable_search": true},
+    '.chosen-select-deselect'  : {allow_single_deselect:true},
+    '.chosen-select-no-single' : {disable_search_threshold:10},
+    '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+    '.chosen-select-width'     : {width:"95%"}
+  }
+  for (var selector in config) {
+    jq1_9(selector).chosen(config[selector]);
+  }
+</script>-->
+<script>
+ (function() {
+  jq1_9(function() {
+
+    return jq1_9.tips({
+      action: 'hover',
+      element: '.hover',
+      preventDefault: true,
+      html5: false
+    });
+  });
+
+}).call(this);
+</script>
+<script>
+  var jq1_9 = jq1_9.noConflict();
+  jq1_9(document).ready( function() {
+
+    jq1_9('.colorbox').each( function() {
+                //
+                // Dear reader, it's actually very easy to initialize MiniColors. For example:
+                //
+                //  jQuery(selector).minicolors();
+                //
+                // The way I've done it below is just for the demo, so don't get confused
+                // by it. Also, data- attributes aren't supported at this time...they're
+                // only used for this demo.
+                //
+                jq1_9(this).minicolors({
+                  control: jq1_9(this).attr('data-control') || 'hue',
+                  defaultValue: jq1_9(this).attr('data-defaultValue') || '',
+                  inline: jq1_9(this).attr('data-inline') === 'true',
+                  letterCase: jq1_9(this).attr('data-letterCase') || 'lowercase',
+                  opacity: jq1_9(this).attr('data-opacity'),
+                  position: jq1_9(this).attr('data-position') || 'bottom left',
+                  change: function(hex, opacity) {
+                    if( !hex ) return;
+                    if( opacity ) hex += ', ' + opacity;
+                    if( typeof console === 'object' ) {
+                      console.log(hex);
+                    }
+                  },
+                  theme: 'bootstrap'
+                });
+
+              });
+
+});
+</script>
+
+
+<script>
+
+  jq1_9_1(function(){
+
+    jq1_9_1('ul#items,div#items1').easyPaginate({
+      step:6
+    });
+
+    jq1_9_1('div#items1').easyPaginate({
+      step:4
+    });
+
+    jq1_9_1('ul#items2').easyPaginate({
+      step:12
+    });
+
+  });
+</script>
+
+<!--<script type="text/javascript">
+  jq1_9_1( function() {
+    jq1_9_1(".slct-dropdown").msDropdown();
+  });
+</script>-->
+
+<script type="text/javascript">
+ jQuery('.brs-img1').jfilestyle({
+
+  placeholder: 'Upload multiple artworks',
+  buttonText: "Browse"
+
+});
+
+</script>
+<script type="text/javascript">
+  jq1_9_1(document).ready(function(){
+    jq1_9_1('#qty_child ul li').click(function(){
+      jq1_9_1('.update_qty').attr('value', jq1_9_1(this).children('span').text());
+    });
+  });
+</script>
+
+
+
+<script>
+  equalheight = function(container){
+    var currentTallest = 0,
+    currentRowStart = 0,
+    rowDivs = new Array(),
+    jq1_9_1el, topPosition = 0;
+    jq1_9_1(container).each(function() {
+
+      jq1_9_1el = jq1_9_1(this);
+      jq1_9_1(jq1_9_1el).height('auto')
+      topPostion = jq1_9_1el.position().top;
+
+      if (currentRowStart != topPostion) {
+        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+          rowDivs[currentDiv].height(currentTallest);
+        }
+rowDivs.length = 0; // empty the array
+currentRowStart = topPostion;
+currentTallest = jq1_9_1el.height();
+rowDivs.push(jq1_9_1el);
+} else {
+  rowDivs.push(jq1_9_1el);
+  currentTallest = (currentTallest < jq1_9_1el.height()) ? (jq1_9_1el.height()) : (currentTallest);
+}
+for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+  rowDivs[currentDiv].height(currentTallest);
+}
+});
+  }
+
+  jq1_9_1(window).load(function() {
+    equalheight('.cust-testimonialcon ul li .rpt-testi');
+  });
+
+
+  jq1_9_1(window).resize(function(){
+    equalheight('.cust-testimonialcon ul li .rpt-testi');
+  });
+
+</script>
+
+</body>
+
+
+
+
+
+</html>

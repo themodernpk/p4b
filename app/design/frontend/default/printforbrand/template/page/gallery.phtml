@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta charset="utf-8">
+
+<?php echo $this->getChildHtml('head'); ?>
+ <!-- PAGINATION  -->
+<script  src="<?php //echo $this->getSkinUrl('js/jquery-latest.js') ?>"></script>
+ <!-- PAGINATION  -->
+</head>
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+<?php echo $this->getChildHtml('header'); ?>
+
+<!--breadcrum/banner-->
+
+<div class="main_con mrg-tp-var">
+  <div class="container">
+    <!--breadcrum-part-->
+
+    <div class="breadcrum-con bg-grey">
+     <?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+    </div>
+    <!--/breadcrum-part-->
+
+  </div>
+</div>
+
+<!--/breadcrum/banner-->
+<?php echo $this->getChildHtml('global_messages') ?>
+<!--middle-content-->
+<div class="main_con">
+  <div class="container">
+
+        <?php echo $this->getChildHtml('content'); ?>
+
+  </div>
+</div>
+
+
+<!--/middle-content-->
+
+<!--newsletter-->
+<div class="main_con bg-dk2e2e2e ">
+  <div class="container">
+    <div class="newsletter">
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+    </div>
+  </div>
+</div>
+<!--/newsletter-->
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+</body>
+
+
+</html>

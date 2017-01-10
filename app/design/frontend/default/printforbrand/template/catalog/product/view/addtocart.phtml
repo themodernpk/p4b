@@ -1,0 +1,149 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $_product = $this->getProduct();
+// $productAttribute = $_product->getResource()->getAttribute('printed_slides');
+// $printed_slideslabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+// $productAttribute = $_product->getResource()->getAttribute('drilled_hole');
+// $drilled_holelabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+// $productAttribute = $_product->getResource()->getAttribute('rounded_corners');
+// $rounded_cornerslabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+// $productAttribute = $_product->getResource()->getAttribute('foiling');
+// $foilinglabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+// $productAttribute = $_product->getResource()->getAttribute('embossing');
+// $embossinglabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+
+  // $printed_slides=$_product->getAttributeText('printed_slides');
+  // $drilled_hole=$_product->getAttributeText('drilled_hole');
+  // $rounded_corners=$_product->getAttributeText('rounded_corners');
+  // $foiling=$_product->getAttributeText('foiling');
+  // $embossing=$_product->getAttributeText('embossing');
+
+ ?>
+ <?php $buttonTitle = $this->__('Add to Cart'); ?>
+         <?php if($_product->isSaleable()): ?>
+       
+         <!-- <div class="prdct-control">
+            <label><?php// echo $printed_slideslabel; ?></label>
+             <div class="control-box">
+           <select  class="chosen-select" tabindex="2" name="printed_slides" required >
+           <option value="">Select</option>
+            <?php //foreach ($printed_slides as $printed_slide) { ?>
+            <option value="<?php //echo $printed_slide; ?>"><?php //echo $printed_slide; ?></option> 
+            <?php //} ?>   
+          </select>
+              </div>    
+          </div> -->
+         
+           <!-- <div class="prdct-control">
+            <label><?php //echo $drilled_holelabel; ?></label>
+            <div class="control-box">
+            <div class="info-box">
+              <img src="<?php //echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon" class="i-dsk"/>
+               <img src="<?php //echo $this->getSkinUrl('img/i.png') ?>"  alt=""/ class="mob-info">
+              Lorem ipsum dolor sit amet, consectetuer ading elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+              </div>
+            <select class="chosen-select" tabindex="3" required>
+             <option value="Select">Select</option>
+              <?php //foreach ($drilled_hole as $drilled_hole) { ?>
+            <option value="<?php //echo $drilled_hole; ?>"><?php //echo $drilled_hole; ?></option> 
+            <?php //} ?> 
+           </select>
+           <a href="#" data-tooltip="Lorem ipsum dolor sit amet, consectetuer ading elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna " class="hover"><img src="<?php //echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon"/></a>
+            
+               </div>
+          </div>  -->
+          <!-- <div class="prdct-control">
+            <label><?php //echo $rounded_cornerslabel; ?></label>
+             <div class="control-box">      
+           <select class="chosen-select" tabindex="4" name="rounded corners" required>
+            <option value="Select">Select</option>
+            <?php //foreach ($rounded_corners as $rounded_corners) { ?>
+            <option value="<?php// echo $rounded_corners; ?>"><?php //echo $rounded_corners; ?></option> 
+            <?php //} ?> 
+           </select>
+            </div>      
+          </div>  -->
+           <!-- <div class="prdct-control">
+            <label><?php //echo $foilinglabel; ?></label>
+               <div class="control-box">
+               <div class="info-box">
+              <img src="<?php //echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon" class="i-dsk"/>
+              <img src="<?php //echo $this->getSkinUrl('img/i.png') ?>"  alt=""/ class="mob-info">
+               Lorem ipsum dolor sit amet, consectetuer ading elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna </div>
+           <select class="chosen-select" tabindex="4" required id="foiling_color" name="foiling">
+            <option value="Select">Select</option>
+            <?php //foreach ($foiling as $foiling) { ?>
+            <option value="<?php //echo $foiling; ?>"><?php //echo $foiling; ?></option> 
+            <?php //} ?> 
+           </select>
+             <a href="#" data-tooltip="sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna " class="hover"><img src="<?php// echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon"/></a> 
+              
+             <div class="clr-palette"><img src="<?php //echo $this->getSkinUrl('img/plus-clr-pick.png') ?>"  alt=""/> If Yes, choose color<span class="colorbox"></span></div> 
+      
+             </div>     
+          </div>  -->
+           <!-- <div class="prdct-control">
+            <label><?php //echo $embossinglabel; ?></label>
+             <div class="control-box">
+                  <div class="info-box">
+              <img src="<?php //echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon" class="i-dsk"/>
+               <img src="<?php //echo $this->getSkinUrl('img/i.png') ?>"  alt=""/ class="mob-info">
+              Lorem ipsum dolor sit amet, consectetuer ading elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+              </div>
+           <select class="chosen-select" tabindex="4" name="embossing" required>
+            <option value="Select">Select</option>
+            <?php //foreach ($embossing as $embossing) { ?>
+            <option value="<?php //echo $embossing; ?>"><?php// echo $embossing; ?></option> 
+            <?php //} ?> 
+           </select>
+              <a href="#" data-tooltip="Lorem ipsum dolor sit amet, consectetuer ading elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna " class="hover"><img src="<?php //echo $this->getSkinUrl('img/info-icon.png') ?>"  alt="info-icon"/></a> 
+              
+              </div>    
+          </div> --> 
+          
+          <div class="form-submit">
+              <input type="submit" name="submit" class="submit-btn" value="<?php echo $buttonTitle ?> " id="product-addtocart-button" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>" /> 
+       <!-- <button type="button" title="<?php// echo $buttonTitle ?>" id="product-addtocart-button" class="submit-btn" onclick="productAddToCartForm.submit(this)"><span><span><?php //echo $buttonTitle ?></span></span></button> -->
+         </div>
+
+   <?php endif; ?>      
+   <?php 
+        
+//$printed_arr =array();
+         // $printed_slide_arr = array($printed_slide,$printed_slideslabel);
+         // $drilled_hole_arr = array($drilled_hole,$drilled_holelabel);
+         // $rounded_corners_arr = array($rounded_corners,$rounded_cornerslabel);
+         // $foiling_arr = array($foiling,$foilinglabel);
+         // $embossing_arr = array($embossing,$embossinglabel);
+         // $custom_attValue = array($printed_slide_arr,$drilled_hole_arr,$rounded_corners_arr,$foiling_arr,$embossing_arr);
+         // $custom_attValues = Mage::getSingleton('core/session')->setPrint($custom_attValue); 
+         
+          
+          // $print = Mage::getSingleton('core/session')->getPrint($custom_attValues); 
+          // print_r($custom_attValue);
+          // Mage::getSingleton('core/session')->unsPrint();
+         ?>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Webre_Catalog>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Webre_Catalog>
+	</modules>
+</config>

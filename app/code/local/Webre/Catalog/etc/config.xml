@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+        <Webre_Catalog>
+            <version>1.0.0</version>
+        </Webre_Catalog>
+    </modules>
+ 
+	<global> 
+ 
+        <models>
+			<webre_catalog>
+	             <class>Webre_Catalog_Model</class>
+	        </webre_catalog>
+		</models>
+ 
+        <events>
+			<catalog_product_save_before>
+	        	<observers>
+		          <webre_catalog_product_observer>
+		            <type>singleton</type>
+		            <class>webre_catalog/product_observer</class>
+		            <method>catalog_product_save_before</method>
+		          </webre_catalog_product_observer>
+		        </observers>
+			</catalog_product_save_before>
+		</events>
+ 
+	</global>
+</config>

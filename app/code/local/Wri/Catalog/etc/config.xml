@@ -1,0 +1,11 @@
+<config>
+    <global>
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_view_options_type_select>Wri_Catalog_Block_Product_View_Options_Type_Select</product_view_options_type_select>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+</config>

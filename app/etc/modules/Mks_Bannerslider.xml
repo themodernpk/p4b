@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Mks_Bannerslider>
+      <active>true</active>
+      <codePool>community</codePool>
+      <version>8.1.1</version>
+    </Mks_Bannerslider>
+  </modules>
+</config>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta charset="utf-8">
+
+
+
+<?php echo $this->getChildHtml('head'); ?>
+
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
+
+</head>
+
+
+
+
+
+<body<?php echo $this->getBodyClass()?' class=" drawer drawer-left drawer-navbar drawer-fixed site-base drawer-close '.$this->getBodyClass().'"':'' ?>>
+
+
+
+<?php echo $this->getChildHtml('header'); ?>
+
+
+<!--middle-content-->
+
+<div class="main_con  mrg-tp-var">
+  <div class="container">
+    <div class="row-fluid">
+
+              <?php echo $this->getChildHtml('content'); ?> 
+     </div>
+  </div>
+</div>
+
+
+<!--/middle-content--> 
+
+
+
+<!--newsletter-->
+
+<div class="main_con bg-dk2e2e2e ">
+
+  <div class="container">
+
+    <div class="newsletter">
+
+         <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--/newsletter-->
+
+<?php echo $this->getChildHtml('footer'); ?>
+
+
+
+</body>
+
+<script src="<?php echo $this->getSkinUrl('js/jquery.validate.min.js') ?>"></script> 
+<script src="<?php echo $this->getSkinUrl('js/additional-methods.min.js') ?>"></script> 
+<script>
+
+jQuery( "#cGDesign" ).validate({
+  
+  rules: {
+          email_add: {
+            required: true,
+            email: true
+          },
+          width: {
+            required: true,
+            digits: true
+          },
+          height: {
+            required: true,
+            digits: true
+          }
+  }
+  
+  });
+</script>
+<script>
+
+jQuery( "#cGPrint" ).validate({
+  
+  rules: {
+          runSize: {
+            required: true,
+            digits: true
+          },
+          addRunSize: {
+            required: true,
+            digits: true
+          },
+          flatDimen1: {
+            required: true,
+            digits: true
+          },
+          flatDimen2: {
+            required: true,
+            digits: true
+          },
+          finishDimen1: {
+            required: true,
+            digits: true
+          },
+          finishDimen2: {
+            required: true,
+            digits: true
+          },
+          bindery: {
+            required: true
+          },
+          finishing: {
+            required: true
+          },
+          addInfo: {
+            required: true
+          },
+          fname: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          phone: {
+            required: true,
+            minlength:10,
+            maxlength: 14
+        }
+
+  },
+  messages: {
+    phone: {
+                            
+                            minlength: "Please enter valid phone no.",
+                            maxlength: "Please enter valid phone no."
+                  }
+
+     }
+  
+  });
+</script>
+
+<script>
+
+jQuery( "#oSPacket" ).validate({
+  
+  rules: {
+          fname: {
+            required: true
+          },
+          cmpy_name: {
+            required: true
+          },
+          address: {
+            required: true
+          },
+          zipcode: {
+            required: true,
+            digits: true
+          },
+          state: {
+            required: true
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          mssg: {
+            required: true
+          }
+          
+  }
+  
+  
+  });
+</script>
+
+
+
+</html>
