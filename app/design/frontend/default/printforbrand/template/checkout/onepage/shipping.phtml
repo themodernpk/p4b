@@ -176,7 +176,7 @@
     var shippingRegionUpdater = new RegionUpdater('shipping:country_id', 'shipping:region', 'shipping:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'shipping:postcode');
 
 Validation.add('validate-telephone', 'Please enter a valid telephone number.', function(v) {
-    return Validation.get('IsEmpty').test(v) || /^[2-9]{2}[0-9]{6,13}$/i.test(v)
+    return Validation.get('IsEmpty').test(v) || /^[0-9]{8,15}$/i.test(v)
 });
 //]]>
 </script>
