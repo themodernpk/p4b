@@ -32,12 +32,12 @@
         <div class="coupn">
             <span><?php echo $this->__('Enter your coupon code if you have one.') ?></span>
             <input type="hidden" name="remove" id="remove-coupone" value="0" />
-                <input id="coupon_code" name="coupon_code" value="<?php echo $this->escapeHtml($this->getCouponCode()) ?>" />
+                <input id="coupon_code" name="coupon_code" maxlength="30" value="<?php echo $this->escapeHtml($this->getCouponCode()) ?>" />
                 <button type="button" title="<?php echo $this->__('Apply Coupon') ?>" class="btn-pt bg-maroon" onclick="discountForm.submit(false)" value="<?php echo $this->__('Apply Coupon') ?>"><?php echo $this->__('Apply Coupon') ?></button>
                 <?php if(strlen($this->getCouponCode())): ?>
                     &nbsp; <button type="button" title="<?php echo $this->__('Cancel Coupon') ?>" class="btn-pt bg-maroon" onclick="discountForm.submit(true)" value="<?php echo $this->__('Cancel Coupon') ?>"><?php echo $this->__('Cancel Coupon') ?></button>
                 <?php endif;?>
-            
+
         </div>
     </div>
 </form>
