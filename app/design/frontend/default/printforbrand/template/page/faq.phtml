@@ -155,14 +155,14 @@
             });
 
 
-            if (jq1_9_1(window).width() <= 767 ){
+            /*if (jq1_9_1(window).width() <= 767 ){
                 jq1_9_1('.accordion').on('show', function () {
                     var panel = jq1_9_1(this).find('.in');
                     //console.log(panel);
                     jq1_9_1('html, body').animate({
                         scrollTop: panel.offset().top - 0
                     }, 500);
-                });
+                });*/
 
                 jq1_9_1('.accordion').on('click', '.accordion-toggle', function (e) {
                     //console.log('click');
@@ -182,23 +182,26 @@
 </script>
 <script>
     jq1_9_1(document).ready(function(){
-        /*var windowWidth = jq1_9_1(window).width();
-        alert(windowWidth);*/
-        if(jq1_9_1(window).width() > 769){
-            jq1_9_1(".accordion-body").on("shown", function () {
-                jq1_9_1('html,body').animate({scrollTop: jq1_9_1(this).offset().top-200}, 800);
-            });
-        }
+        jq1_9_1('.accordion-body').on('shown',function(){
+            var deviceWidth = jq1_9_1(window).width();
+            if(deviceWidth < 991){
+                var topMargin26 = parseInt(jq1_9_1(this).closest('body').find('.mrg-tp-var').css('margin-top').replace('px',''));
+                jq1_9_1('html,body').animate({
+                    scrollTop: jq1_9_1(this).closest('.accordion-group').offset().top-topMargin26});
+            }
+            else
+            if(deviceWidth >= 991){
+                var headerHeight = jq1_9_1('header').height();
+                var msHeight = jq1_9_1('.drawer-main').height();
+                var topPadding = parseInt(jq1_9_1('header').css('padding-top').replace("px", ""));
+                var bottomPadding = parseInt(jq1_9_1('header').css('padding-bottom').replace("px", ""));
+                var main_ht = headerHeight + msHeight + topPadding + bottomPadding;
+                jq1_9_1('html,body').animate({
+                    scrollTop: jq1_9_1(this).closest('.accordion-group').offset().top-main_ht});
+
+            }
+        });
     });
-</script>
-<script>
- if(jq1_9_1(window).width() < 769){
- jq1_9_1(".accordion-body").on("shown", function () {
-	 var sb = jq1_9_1('.accordion-heading.opened').height();
-	// console.log(sb);
-    jq1_9_1('html,body').animate({scrollTop: jq1_9_1(this).offset().top-sb}, 800);
-});
-}
 </script>
 
 
