@@ -97,8 +97,23 @@
 
 </script>
 
-
 <?php echo $this->getChildHtml('footer'); ?>
+<script type="text/javascript">
+
+  jQuery(document).ready(function () {
+    jQuery('form').on('click','.submit-btn',function(){
+      var scrollDiv = jQuery(this).closest('form').find('.validation-advice');
+      if(scrollDiv.length == 0){
+        scrollDiv = jQuery(this).closest('form').find('.cred-field');
+      }
+      jQuery("html, body").animate({
+        scrollTop: jQuery(scrollDiv).offset().top-350
+      });
+    });
+  });
+
+</script>
+
 
 </body>
 
