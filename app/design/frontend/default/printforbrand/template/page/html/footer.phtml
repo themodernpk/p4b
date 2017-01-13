@@ -79,7 +79,7 @@
                         <span class="signMaster">
                             Invented By:
                             <a style="display:inline-block; padding:0px 5px;" target="_blank" href="https://www.webreinvent.com?utm_source=http://printforbrands.webreinvent.com/&amp;utm_medium=signature&amp;utm_campaign=clientProjects" title="Professional Joomla, Wordpress &amp; Magento Website Design &amp; Development Company - Delhi, India">
-                                <iframe width="39" height="40" src="https://www.webreinvent.com/logo/index.php?utm_source=file:///E:/xampp_new/htdocs/manish/backup/themes/printforbrands/index.html&amp;utm_medium=signature&amp;utm_campaign=clientProjects"> </iframe>
+                                <iframe width="39" height="40" src="https://www.webreinvent.com/logo/index.php?utm_source=http://printforbrands.webreinvent.com/index.php/&amp;utm_medium=signature&amp;utm_campaign=clientProjects"> </iframe>
                             </a>
                         </span>
                     </label>
@@ -311,72 +311,71 @@ jq1_9(document).ready(callback);
 jq1_9(window).resize(callback);
 </script>
 
-<script>
-  jq1_9(document).ready(function () {
-    /*jq1_9('#myacct-tab').easyResponsiveTabs(
-    {
-      type: 'horizontal',
-      width: 'auto',
-      fit: true,
-        closed: 'accordion', // Start closed if in accordion view
-        activate: function(event) { // Callback function if tab is switched
-          var jq1_9tab = jq1_9(this);
-          var jq1_9name = jq1_9('span', jq1_9info);
-          jq1_9name.text(jq1_9tab.text());
-          jq1_9info.show();
-        }
-      });
+      <script type="text/javascript">
 
-    jq1_9(".messages").ready(function(){
-    jq1_9("html, body").delay(500).animate({
-        scrollTop: jq1_9('.messages').offset().top -200
-    }, 1000);
-});*/
-    jq1_9('body').on('click', '.submit-btn',function(){
-    jq1_9("html, body")/*.delay(500)*/.animate({
-        scrollTop: jq1_9('.input-text').offset().top -400
-    }/*, 600*/);
-});
+          jQuery(document).ready(function () {
+              jQuery('form').on('click','.submit-btn',function(){
+                  var topMargin = jQuery(this).closest('body').find('.mrg-tp-var').css('margin-top');
+                  /*alert(topMargin);*/
+                  var scrollDiv2 = jQuery(this).closest('form').find('.validation-advice');
+                  if(scrollDiv2.length == 0){
+                      scrollDiv2 = jQuery(this).closest('form').find('.input-field');
+                  }
+                  jQuery("html, body").animate({
+                      scrollTop: jQuery(scrollDiv2).offset().top-400
+                  });
+              });
+          });
 
+      </script>
 
-  });
-</script>
+      <script>
+          /*jq1_9(document).ready(function () {
+              jq1_9('body').on('click', '.submit-btn',function(){
+                  jq1_9("html, body").animate({
+                      scrollTop: jq1_9('.input-text').offset().top -400
+                  });
+              });
+          });*/
+      </script>
 
-<script type="text/javascript">// <![CDATA[
-    jq1_9(document).ready(function(){
+      <script type="text/javascript">
+          // <![CDATA[
+          jq1_9(document).ready(function(){
 
-      jq1_9('#state').addClass('required-entry');
-        jq1_9('#country_new').change(function(){
-            var country = jq1_9(this).val();
+              jq1_9('#state').addClass('required-entry');
+              jq1_9('#country_new').change(function(){
+                  var country = jq1_9(this).val();
 
-            console.log(country);
+                  console.log(country);
 
-            if(country == "US")
-            {
-                jq1_9('#region_id').show();
-                jq1_9('#state').removeClass('required-entry');
-                jq1_9('#state').attr('type','hidden');
-                jq1_9('#region_id').addClass('required-entry');
-               jq1_9('#advice-required-entry-state').hide();
+                  if(country == "US")
+                  {
+                      jq1_9('#region_id').show();
+                      jq1_9('#state').removeClass('required-entry');
+                      jq1_9('#state').attr('type','hidden');
+                      jq1_9('#region_id').addClass('required-entry');
+                      jq1_9('#advice-required-entry-state').hide();
 
-            }
+                  }
 
-            else{
-              jq1_9('#region_id').removeClass('required-entry');
-               jq1_9('#region_id').hide();
-                jq1_9('#state').attr('type','text');
-                jq1_9('#state').addClass('required-entry');
+                  else{
+                      jq1_9('#region_id').removeClass('required-entry');
+                      jq1_9('#region_id').hide();
+                      jq1_9('#state').attr('type','text');
+                      jq1_9('#state').addClass('required-entry');
 
-            }
+                  }
 
 
-        });
+              });
 
-        // jQuery('#email_address').attr('autofocus','false');
-        // jQuery('#email').attr('autofocus','true');
+              // jQuery('#email_address').attr('autofocus','false');
+              // jQuery('#email').attr('autofocus','true');
 
-    });
-// ]]></script>
+          });
+          // ]]>
+      </script>
 
     <script>
         jQuery(document).ready(function(){
