@@ -325,6 +325,16 @@ for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
 
 </script>
 
+<script type="text/javascript">
+    jq1_9_1(document).ready(function(){
+        var selectValue = jq1_9_1("#product_addtocart_form").find(".required-entry").val();
+        /*alert(selectValue);*/
+        if(selectValue == ""){
+            jq1_9_1('#qty').val('');
+        }
+    });
+</script>
+
 </body>
 
 
