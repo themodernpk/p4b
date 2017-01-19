@@ -156,7 +156,20 @@
 <!--</script>-->
 
 <?php echo $this->getChildHtml('footer'); ?>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery("#change_password").on("click",function(){
+            var firstHeight = jQuery(this).closest('form').closest(".acct-info").height();
+            if(firstHeight == 329) {
+                jQuery(this).closest(".title-box1").find('.dash-newsltr').css('height','395');
+            }
+            else if(firstHeight == 539) {
+                jQuery(this).closest(".title-box1").find('.dash-newsltr').css('height','605');
+            }
 
+        });
+    });
+</script>
 
 
 </body>
