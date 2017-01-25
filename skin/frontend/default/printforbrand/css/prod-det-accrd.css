@@ -203,7 +203,7 @@ input[type="radio"] { vertical-align: baseline;}
                 background-position: 96% center;    padding: 0 26px 0 6px;
                   box-sizing: border-box;
                   -webkit-box-sizing: border-box;
-                margin: 10px 0 20px 0;}
+                /*margin: 10px 0 20px 0;*/}
             .checkout-onepage-index .input-box  input {-webkit-appearance: none;  -moz-appearance: none; -ms-appearance: none; appearance: none;  border: 1px solid #ccc; padding: 10px;}
             .required span {    font-size: 23px;  display: inline-block;}
             #payment_form_ccsave .validation-advice {

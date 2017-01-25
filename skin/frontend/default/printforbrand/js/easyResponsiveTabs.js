@@ -110,13 +110,13 @@
                 }
 
                 //Tab Click action function
-                
+
                 $respTabs.find("[role=tab]").each(function () {
 
                     var $currentTab = $(this);
                     $currentTab.click(function () {
                         var attr = $(this).attr('aria-controls');
-                           
+
                         /*var offset = $('.resp-accordion[aria-controls='+attr+']').offset();
                         var height = $('.resp-tab-content-active').height();*/
                         var accno  = attr.replace('tab_item-','');
@@ -126,13 +126,23 @@
                             padding= padding.replace('px','');
                         var mheight= accno * ( height + (padding * 2));
                         console.log(offset,height);
-                        if($(window).width() < 769){ 
-                        if(offset) {
-                            $('html,body').animate({
-                                scrollTop:  ( offset.top ) + mheight
-                                // scrollTop: 0
-                            }, 300);
-                        }
+                        if($(window).width() < 769){
+                            if($(window).width() == 768){
+                                if(offset) {
+                                    $('html,body').animate({
+                                        scrollTop:  ( offset.top ) + mheight-141
+                                        // scrollTop: 0
+                                    }, 300);
+                                }
+                            }
+                            else{
+                                if(offset) {
+                                    $('html,body').animate({
+                                        scrollTop:  ( offset.top ) + mheight
+                                        // scrollTop: 0
+                                    }, 300);
+                                }
+                            }
                         }
                         var $currentTab = $(this);
                         var $tabAria = $currentTab.attr('aria-controls');
