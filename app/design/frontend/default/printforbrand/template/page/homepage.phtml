@@ -94,7 +94,7 @@
 
 <div id="pd-fx" class="pos_fix">
 
-   <a class="in-quick" href="#" id="contact"><img src="<?php echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a>
+   <a class="in-quick" " id="contact"><img src="<?php echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></a>
 
 </div>
 
@@ -106,11 +106,11 @@
 
   <div class="askimg_left"> <img src="<?php echo $this->getSkinUrl('img/ask-txt-ques.jpg') ?>"  alt="ask-txt"/></div>
 
-    <div id="contact2"><a href="#" class="str_close">x</a></div>
+    <div id="contact2"><a class="str_close">x</a></div>
 
     <div class="form-inner">
 
-      <form method="post" id="ask-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validateform();">
+      <form method="post" id="ask-form" onsubmit="return validateform();">
         <span><?php //echo $captchaerr; ?></span>
         <div class="form-control">
 
@@ -312,40 +312,44 @@ jq1_9_1(document).ready(function() {
 <!--sliding_ask_question -->
 
 <script type="text/javascript">
+    jq1_9_1(document).ready(function(){
+        jq1_9_1("#pd-fx, #contact").click(function(){
+            jq1_9_1("#contact1").show("slide",{direction: "right" },500 );
+            jq1_9_1("#pd-fx, #contact").hide();
+            jq1_9_1('form')[0].reset();
+            jq1_9_1('.validation-advice').remove();
+            jq1_9_1('#demo').empty();
+            return false;
+        });
 
- jq1_9_1(document).ready(function(){
+        jq1_9_1("#contact2").click(function(){
+            jq1_9_1("#contact1").hide( "slide",
+                { direction: "right"},500,function(){
+                    jq1_9_1("#pd-fx, #contact").show();
+                });
+            return false;
+        });
 
-      jq1_9_1("#pd-fx, #contact").click(function(){
+        if(jq1_9_1("#ask-form .ask_error").length > 0)
+        {
+            //alert('ok');
+            jq1_9_1("#contact1").show("slide",{direction: "right" },500);
+            jq1_9_1("#pd-fx, #contact").hide();
+            jq1_9_1('form')[0].reset();
+            jq1_9_1('.validation-advice').remove();
+            jq1_9_1('#demo').empty();
+            return false;
+        }
 
-         jq1_9_1("#contact1").show( "slide",  {direction: "right" }, 500 );
-     jq1_9_1("#pd-fx, #contact").hide();
-         return false;
-      });
+    });
 
-     jq1_9_1("#contact2").click(function(){
-         jq1_9_1("#contact1").hide( "slide",
-                     { direction: "right"  }, 500, function() {
-     jq1_9_1("#pd-fx, #contact").show();
-             });
-     return false;
-      });
+    Validation.add('validate-name', 'Please use letters or numbers only.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
+    });
 
-     if(jq1_9_1("#ask-form .ask_error").length > 0)
-     {
-     	//alert('ok');
-     	jq1_9_1("#contact1").show( "slide",  {direction: "right" }, 500 );
-     	jq1_9_1("#pd-fx, #contact").hide();
-     }
-
-  });
-
- Validation.add('validate-name', 'Please use letters or numbers only.', function(v) {
-    return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
-})
-
-   Validation.add('validate-emailid', 'Please enter a valid email address.', function(v) {
-    return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i.test(v)
-});
+    Validation.add('validate-emailid', 'Please enter a valid email address.', function(v) {
+        return Validation.get('IsEmpty').test(v) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/i.test(v)
+    });
 
 </script>
 
@@ -354,7 +358,7 @@ jq1_9_1(document).ready(function() {
        var myForm= new VarienForm('ask-form', false);
     //]]>
 </script>
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
     function validateform(){
         var captcha_response = grecaptcha.getResponse();
         if(captcha_response.length == 0)
@@ -375,7 +379,8 @@ jq1_9_1(document).ready(function() {
             return true;
         }
     }
-    // ]]></script>
+    // ]]>
+</script>
 </body>
 
 
