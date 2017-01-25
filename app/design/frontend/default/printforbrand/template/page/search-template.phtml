@@ -149,7 +149,7 @@ if(isset($_POST['custom_graphic_design_business_card']) || isset($_POST['custom_
         extract($cgd);
 
         /***** MAIL TO ADMIN *****/
-        $to = "print4brands@gmail.com"; 
+        $to = "print4brands@gmail.com";
         /*$to = "saksham.wri77@webreinvent.com";*/
         $from = $email;
         $subject = "Custom Print Job Request";
@@ -374,7 +374,41 @@ Validation.add('validate-emailid', 'Please enter a valid email address.', functi
 <script src="<?php echo $this->getSkinUrl('js/jquery-filestyle.js') ?>"></script>
 
 <script type="text/javascript">
+
+    var jqm26 = jQuery.noConflict();
+
+    jqm26(document).ready(function () {
+        var deviceWidth26 = jqm26(document).width();
+        jqm26('form').on('click','.submit-btn',function(){
+            if(deviceWidth26 >= 768) {
+                var topMargin = jqm26(this).closest('body').find('.mrg-tp-var').css('margin-top');
+                /*alert(topMargin);*/
+                var scrollDiv2 = jqm26(this).closest('form').find('.validation-advice');
+                if(scrollDiv2.length == 0){
+                    scrollDiv2 = jqm26(this).closest('form').find('.inp-text-inpt');
+                }
+                jqm26("html, body").animate({
+                    scrollTop: jqm26(scrollDiv2).offset().top-250
+                });
+            }
+            else {
+                var topMargin = jqm26(this).closest('body').find('.mrg-tp-var').css('margin-top');
+                var scrollDiv2 = jqm26(this).closest('form').find('.validation-advice');
+                if(scrollDiv2.length == 0){
+                    scrollDiv2 = jqm26(this).closest('form').find('.inp-text-inpt');
+                }
+                jqm26("html, body").animate({
+                    scrollTop: jqm26(scrollDiv2).offset().top-260
+                });
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
     //< ![CDATA[
+    /*Custom Print Job Forms*/
     var myForm= new VarienForm('cpj_bcards', false);
     var myForm= new VarienForm('cpj_htags', false);
     var myForm= new VarienForm('cpj_pcards', false);
@@ -383,6 +417,7 @@ Validation.add('validate-emailid', 'Please enter a valid email address.', functi
     var myForm= new VarienForm('cpj_cldesign', false);
     var myForm= new VarienForm('cpj_other', false);
 
+    /*Custom Graphic Design Forms*/
     var myForm = new VarienForm('cgd_bcards',false);
     var myForm = new VarienForm('cgd_htags',false);
     var myForm = new VarienForm('cgd_pcards',false);
@@ -391,26 +426,20 @@ Validation.add('validate-emailid', 'Please enter a valid email address.', functi
     var myForm = new VarienForm('cgd_cldesign',false);
     var myForm = new VarienForm('cgd_other',false);
     //]]>
-    jQuery(document).ready(function () {
 
-var myForm = new VarienForm('cgd_other',false);        Validation.add('validate-runsize-number', 'Please enter whole number only..', function(v) {
+    jQuery(document).ready(function () {
+        var myForm = new VarienForm('cgd_other',false);
+        Validation.add('validate-runsize-number', 'Please enter whole number only..', function(v) {
             return Validation.get('IsEmpty').test(v) || /^[0-9]*$/i.test(v)
         });
         Validation.add('validate-name', 'Please enter letters and numbers only.', function(v) {
             return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]*$/i.test(v)
         });
-        /*Validation.add('validate-info', 'Please enter a comment of max 500 letters.', function(v) {
-         return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]{0,500}$/i.test(v)
-         });*/
         Validation.add('validate-name', 'Please enter letters and numbers only.', function(v) {
             return Validation.get('IsEmpty').test(v) || /^[a-zA-Z][a-zA-Z0-9 -]*$/i.test(v)
         });
-
-        /*jQuery(function () {
-            jQuery('input').blur();
-        });*/
-
     });
+
 </script>
 
  <script type="text/javascript">
@@ -497,15 +526,6 @@ var myForm = new VarienForm('cgd_other',false);        Validation.add('validate-
 
       });
     </script>
-<script>
-    jQuery(document).ready(function(){
-        jQuery(".custom_print_job").click(function(){
-
-
-    });
-    });
-</script>
-
 </body>
 
 </html>

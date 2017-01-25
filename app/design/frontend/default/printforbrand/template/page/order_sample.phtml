@@ -306,6 +306,40 @@ if(isset($_POST['sample_order']))
 <script src="<?php echo $this->getSkinUrl('js/jquery.validate.min.js') ?>"></script>
 <script src="<?php echo $this->getSkinUrl('js/additional-methods.min.js') ?>"></script>
 <script src="<?php echo $this->getSkinUrl('js/jquery-filestyle.js') ?>"></script>
+
+<script type="text/javascript">
+
+    var jqm26 = jQuery.noConflict();
+
+    jqm26(document).ready(function () {
+        var deviceWidth26 = jqm26(document).width();
+        jqm26('form').on('click','.submit-btn',function(){
+            if(deviceWidth26 >= 768) {
+                var topMargin = jqm26(this).closest('body').find('.mrg-tp-var').css('margin-top');
+                /*alert(topMargin);*/
+                var scrollDiv2 = jqm26(this).closest('form').find('.validation-advice');
+                if(scrollDiv2.length == 0){
+                    scrollDiv2 = jqm26(this).closest('form').find('.inp-text-inpt');
+                }
+                jqm26("html, body").animate({
+                    scrollTop: jqm26(scrollDiv2).offset().top-250
+                });
+            }
+            else {
+                var topMargin = jqm26(this).closest('body').find('.mrg-tp-var').css('margin-top');
+                var scrollDiv2 = jqm26(this).closest('form').find('.validation-advice');
+                if(scrollDiv2.length == 0){
+                    scrollDiv2 = jqm26(this).closest('form').find('.inp-text-inpt');
+                }
+                jqm26("html, body").animate({
+                    scrollTop: jqm26(scrollDiv2).offset().top
+                });
+            }
+        });
+    });
+
+</script>
+
 <script type="text/javascript">
     Validation.add('validate-name', 'Please use letters only, numbers are optional.', function(v) {
         return Validation.get('IsEmpty').test(v) || /^(?=.*[a-zA-Z].*)([-_a-zA-Z0-9 ]+)$/i.test(v)
@@ -397,14 +431,7 @@ if(isset($_POST['sample_order']))
             return true;
         }
     }
-    // ]]></script>
-
-
-<script>
-   /* $(document).ready(function () {
-        $(".validation-failed").focus();
-
-    })*/
+    // ]]>
 </script>
 
 </body>
