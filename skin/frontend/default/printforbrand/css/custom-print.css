@@ -28,7 +28,7 @@ input[type="button"].fileInputButton{float:left;box-sizing:content-box;-moz-box-
 	/*-----------------Custom Graphic CSS---------*/
 	#custom-graphic-tab .custom-frmcon {margin:0;}
 	.custom-graphic-bnr{position:relative; }
-	.custom-grapic-txtcon{position:absolute; top:85px; left:55px; width:43%;}
+	.custom-grapic-txtcon{position:absolute; top:85px; left:55px; width:43%;text-align: center;color: #ffffff;z-index: 5;}
 	.custom-grapic-txtcon h1{font-family: 'HelveticaCE-CondBold';  line-height:74px;   text-transform:uppercase; }
 	.custom-grapic-txtcon h1 >span{ font-family: 'Helvetica-Condensed'; font-size:60px; display:block;}
 	.custom-grapic-txtcon  p{font-family: 'Helvetica-Condensed'; font-size:26px; line-height:35px; margin-top:15px;}
@@ -39,3 +39,44 @@ input[type="button"].fileInputButton{float:left;box-sizing:content-box;-moz-box-
 
 	#cGDesign .input-field .inp-text, .input-field .inp-txt-area {
     position: relative; }
+
+
+    .banner-con.custom-graphic-bnr:after {
+content: '';
+position: absolute;
+border: 3px solid #fff;
+height: calc(100% - 26px);
+width: calc(100% - 26px);
+top: 10px;
+left: 10px;
+border-radius: 10px;
+}
+
+.banner-con.custom-graphic-bnr {
+position: relative;
+clear: both;
+}
+
+@media(max-width:767px){
+.banner-con.custom-graphic-bnr:after {
+   border: 1px solid #fff;
+  height: calc(100% - 15px);
+   width: calc(100% - 15px);
+   top: 7px;
+   left: 7px;
+}
+}
+@media (max-width: 480px){
+.custom-grapic-txtcon h1 {
+    line-height: 20px !important;
+    font-size: 14px !important;
+}
+.custom-grapic-txtcon h1 >span {
+    font-size: 12px;
+}
+.custom-grapic-txtcon {
+    width: 50% !important;
+}
+
+}
+

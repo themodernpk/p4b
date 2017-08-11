@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Wri_Customer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Wri_Customer>
+    </modules>
+</config>

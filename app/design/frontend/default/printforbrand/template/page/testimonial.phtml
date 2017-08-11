@@ -361,6 +361,28 @@ for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
 
 
   </script>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+      jQuery(".more-views a").on("click",function(e){
+        e.preventDefault();
+        var imgSrc = jQuery(this).data("img");
+        jQuery(".product-image img").attr("src",imgSrc);
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+      jQuery(document).ready(function(){
+          jQuery("form .product-custom-option").on('change',function(){
+              var set = jQuery("#qty").val();
+              var price = jQuery(".product-options-bottom .price").html();
+              price = price.replace("$","");
+              var subtotal = set * price;
+              jQuery("#subtotal").css("display","block");
+              jQuery("#subtotal .price").html("$"+subtotal);
+          });
+      });
+  </script>
 
 </body>
 </html>

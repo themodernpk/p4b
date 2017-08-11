@@ -139,9 +139,9 @@
     jQuery(document).ready(function(){
         jQuery("#change_password").on("click",function(){
             var docWidth = jQuery('document').width();
-            alert(docWidth);
+            /*alert(docWidth);*/
             var firstHeight = jQuery(this).closest('form').closest(".acct-info").height();
-            alert(firstHeight);
+            /*alert(firstHeight);*/
             if(firstHeight <= 350) {
                 jQuery(this).closest(".title-box1").find('.dash-newsltr').css('height','395');
             }

@@ -268,3 +268,13 @@ div#checkout-step-review {    padding: 10px 20px;    box-sizing: border-box;}
 
 
 
+
+
+/*by shailja*/
+
+.checkout-regist span,.checkout-regist p ,.checkout-regist li{
+font-size: 15px;display: block;margin-bottom: 14px;
+}
+.checkout-regist .control label{cursor: pointer;margin-left: 5px;color: #7e0c0c;}
+.checkout-regist p{font-weight: bold;}
+/*by shailja*/

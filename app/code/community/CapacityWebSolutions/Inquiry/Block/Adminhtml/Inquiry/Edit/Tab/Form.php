@@ -85,6 +85,34 @@ class CapacityWebSolutions_Inquiry_Block_Adminhtml_Inquiry_Edit_Tab_Form extends
 			));
 		}
 
+		if($data->getMessage()){
+			$fieldset->addField('message','label',array(
+				'label' => Mage::helper('inquiry')->__('Message'),
+				'value' => $data->getMessage(),
+			));
+		}
+
+        if($data->getReason()){
+            $fieldset->addField('reason','label',array(
+                'label' => Mage::helper('inquiry')->__('Reason'),
+                'value' => $data->getReason(),
+            ));
+        }
+
+        if($data->getOrder()){
+            $fieldset->addField('order','label',array(
+                'label' => Mage::helper('inquiry')->__('Order No.'),
+                'value' => $data->getOrder(),
+            ));
+        }
+
+        if($data->getComment()){
+            $fieldset->addField('comment','label',array(
+                'label' => Mage::helper('inquiry')->__('Comment'),
+                'value' => $data->getComment(),
+            ));
+        }
+
 		if($data->getRunsize()){
 			$fieldset->addField('run size','label',array(
 				'label' => Mage::helper('inquiry')->__('Run Size'),

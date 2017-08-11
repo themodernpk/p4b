@@ -61,7 +61,7 @@
                         <!-- <th><?php //echo $this->__('Move to Wishlist') ?></th> -->
                         <?php //endif ?>
                         <th><?php echo $this->__('Price') ?></th>
-                        <th><?php echo $this->__('Qty') ?></th>
+                        <th><?php echo $this->__("Sets") ?></th>
                         <th><?php echo $this->__('Subtotal') ?></th>
                         <th></th>
                     </tr>
@@ -87,7 +87,7 @@
                             <?php if($this->getContinueShoppingUrl()): ?>
                                 <div class="span6">
                                   <div  class="left-btn">
-                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-pt bg-maroon" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><?php echo $this->__('Continue Shopping') ?></button>
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-pt bg-maroon" onclick="setLocation('<?php echo $this->getUrl(''); ?>')"><?php echo $this->__('Continue Shopping') ?></button>
                                    </div>
                                 </div>
                             <?php endif; ?>

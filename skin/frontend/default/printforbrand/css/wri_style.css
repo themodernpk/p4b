@@ -33,3 +33,14 @@
     width:100%;
 }
 
+.product-options-bottom span.price{
+    font-size: 23px;
+}
+
+.catalog-product-view .span7 .price-box.prdct-control{
+    display: none;
+}
+
+.catalog-product-view #subtotal{
+    display: none;
+}

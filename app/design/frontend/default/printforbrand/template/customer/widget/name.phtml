@@ -85,9 +85,9 @@ For checkout/onepage/shipping.phtml:
 <?php endif; ?>
     <div class="cred-field">
 
-        <!-- <label for="<?php// echo $this->getFieldId('firstname')?>" class="required"><em>*</em><?php// echo $this->getStoreLabel('firstname') ?></label> -->
+         <label for="<?php// echo $this->getFieldId('firstname')?>" class="required"><em>*</em><?php// echo $this->getStoreLabel('firstname') ?></label>
 
-            <input type="text" title="First Name" id="First Name" name="<?php echo $this->getFieldName('firstname')?>" value="<?php echo $this->escapeHtml($this->getObject()->getFirstname()) ?>" placeholder="First Name *<?php //echo $this->getStoreLabel('firstname') ?>" maxlength="20" class="validate-fname cred_txt <?php echo $this->helper('customer/address')->getAttributeValidationClass('firstname') ?>" <?php echo $this->getFieldParams() ?> />
+            <input type="text" title="First Name" id="First Name" name="<?php echo $this->getFieldName('firstname')?>" value="<?php echo $this->escapeHtml($this->getObject()->getFirstname()) ?>" placeholder="Raju First Name *<?php //echo $this->getStoreLabel('firstname') ?>" maxlength="20" class="validate-fname cred_txt <?php echo $this->helper('customer/address')->getAttributeValidationClass('firstname') ?>" <?php echo $this->getFieldParams() ?> />
 
     </div>
 <?php if ($this->showMiddlename()): ?>

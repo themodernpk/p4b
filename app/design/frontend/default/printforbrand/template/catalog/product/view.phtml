@@ -41,215 +41,225 @@
 <!--middle-content-->
 
 
-    <div class="prdct-detailpage">
+<div class="prdct-detailpage">
 
     <div class="row-fluid prdct-det-tp">
-    <div class="span5">
-    <?php $product_img = $this->helper('catalog/image')->init($_product, 'image')->resize(470,425);
-    if($product_img) { ?>
-      <img src="<?php echo $product_img; ?>"  alt="product-det-img"/>
-    <?php } ?>
-    </div>
-      <?php if($_product->features_tab_heading) { ?>
-    <div class="span7">
-
-    <div id="prdct-det-tab">
-        <ul class="resp-tabs-list">
-          <li><?php echo $_product->features_tab_heading; ?></li>
-          <li><?php echo $_product->paper_specifi_tab_heading; ?></li>
-         </ul>
-        <div class="resp-tabs-container">
-
-          <div class="prod-det-ftr">
-          <?php if($_product->features) { ?>
-          <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-icon.png') ?>"  alt="feature-icon"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('features')->getStoreLabel(); ?>:</h6>
-          <p><?php echo $_product->features; ?></p>
-          </div>
-          </div>
-          <?php }
-
-           if($_product->fonts) {
-          ?>
-          <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-font.png') ?>"  alt="feature-font"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('fonts')->getStoreLabel(); ?> :</h6>
-          <p><?php echo $_product->fonts; ?></p>
-          </div>
-          </div>
-          <?php }
-
-          if($_product->content) {
-          ?>
-          <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-content.png') ?>"  alt="feature-content"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('content')->getStoreLabel(); ?> :</h6>
-          <p><?php echo $_product->content; ?></p>
-          </div>
-          </div>
-          <?php } ?>
-          </div>
-
-           <div class="prod-det-ftr">
-           <?php if($_product->sp_feature) {
-           ?>
-           <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-icon.png') ?>"  alt="feature-content"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('sp_feature')->getStoreLabel(); ?> :</h6>
-          <p><?php echo $_product->sp_feature; ?></p>
-          </div>
-          </div>
-          <?php }
-           if($_product->sp_fonts) { ?>
-            <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-font.png') ?>"  alt="feature-font"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('sp_fonts')->getStoreLabel(); ?> :</h6>
-          <p><?php echo $_product->sp_fonts; ?></p>
-          </div>
-          </div>
-           <?php
-           }
-
-           if($_product->sp_content) {
-           ?>
-          <div class="rpt-prod-ftrs">
-          <div class="prod-ftr-icon"><img src="<?php echo $this->getSkinUrl('img/feature-content.png') ?>"  alt="feature-content"/>
-          </div>
-          <div class="prod-det-cont">
-          <h6><?php echo $_product->getResource()->getAttribute('sp_content')->getStoreLabel(); ?> :</h6>
-          <p><?php echo $_product->sp_content; ?></p>
-          </div>
-          </div>
-          <?php } ?>
-          </div>
-         </div>
-      </div>
-
-    </div>
-     <?php } ?>
-    </div>
-
-<div class="prdct-form-con">
-<h3 class="frm-title">Get Started With <strong><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></strong></h3>
-<div class="product-detl-frm">
-        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post"  id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-          <?php
-                $productAttribute = $_product->getResource()->getAttribute('quntity');
-                $quntitylabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
-                $quantities = $_product->getAttributeText('quntity');
-          ?>
-           <div class="prdct-control">
-              <label class="required"><?php echo $quntitylabel; ?><em>*</em></label>
-              <div class="control-box">
-                 <div class="slct-dwopdd">
-                   <select name="qty" id="qty"  title="<?php echo $this->__('Qty') ?>" tabindex="2" class="input-text qty chosen-select validate-select">
-<?php
-
-$cart_m = Mage::getModel('checkout/cart')->getQuote();
-$yourProductId = $_product->getId();
-$needQty = 0;
-foreach ($cart_m->getAllItems() as $item)
-{
-
-    $cart_productId = $item->getProduct()->getId();
-    $productPrice = $item->getProduct()->getPrice();
-    $productQuantity = $item->getQty();
-    if ($yourProductId == $cart_productId){
-        $needQty = $productQuantity;
-        break;
-    }
-}
-?>
-                       <option value="">Choose</option>
-                    <?php foreach ($quantities as $quantity) { ?>
-                        <option value="<?php echo $quantity; ?>" <?php if($quantity == $needQty){ ?>selected<?php } ?> > <?php echo $quantity; ?> </option>
-                    <?php } ?>
-                  </select>
-                </div>
-             </div>
+        <div class="span5">
+            <?php echo $this->getChildHtml('media') ?>
         </div>
+        <?php if($_product->features_tab_heading) { ?>
+            <div class="span7">
 
-          <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-          <?php endif;?>
+                <div id="prdct-det-tab">
+                    <ul class="resp-tabs-list">
+                        <li><?php echo $_product->features_tab_heading; ?></li>
+                        <li><?php echo $_product->paper_specifi_tab_heading; ?></li>
+                    </ul>
+                    <div class="resp-tabs-container">
 
-          <?php //echo $this->getChildHtml('addtocart') ?>
+                        <div class="prod-det-ftr">
+                            <?php if($_product->features) { ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'f_ftr_img'); ?>"  alt="feature-icon"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getFeatureTab1()) ?  $_product->getFeatureTab1(): "Features"; ?> :</h6>
+                                        <p><?php echo $_product->getFeatures(); ?></p>
+                                    </div>
+                                </div>
+                            <?php }
 
-         </form>
+                            if($_product->fonts) {
+                                ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'f_font_img'); ?>"  alt="feature-font"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getFeatureTab2()) ?  $_product->getFeatureTab2(): "Fonts"; ?> :</h6>
+                                        <p><?php echo $_product->fonts; ?></p>
+                                    </div>
+                                </div>
+                            <?php }
 
+                            if($_product->content) {
+                                ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'f_cont_img'); ?>"  alt="feature-content"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getFeatureTab3()) ?  $_product->getFeatureTab3(): "Contents"; ?> :</h6>
+                                        <p><?php echo $_product->content; ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
 
-         <script type="text/javascript">
-    //<![CDATA[
-        var productAddToCartForm = new VarienForm('product_addtocart_form');
-        productAddToCartForm.submit = function(button, url) {
-            /*alert('okay');*/
-            if (this.validator.validate()) {
-                var form = this.form;
-                var oldUrl = form.action;
+                        <div class="prod-det-ftr">
+                            <?php if($_product->sp_feature) {
+                                ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'ps_ftr_img'); ?>"  alt="feature-content"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getPsTab1()) ?  $_product->getPsTab1(): "Features"; ?> :</h6>
+                                        <p><?php echo $_product->sp_feature; ?></p>
+                                    </div>
+                                </div>
+                            <?php }
+                            if($_product->sp_fonts) { ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'ps_font_img'); ?>"  alt="feature-font"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getPsTab2()) ?  $_product->getPsTab2(): "Fonts"; ?> :</h6>
+                                        <p><?php echo $_product->sp_fonts; ?></p>
+                                    </div>
+                                </div>
+                                <?php
+                            }
 
-                if (url) {
-                   form.action = url;
-                }
-                var e = null;
-                try {
-                    this.form.submit();
-                } catch (e) {
-                }
-                this.form.action = oldUrl;
-                if (e) {
-                    throw e;
-                }
-
-                if (button && button != 'undefined') {
-                    button.disabled = true;
-                }
-            }
-        }.bind(productAddToCartForm);
-
-        productAddToCartForm.submitLight = function(button, url){
-            if(this.validator) {
-                var nv = Validation.methods;
-                delete Validation.methods['required-entry'];
-                delete Validation.methods['validate-one-required'];
-                delete Validation.methods['validate-one-required-by-name'];
-                // Remove custom datetime validators
-                for (var methodName in Validation.methods) {
-                    if (methodName.match(/^validate-datetime-.*/i)) {
-                        delete Validation.methods[methodName];
-                    }
-                }
-
-                if (this.validator.validate()) {
-                    if (url) {
-                        this.form.action = url;
-                    }
-                    this.form.submit();
-                }
-                Object.extend(Validation.methods, nv);
-            }
-        }.bind(productAddToCartForm);
-    //]]>
-    </script>
-
-           </div>
-</div>
-<div class="prod-sub-lnk">
-<div class="row-fluid">
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_page_link')->toHtml(); ?>
-</div>
-</div>
-
-
+                            if($_product->sp_content) {
+                                ?>
+                                <div class="rpt-prod-ftrs">
+                                    <div class="prod-ftr-icon"><img src="<?php echo $this->helper('catalog/image')->init($_product,'ps_cont_img'); ?>"  alt="feature-content"/>
+                                    </div>
+                                    <div class="prod-det-cont">
+                                        <h6><?php echo ($_product->getPsTab3()) ?  $_product->getPsTab3(): "Contents"; ?> :</h6>
+                                        <p><?php echo $_product->sp_content; ?></p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+                <?php echo $this->getChildHtml('product_type_data') ?>
+            </div>
+        <?php } ?>
     </div>
-  </div>
+
+    <div class="prdct-form-con">
+        <h3 class="frm-title">Get Started With <strong><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></strong></h3>
+        <div class="product-detl-frm">
+            <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post"  id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+                <?php
+                /*                $productAttribute = $_product->getResource()->getAttribute('quntity');
+                                $quntitylabel = $productAttribute->getStoreLabel(Mage::app()->getStore()->getName());
+                                $quantities = $_product->getAttributeText('quntity');
+                          */?>
+                <div class="prdct-control">
+                    <label class="required"><?php echo $this->__('Sets') ?><em>*</em></label>
+                    <div class="control-box">
+                        <div class="slct-dwopdd">
+                            <select name="qty" id="qty"  title="<?php echo $this->__('Qty') ?>" tabindex="2" class="input-text qty chosen-select validate-select">
+                                <?php
+
+                                $cart_m = Mage::getModel('checkout/cart')->getQuote();
+                                $yourProductId = $_product->getId();
+                                $needQty = 0;
+                                foreach ($cart_m->getAllItems() as $item)
+                                {
+
+                                    $cart_productId = $item->getProduct()->getId();
+                                    $productPrice = $item->getProduct()->getPrice();
+                                    $productQuantity = $item->getQty();
+                                    if ($yourProductId == $cart_productId){
+                                        $needQty = $productQuantity;
+                                        break;
+                                    }
+                                }
+                                ?>
+                                <option value="">Select</option>
+
+                                <?php
+                                $i = 1;
+                                $maxQuantity = $_product->getmaxSet();
+                                if($maxQuantity > 2):
+                                    $max = $maxQuantity;
+                                else:
+                                    $max = $maxQuantity;
+                                endif;
+                                ?>
+                                <?php do { ?>
+                                    <option value="<?php echo $i?>" <?php if($i == $needQty){ ?>selected<?php } ?>>
+                                        <?php echo $i?>
+                                        <?php $i++ ?>
+                                    </option>
+                                <?php } while ($i <= $max) ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif;?>
+
+                <?php /*echo $this->getChildHtml('addtocart') */?>
+
+            </form>
+
+
+            <script type="text/javascript">
+                //<![CDATA[
+                var productAddToCartForm = new VarienForm('product_addtocart_form');
+                productAddToCartForm.submit = function(button, url) {
+                    /*alert('okay');*/
+                    if (this.validator.validate()) {
+                        var form = this.form;
+                        var oldUrl = form.action;
+
+                        if (url) {
+                            form.action = url;
+                        }
+                        var e = null;
+                        try {
+                            this.form.submit();
+                        } catch (e) {
+                        }
+                        this.form.action = oldUrl;
+                        if (e) {
+                            throw e;
+                        }
+
+                        if (button && button != 'undefined') {
+                            button.disabled = true;
+                        }
+                    }
+                }.bind(productAddToCartForm);
+
+                productAddToCartForm.submitLight = function(button, url){
+                    if(this.validator) {
+                        var nv = Validation.methods;
+                        delete Validation.methods['required-entry'];
+                        delete Validation.methods['validate-one-required'];
+                        delete Validation.methods['validate-one-required-by-name'];
+                        // Remove custom datetime validators
+                        for (var methodName in Validation.methods) {
+                            if (methodName.match(/^validate-datetime-.*/i)) {
+                                delete Validation.methods[methodName];
+                            }
+                        }
+
+                        if (this.validator.validate()) {
+                            if (url) {
+                                this.form.action = url;
+                            }
+                            this.form.submit();
+                        }
+                        Object.extend(Validation.methods, nv);
+                    }
+                }.bind(productAddToCartForm);
+                //]]>
+            </script>
+
+        </div>
+    </div>
+    <div class="prod-sub-lnk">
+        <div class="row-fluid">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_page_link')->toHtml(); ?>
+        </div>
+    </div>
+
+
+</div>
+<!--</div>-->

@@ -105,3 +105,14 @@ skin/install/
 var/
 error_log
 downloader/error_log
+files/
+
+js/
+
+lib/
+
+shell/
+
+skin/adminhtml/
+
+tmp/
