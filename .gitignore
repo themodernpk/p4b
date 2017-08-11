@@ -104,3 +104,4 @@ skin/frontend/enterprise
 skin/install/
 var/
 error_log
+downloader/error_log
